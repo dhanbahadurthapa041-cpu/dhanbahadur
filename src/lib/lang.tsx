@@ -9,13 +9,14 @@ const LangContext = createContext<{ lang: Lang; setLang: (l: Lang) => void; t: S
   t: STRINGS.ne,
 });
 
-export function LangProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<Lang>("ne");
+function initialLang(): Lang {
+  if (typeof window === "undefined") return "ne";
+  const saved = localStorage.getItem("dbt-lang");
+  return saved === "en" || saved === "ne" ? saved : "ne";
+}
 
-  useEffect(() => {
-    const saved = localStorage.getItem("dbt-lang");
-    if (saved === "en" || saved === "ne") setLang(saved);
-  }, []);
+export function LangProvider({ children }: { children: ReactNode }) {
+  const [lang, setLang] = useState<Lang>(initialLang);
 
   useEffect(() => {
     localStorage.setItem("dbt-lang", lang);
