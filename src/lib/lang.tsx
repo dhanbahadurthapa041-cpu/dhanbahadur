@@ -83,14 +83,34 @@ function initialTheme(): Theme {
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>(initialTheme);
 
+  const applyTheme = useCallback((next: Theme) => {
+    try {
+      localStorage.setItem("dbt-theme", next);
+    } catch {}
+    document.documentElement.classList.toggle("dark", next === "dark");
+  }, []);
+
+  const setThemeExplicit = useCallback(
+    (t: Theme) => {
+      setTheme(t);
+      applyTheme(t);
+    },
+    [applyTheme],
+  );
+
+  const toggleTheme = useCallback(() => {
+    setTheme((prev) => {
+      const next = prev === "dark" ? "light" : "dark";
+      applyTheme(next);
+      return next;
+    });
+  }, [applyTheme]);
+
   useEffect(() => {
-    localStorage.setItem("dbt-theme", theme);
-    document.documentElement.classList.toggle("dark", theme === "dark");
-  }, [theme]);
+    applyTheme(theme);
+  }, [theme, applyTheme]);
 
-  const toggleTheme = () => setTheme((prev) => (prev === "dark" ? "light" : "dark"));
-
-  return <ThemeContext.Provider value={{ theme, setTheme, toggleTheme }}>{children}</ThemeContext.Provider>;
+  return <ThemeContext.Provider value={{ theme, setTheme: setThemeExplicit, toggleTheme }}>{children}</ThemeContext.Provider>;
 }
 
 export function useTheme() {

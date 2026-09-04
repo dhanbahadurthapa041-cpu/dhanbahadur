@@ -36,6 +36,7 @@ export default function Header() {
             className="rounded border border-zinc-300 px-2 py-0.5 text-xs dark:border-zinc-700"
             aria-label={t.toggleTheme}
             title={t.toggleTheme}
+            suppressHydrationWarning
           >
             {theme === "dark" ? (
               <svg

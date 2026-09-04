@@ -108,7 +108,7 @@ export const SECTION_SUBSECTIONS: Record<Section, string[]> = {
     "tense",
     "reported-speech",
     "voice",
-    "sva",
+    "subject-verb-agreement",
     "relative-clause",
     "connectives",
     "conditional-sentences",

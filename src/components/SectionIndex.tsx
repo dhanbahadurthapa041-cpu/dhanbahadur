@@ -49,6 +49,7 @@ function subsectionLabel(sub: string, t: Strings): string {
     "reported-speech": t.subReportedSpeech,
     voice: t.subVoice,
     sva: t.subSVA,
+    "subject-verb-agreement": t.subSVA,
     "relative-clause": t.subRelativeClause,
     connectives: t.subConnectives,
     "conditional-sentences": t.subConditional,
