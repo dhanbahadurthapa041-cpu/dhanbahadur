@@ -1,6 +1,7 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from "react";
+import { useRouter } from "next/navigation";
 import { STRINGS, type Lang, type Strings } from "./i18n";
 
 const LangContext = createContext<{ lang: Lang; setLang: (l: Lang) => void; t: Strings }>({
@@ -9,18 +10,51 @@ const LangContext = createContext<{ lang: Lang; setLang: (l: Lang) => void; t: S
   t: STRINGS.en,
 });
 
+function readCookieLang(): Lang | null {
+  if (typeof document === "undefined") return null;
+  const m = document.cookie.match(/(?:^|;\s*)dbt-lang=(en|ne)(?:;|$)/);
+  return m ? (m[1] as Lang) : null;
+}
+
 function initialLang(): Lang {
   if (typeof window === "undefined") return "en";
   const saved = localStorage.getItem("dbt-lang");
-  return saved === "en" || saved === "ne" ? saved : "en";
+  if (saved === "en" || saved === "ne") return saved;
+  // No saved choice in localStorage (first visit, cleared storage, or a
+  // stale value): agree with the server, which renders from the cookie.
+  // This keeps hydration consistent on hard refreshes of deep pages.
+  return readCookieLang() ?? "en";
 }
 
+const COOKIE_ATTRS = "path=/; max-age=31536000; SameSite=Lax";
+
 export function LangProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<Lang>(initialLang);
+  const router = useRouter();
+  const [lang, setLangState] = useState<Lang>(initialLang);
+
+  const setLang = useCallback(
+    (l: Lang) => {
+      setLangState(l);
+      try {
+        localStorage.setItem("dbt-lang", l);
+      } catch {
+        // Storage unavailable (e.g. private mode) — the cookie still carries it.
+      }
+      // Mirror to the cookie the server components read, then re-render
+      // them so the current page switches language immediately.
+      document.cookie = `dbt-lang=${l}; ${COOKIE_ATTRS}`;
+      router.refresh();
+    },
+    [router],
+  );
 
   useEffect(() => {
-    localStorage.setItem("dbt-lang", lang);
-    document.cookie = `dbt-lang=${lang}; path=/; max-age=31536000`;
+    try {
+      localStorage.setItem("dbt-lang", lang);
+    } catch {
+      // Storage unavailable — the cookie still carries the preference.
+    }
+    document.cookie = `dbt-lang=${lang}; ${COOKIE_ATTRS}`;
     document.documentElement.lang = lang === "ne" ? "ne" : "en";
   }, [lang]);
 
