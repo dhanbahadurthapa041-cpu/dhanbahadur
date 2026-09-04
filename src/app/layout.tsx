@@ -8,6 +8,7 @@ import Footer from "@/components/Footer";
 const nepali = Noto_Sans_Devanagari({ subsets: ["devanagari", "latin"], display: "swap" });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://dbthapa.vercel.app"),
   title: "Dhan Bahadur Thapa | धन बहादुर थापा",
   description: "Study materials, writings, books and fonts.",
 };

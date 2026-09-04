@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useLang } from "@/lib/lang";
 
 const CARD =
@@ -11,7 +12,15 @@ export default function Home() {
   return (
     <div>
       <section className="py-10 text-center">
-        <h1 className="text-4xl font-bold">{t.heroTitle}</h1>
+        <Image
+          src="/images/profile.jpg"
+          alt="Dhan Bahadur Thapa / धन बहादुर थापा"
+          width={112}
+          height={112}
+          className="mx-auto h-28 w-28 rounded-full object-cover"
+          priority
+        />
+        <h1 className="mt-4 text-4xl font-bold">{t.heroTitle}</h1>
         <p className="mt-2 text-zinc-600 dark:text-zinc-400">{t.tagline}</p>
         <p className="mx-auto mt-4 max-w-xl">{t.heroSubtitle}</p>
         <div className="mt-6 flex justify-center gap-3">
