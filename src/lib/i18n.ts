@@ -64,6 +64,15 @@ export const STRINGS = {
     backHome: "← Home",
     backSection: "← Back to section",
     footerNote: "Personal website. For official school notices, visit the school website.",
+    brandName: "D. B. Thapa",
+    siteOwner: "Dhan Bahadur Thapa",
+    profileAlt: "Portrait of Dhan Bahadur Thapa",
+    switchLang: "Switch language",
+    toggleTheme: "Toggle dark mode",
+    aboutPara1:
+      "Hello! I am Dhan Bahadur Thapa — Head Teacher of Shree Bhawani Secondary School. (Father to fill in his own bio here.)",
+    aboutPara2: "Here you will find my writings, study materials, books and fonts.",
+    untitled: "Untitled",
   },
   ne: {
     navHome: "गृहपृष्ठ",
@@ -128,6 +137,15 @@ export const STRINGS = {
     backHome: "← गृहपृष्ठ",
     backSection: "← खण्डमा फर्कनुहोस्",
     footerNote: "व्यक्तिगत वेबसाइट। आधिकारिक विद्यालय सूचनाका लागि विद्यालयको वेबसाइट हेर्नुहोस्।",
+    brandName: "धन बहादुर थापा",
+    siteOwner: "धन बहादुर थापा",
+    profileAlt: "धन बहादुर थापाको तस्बिर",
+    switchLang: "भाषा बदल्नुहोस्",
+    toggleTheme: "उज्यालो/गाढा मोड बदल्नुहोस्",
+    aboutPara1:
+      "नमस्ते! म धन बहादुर थापा — श्री भवानी माध्यमिक विद्यालयको प्रधानाध्यापक। (यो परिचय बुबाले आफ्नै शब्दमा भर्न बाँकी छ।)",
+    aboutPara2: "यहाँ मेरा लेखहरू, अध्ययन सामग्रीहरू, पुस्तक र फन्टहरू भेटिनेछन्।",
+    untitled: "शीर्षकविहीन",
   },
 } as const;
 

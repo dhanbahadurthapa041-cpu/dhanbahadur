@@ -1,17 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { useLang } from "@/lib/lang";
+import { useLang, useTheme } from "@/lib/lang";
 import { SCHOOL_URL, FACEBOOK_URL, LOOMA_URL } from "@/lib/site";
 
 export default function Header() {
   const { lang, setLang, t } = useLang();
+  const { theme, toggleTheme } = useTheme();
   const link = "hover:text-emerald-700 dark:hover:text-emerald-300";
   return (
     <header className="border-b border-zinc-200 dark:border-zinc-800">
       <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-between gap-2 px-4 py-3">
         <Link href="/" className="font-bold">
-          {lang === "ne" ? "धन बहादुर थापा" : "D. B. Thapa"}
+          {t.brandName}
         </Link>
         <nav className="flex flex-wrap items-center gap-3 text-sm">
           <Link className={link} href="/">{t.navHome}</Link>
@@ -31,9 +32,56 @@ export default function Header() {
             {t.navLooma}
           </a>
           <button
+            onClick={toggleTheme}
+            className="rounded border border-zinc-300 px-2 py-0.5 text-xs dark:border-zinc-700"
+            aria-label={t.toggleTheme}
+            title={t.toggleTheme}
+          >
+            {theme === "dark" ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="4" />
+                <path d="M12 2v2" />
+                <path d="M12 20v2" />
+                <path d="m4.93 4.93 1.41 1.41" />
+                <path d="m17.66 17.66 1.41 1.41" />
+                <path d="M2 12h2" />
+                <path d="M20 12h2" />
+                <path d="m6.34 17.66-1.41 1.41" />
+                <path d="m19.07 4.93-1.41 1.41" />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+              </svg>
+            )}
+          </button>
+          <button
             onClick={() => setLang(lang === "ne" ? "en" : "ne")}
             className="rounded border border-zinc-300 px-2 py-0.5 text-xs dark:border-zinc-700"
-            aria-label="Switch language / भाषा बदल्नुहोस्"
+            aria-label={t.switchLang}
+            title={t.switchLang}
           >
             {lang === "ne" ? "EN" : "नेपाली"}
           </button>

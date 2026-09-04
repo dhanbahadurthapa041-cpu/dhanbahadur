@@ -14,7 +14,7 @@ export default function Home() {
       <section className="py-10 text-center">
         <Image
           src="/images/profile.jpg"
-          alt="Dhan Bahadur Thapa / धन बहादुर थापा"
+          alt={t.profileAlt}
           width={112}
           height={112}
           className="mx-auto h-28 w-28 rounded-full object-cover"

@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { marked } from "marked";
-import type { Lang } from "./i18n";
+import { STRINGS, type Lang } from "./i18n";
 
 export const SECTIONS = ["pub", "writing", "grammar", "class-10", "class-12"] as const;
 export type Section = (typeof SECTIONS)[number];
@@ -18,21 +18,25 @@ export interface Doc {
 
 const CONTENT_DIR = path.join(process.cwd(), "content");
 
-function parseFrontmatter(raw: string): {
+function parseFrontmatter(
+  raw: string,
+  lang: Lang,
+): {
   title: string;
   date: string;
   subsection: string | null;
   body: string;
 } {
+  const fallback = STRINGS[lang].untitled;
   const match = raw.match(/^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/);
-  if (!match) return { title: "Untitled", date: "", subsection: null, body: raw };
+  if (!match) return { title: fallback, date: "", subsection: null, body: raw };
   const meta: Record<string, string> = {};
   for (const line of match[1].split("\n")) {
     const i = line.indexOf(":");
     if (i > 0) meta[line.slice(0, i).trim()] = line.slice(i + 1).trim().replace(/^"|"$/g, "");
   }
   return {
-    title: meta.title ?? "Untitled",
+    title: meta.title ?? fallback,
     date: meta.date ?? "",
     subsection: meta.subsection ?? null,
     body: match[2],
@@ -68,7 +72,7 @@ export function getDoc(section: Section, slug: string, lang: Lang): Doc | null {
   for (const l of [lang, lang === "ne" ? "en" : "ne"] as Lang[]) {
     const file = path.join(sectionDir(section), `${slug}.${l}.md`);
     if (fs.existsSync(file)) {
-      const { title, date, subsection, body } = parseFrontmatter(fs.readFileSync(file, "utf8"));
+      const { title, date, subsection, body } = parseFrontmatter(fs.readFileSync(file, "utf8"), l);
       return { slug, section, lang: l, title, date, subsection, html: marked.parse(body) as string };
     }
   }
