@@ -11,6 +11,7 @@ export const STRINGS = {
     navAbout: "About",
     navSchool: "School",
     navFacebook: "Facebook",
+    navLooma: "Looma",
     tagline: "Principal, Shree Bhawani Secondary School",
     heroTitle: "Dhan Bahadur Thapa",
     heroSubtitle:
@@ -74,6 +75,7 @@ export const STRINGS = {
     navAbout: "बारेमा",
     navSchool: "विद्यालय",
     navFacebook: "फेसबुक",
+    navLooma: "लूमा",
     tagline: "प्रधानाध्यापक, श्री भवानी माध्यमिक विद्यालय",
     heroTitle: "धन बहादुर थापा",
     heroSubtitle:

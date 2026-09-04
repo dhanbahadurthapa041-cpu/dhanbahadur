@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useLang } from "@/lib/lang";
-import { SCHOOL_URL, FACEBOOK_URL } from "@/lib/site";
+import { SCHOOL_URL, FACEBOOK_URL, LOOMA_URL } from "@/lib/site";
 
 export default function Header() {
   const { lang, setLang, t } = useLang();
@@ -26,6 +26,9 @@ export default function Header() {
           </a>
           <a className={link} href={FACEBOOK_URL} target="_blank" rel="noreferrer">
             {t.navFacebook}
+          </a>
+          <a className={link} href={LOOMA_URL} target="_blank" rel="noreferrer">
+            {t.navLooma}
           </a>
           <button
             onClick={() => setLang(lang === "ne" ? "en" : "ne")}

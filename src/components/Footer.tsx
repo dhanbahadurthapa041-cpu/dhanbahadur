@@ -1,7 +1,7 @@
 "use client";
 
 import { useLang } from "@/lib/lang";
-import { SCHOOL_URL, FACEBOOK_URL } from "@/lib/site";
+import { SCHOOL_URL, FACEBOOK_URL, LOOMA_URL } from "@/lib/site";
 
 export default function Footer() {
   const { t } = useLang();
@@ -16,6 +16,10 @@ export default function Footer() {
           {" · "}
           <a href={FACEBOOK_URL} target="_blank" rel="noreferrer" className="underline">
             {t.navFacebook}
+          </a>
+          {" · "}
+          <a href={LOOMA_URL} target="_blank" rel="noreferrer" className="underline">
+            {t.navLooma}
           </a>
         </p>
         <p className="mt-1">{t.footerNote}</p>

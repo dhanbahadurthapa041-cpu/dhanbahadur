@@ -3,3 +3,5 @@
 export const SCHOOL_URL = "#";
 // TODO: owner must supply the real Facebook page URL.
 export const FACEBOOK_URL = "#";
+// TODO: Looma website URL from owner
+export const LOOMA_URL = "#";
