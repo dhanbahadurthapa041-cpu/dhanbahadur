@@ -12,6 +12,7 @@ export const STRINGS = {
     navSchool: "School",
     navFacebook: "Facebook",
     navLooma: "Looma",
+    navMenu: "Menu",
     tagline: "Principal, Shree Bhawani Secondary School",
     heroTitle: "Dhan Bahadur Thapa",
     heroSubtitle:
@@ -73,6 +74,12 @@ export const STRINGS = {
       "Hello! I am Dhan Bahadur Thapa — Head Teacher of Shree Bhawani Secondary School. (Father to fill in his own bio here.)",
     aboutPara2: "Here you will find my writings, study materials, books and fonts.",
     untitled: "Untitled",
+    englishOnly: "English only",
+    notFoundTitle: "Page not found",
+    notFoundBody: "The page you asked for does not exist.",
+    errorTitle: "Something went wrong",
+    errorBody: "Please try again.",
+    errorRetry: "Try again",
   },
   ne: {
     navHome: "गृहपृष्ठ",
@@ -85,6 +92,7 @@ export const STRINGS = {
     navSchool: "विद्यालय",
     navFacebook: "फेसबुक",
     navLooma: "लूमा",
+    navMenu: "मेनु",
     tagline: "प्रधानाध्यापक, श्री भवानी माध्यमिक विद्यालय",
     heroTitle: "धन बहादुर थापा",
     heroSubtitle:
@@ -146,6 +154,12 @@ export const STRINGS = {
       "नमस्ते! म धन बहादुर थापा — श्री भवानी माध्यमिक विद्यालयको प्रधानाध्यापक। (यो परिचय बुबाले आफ्नै शब्दमा भर्न बाँकी छ।)",
     aboutPara2: "यहाँ मेरा लेखहरू, अध्ययन सामग्रीहरू, पुस्तक र फन्टहरू भेटिनेछन्।",
     untitled: "शीर्षकविहीन",
+    englishOnly: "अङ्ग्रेजीमा मात्र",
+    notFoundTitle: "पृष्ठ फेला परेन",
+    notFoundBody: "तपाईंले खोज्नुभएको पृष्ठ छैन।",
+    errorTitle: "केही गलत भयो",
+    errorBody: "कृपया पुनः प्रयास गर्नुहोस्।",
+    errorRetry: "पुनः प्रयास गर्नुहोस्",
   },
 } as const;
 

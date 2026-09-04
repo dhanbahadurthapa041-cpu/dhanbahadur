@@ -5,6 +5,7 @@ import { SCHOOL_URL, FACEBOOK_URL, LOOMA_URL } from "@/lib/site";
 
 export default function Footer() {
   const { t } = useLang();
+  const showFacebook = FACEBOOK_URL.startsWith("http");
   return (
     <footer className="mt-16 border-t border-zinc-200 dark:border-zinc-800">
       <div className="mx-auto max-w-3xl px-4 py-6 text-center text-xs text-zinc-500">
@@ -13,10 +14,14 @@ export default function Footer() {
           <a href={SCHOOL_URL} target="_blank" rel="noreferrer" className="underline">
             {t.navSchool}
           </a>
-          {" · "}
-          <a href={FACEBOOK_URL} target="_blank" rel="noreferrer" className="underline">
-            {t.navFacebook}
-          </a>
+          {showFacebook && (
+            <>
+              {" · "}
+              <a href={FACEBOOK_URL} target="_blank" rel="noreferrer" className="underline">
+                {t.navFacebook}
+              </a>
+            </>
+          )}
           {" · "}
           <a href={LOOMA_URL} target="_blank" rel="noreferrer" className="underline">
             {t.navLooma}

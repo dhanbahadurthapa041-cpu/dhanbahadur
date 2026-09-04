@@ -22,6 +22,13 @@ export default function DocView({
       </Link>
       <h1 className="mt-2 text-3xl font-bold">{doc.title}</h1>
       {doc.date && <p className="mt-1 text-xs text-zinc-500">{doc.date}</p>}
+      {/* Every slug has an English file, so a language mismatch always means
+          English fallback — one shared "English only" badge covers it. */}
+      {doc.lang !== lang && (
+        <p className="mt-2 inline-block rounded bg-amber-100 px-2 py-0.5 text-xs text-amber-900 dark:bg-amber-900/40 dark:text-amber-200">
+          {t.englishOnly}
+        </p>
+      )}
       <div className="prose mt-6 dark:prose-invert" dangerouslySetInnerHTML={{ __html: doc.html }} />
     </article>
   );

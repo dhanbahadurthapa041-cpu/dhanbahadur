@@ -1,11 +1,19 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
-import { useLang } from "@/lib/lang";
+import type { Metadata } from "next";
+import { STRINGS } from "@/lib/i18n";
+import { getServerLang } from "@/lib/lang-server";
+import { aboutMetadata } from "@/lib/seo";
 
-export default function About() {
-  const { t } = useLang();
+// Language comes from the `dbt-lang` cookie per request — never statically cache.
+export const dynamic = "force-dynamic";
+
+export async function generateMetadata(): Promise<Metadata> {
+  return aboutMetadata(await getServerLang());
+}
+
+export default async function About() {
+  const t = STRINGS[await getServerLang()];
   return (
     <article>
       <Link href="/" className="text-sm text-emerald-700 dark:text-emerald-300">{t.backHome}</Link>

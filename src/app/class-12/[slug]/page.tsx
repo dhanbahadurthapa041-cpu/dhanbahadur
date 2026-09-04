@@ -1,12 +1,18 @@
+import type { Metadata } from "next";
 import DocView from "@/components/DocView";
-import { getSlugs } from "@/lib/content";
 import { getServerLang } from "@/lib/lang-server";
+import { docMetadata } from "@/lib/seo";
 
 // Language comes from the `dbt-lang` cookie per request — never statically cache.
 export const dynamic = "force-dynamic";
 
-export function generateStaticParams() {
-  return getSlugs("class-12").map((slug) => ({ slug }));
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  return docMetadata("class-12", slug, await getServerLang());
 }
 
 export default async function Class12Doc({ params }: { params: Promise<{ slug: string }> }) {

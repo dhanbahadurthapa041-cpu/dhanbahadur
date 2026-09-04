@@ -16,21 +16,37 @@ function readCookieLang(): Lang | null {
   return m ? (m[1] as Lang) : null;
 }
 
-function initialLang(): Lang {
+function clientInitialLang(): Lang {
   if (typeof window === "undefined") return "en";
-  const saved = localStorage.getItem("dbt-lang");
-  if (saved === "en" || saved === "ne") return saved;
-  // No saved choice in localStorage (first visit, cleared storage, or a
-  // stale value): agree with the server, which renders from the cookie.
-  // This keeps hydration consistent on hard refreshes of deep pages.
-  return readCookieLang() ?? "en";
+  // Cookie first: it is what the server rendered with, so the first client
+  // render matches SSR and hydration stays clean. localStorage is fallback.
+  return readCookieLang() ?? readStoredLang() ?? "en";
+}
+
+function readStoredLang(): Lang | null {
+  try {
+    const saved = localStorage.getItem("dbt-lang");
+    if (saved === "en" || saved === "ne") return saved;
+  } catch {
+    // Storage unavailable (e.g. private mode).
+  }
+  return null;
 }
 
 const COOKIE_ATTRS = "path=/; max-age=31536000; SameSite=Lax";
 
-export function LangProvider({ children }: { children: ReactNode }) {
+export function LangProvider({
+  children,
+  initialLang: serverLang,
+}: {
+  children: ReactNode;
+  /** Language the server rendered with (from the `dbt-lang` cookie). */
+  initialLang?: Lang;
+}) {
   const router = useRouter();
-  const [lang, setLangState] = useState<Lang>(initialLang);
+  // Seed from the server prop so hydration matches SSR exactly; the client
+  // fallback only matters if the prop is ever omitted.
+  const [lang, setLangState] = useState<Lang>(() => serverLang ?? clientInitialLang());
 
   const setLang = useCallback(
     (l: Lang) => {

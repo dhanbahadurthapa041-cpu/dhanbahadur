@@ -111,6 +111,11 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                   >
                     {d.title}
                   </Link>
+                  {d.lang !== lang && (
+                    <span className="ml-2 inline-block rounded bg-amber-100 px-2 py-0.5 align-middle text-xs text-amber-900 dark:bg-amber-900/40 dark:text-amber-200">
+                      {t.englishOnly}
+                    </span>
+                  )}
                   {d.date && <p className="text-xs text-zinc-500">{d.date}</p>}
                 </li>
               ))}
@@ -149,6 +154,11 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                         >
                           {d.title}
                         </Link>
+                        {d.lang !== lang && (
+                          <span className="ml-2 inline-block rounded bg-amber-100 px-2 py-0.5 align-middle text-xs text-amber-900 dark:bg-amber-900/40 dark:text-amber-200">
+                            {t.englishOnly}
+                          </span>
+                        )}
                         {d.date && <p className="text-xs text-zinc-500">{d.date}</p>}
                       </li>
                     ))}
@@ -169,6 +179,11 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                 .map((d) => (
                   <div key={d.slug}>
                     <Link href={`/${section}/${d.slug}`}>{d.title}</Link>
+                    {d.lang !== lang && (
+                      <span className="ml-2 inline-block rounded bg-amber-100 px-2 py-0.5 align-middle text-xs text-amber-900 dark:bg-amber-900/40 dark:text-amber-200">
+                        {t.englishOnly}
+                      </span>
+                    )}
                   </div>
                 ))}
             </div>
