@@ -161,13 +161,50 @@ html[lang="ne"] body {
   }
 }
 
+/* ---- Round 3: reading structure (TOC + progress + heading anchors) ---- */
+
+/* Anchor jumps glide only when motion is allowed; reduced-motion readers
+   jump instantly. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Fragment targets sit below the sticky progress bar, not under it. */
+.prose :is(h2, h3)[id] {
+  scroll-margin-top: 1rem;
+}
+
+/* Heading anchor links (injected by src/lib/content.ts): quiet "#" that
+   appears on heading hover or keyboard focus. Opacity-only, so there is no
+   layout shift; no transition under reduced motion. */
+.prose .heading-anchor {
+  margin-left: 0.5rem;
+  font-weight: 400;
+  text-decoration: none;
+  opacity: 0;
+}
+.prose :is(h2, h3):hover .heading-anchor,
+.prose .heading-anchor:focus-visible {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .prose .heading-anchor {
+    transition: none;
+  }
+}
+
 /* ---- Round 2: print ---- */
 @media print {
   /* Hide site chrome and interactive toggles. */
   header,
   footer,
   nav,
-  button {
+  button,
+  .toc-drawer,
+  .reading-progress,
+  .heading-anchor {
     display: none !important;
   }
   html,

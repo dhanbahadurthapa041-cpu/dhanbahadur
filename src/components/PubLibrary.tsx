@@ -1,0 +1,172 @@
+"use client";
+
+import { Suspense, useEffect, useMemo, useRef, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { PUB_CATEGORIES, PUB_ITEMS, type PubCategory } from "@/lib/pub";
+import { useLang } from "@/lib/lang";
+import DownloadRow from "./DownloadRow";
+
+/** Debounce for the library search input + shareable URL sync. */
+const DEBOUNCE_MS = 250;
+
+type CatFilter = PubCategory | "all";
+
+function isCat(v: string | null): v is PubCategory {
+  return v !== null && (PUB_CATEGORIES as string[]).includes(v);
+}
+
+function itemMatches(item: (typeof PUB_ITEMS)[number], q: string): boolean {
+  const toks = q.toLowerCase().split(/\s+/).filter(Boolean);
+  if (toks.length === 0) return true;
+  // Bilingual by design: match against both languages at once.
+  const hay = `${item.titleEn} ${item.titleNe} ${item.noteEn ?? ""} ${item.noteNe ?? ""}`.toLowerCase();
+  return toks.every((tok) => hay.includes(tok));
+}
+
+/** Self-suspense so useSearchParams never breaks the static prerender. */
+export default function PubLibrary() {
+  return (
+    <Suspense fallback={null}>
+      <PubLibraryInner />
+    </Suspense>
+  );
+}
+
+function PubLibraryInner() {
+  const { t } = useLang();
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const searchRef = useRef<HTMLInputElement>(null);
+
+  // Shareable initial state comes from the URL (?q=, ?cat=).
+  const [query, setQuery] = useState(() => searchParams.get("q") ?? "");
+  const [debounced, setDebounced] = useState(() => searchParams.get("q") ?? "");
+  const [cat, setCat] = useState<CatFilter>(() => {
+    const c = searchParams.get("cat");
+    return isCat(c) ? c : "all";
+  });
+
+  useEffect(() => {
+    const id = window.setTimeout(() => setDebounced(query), DEBOUNCE_MS);
+    return () => window.clearTimeout(id);
+  }, [query]);
+
+  // Keep the URL shareable; replace (not push) so typing stays in one entry.
+  const paramsKey = searchParams.toString();
+  useEffect(() => {
+    const next = new URLSearchParams();
+    if (debounced.trim()) next.set("q", debounced.trim());
+    if (cat !== "all") next.set("cat", cat);
+    const nextStr = next.toString();
+    if (nextStr !== paramsKey) {
+      router.replace(nextStr ? `${pathname}?${nextStr}` : pathname, { scroll: false });
+    }
+  }, [debounced, cat, pathname, router, paramsKey]);
+
+  const q = debounced.trim().toLowerCase();
+
+  const perCat = useMemo(() => {
+    const m = {} as Record<PubCategory, number>;
+    for (const c of PUB_CATEGORIES) {
+      m[c] = PUB_ITEMS.filter((item) => item.category === c && itemMatches(item, q)).length;
+    }
+    return m;
+  }, [q]);
+
+  const filtered = useMemo(
+    () => PUB_ITEMS.filter((item) => (cat === "all" || item.category === cat) && itemMatches(item, q)),
+    [cat, q],
+  );
+
+  const labelFor = (c: PubCategory) =>
+    c === "textbooks" ? t.catTextbooks : c === "syllabus" ? t.catSyllabus : c === "guides" ? t.catGuides : t.catGrid;
+
+  const reset = () => {
+    setQuery("");
+    setDebounced("");
+    setCat("all");
+    searchRef.current?.focus();
+  };
+
+  // "All" counts every query match across categories (ignores the cat filter).
+  const allCount = Object.values(perCat).reduce((a, b) => a + b, 0);
+  const chips: { value: CatFilter; label: string; count: number }[] = [
+    { value: "all", label: t.libAll, count: allCount },
+    ...PUB_CATEGORIES.map((c) => ({ value: c as CatFilter, label: labelFor(c), count: perCat[c] })),
+  ];
+
+  return (
+    <section aria-label={t.libSearchLabel} className="mt-8">
+      <div className="flex flex-wrap gap-2" role="group" aria-label={t.libSearchLabel}>
+        {chips.map((chip) => {
+          const pressed = cat === chip.value;
+          return (
+            <button
+              key={chip.value}
+              type="button"
+              aria-pressed={pressed}
+              onClick={() => setCat(chip.value)}
+              className={`rounded-full border px-3 py-1 text-sm transition motion-reduce:transition-none ${
+                pressed
+                  ? "border-pine bg-pine font-semibold text-white dark:border-mint dark:bg-mint dark:text-ink"
+                  : "border-ink/20 hover:border-pine dark:border-cream/20 dark:hover:border-mint"
+              }`}
+            >
+              {chip.label} <span className="opacity-70">({chip.count})</span>
+            </button>
+          );
+        })}
+      </div>
+
+      <div className="mt-3">
+        <label htmlFor="pub-search" className="sr-only">
+          {t.libSearchLabel}
+        </label>
+        <input
+          ref={searchRef}
+          id="pub-search"
+          type="search"
+          autoComplete="off"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder={t.libSearchPlaceholder}
+          className="w-full rounded-xl border border-ink/20 bg-[#fffdf8] px-4 py-2 text-sm outline-none placeholder:text-ink/40 focus:border-pine dark:border-cream/20 dark:bg-cream/[0.04] dark:placeholder:text-cream/40 dark:focus:border-mint"
+        />
+      </div>
+
+      <p aria-live="polite" className="mt-2 text-xs text-ink/60 dark:text-cream/60">
+        {filtered.length} {filtered.length === 1 ? t.libCountSingular : t.libCountPlural}
+      </p>
+
+      {filtered.length === 0 ? (
+        <div className="mt-3 rounded-xl border border-ink/15 bg-[#fffdf8] p-6 text-center dark:border-cream/15 dark:bg-cream/[0.04]">
+          <p className="font-semibold">{t.libEmptyTitle}</p>
+          <p className="mt-1 text-sm text-ink/60 dark:text-cream/60">{t.libEmptyBody}</p>
+          <button
+            type="button"
+            onClick={reset}
+            className="mt-4 rounded-full bg-pine px-4 py-1.5 text-sm font-medium text-white transition hover:bg-pine-deep"
+          >
+            {t.libReset}
+          </button>
+        </div>
+      ) : (
+        PUB_CATEGORIES.filter((c) => cat === "all" || c === cat).map((c) => {
+          const items = filtered.filter((item) => item.category === c);
+          if (items.length === 0) return null;
+          return (
+            <div key={c} className="mt-6">
+              <h2 className="font-display text-xl font-semibold text-maroon dark:text-clay">{labelFor(c)}</h2>
+              <ul className="mt-3 space-y-3">
+                {items.map((item, i) => (
+                  <DownloadRow key={item.titleEn} index={i} item={item} />
+                ))}
+              </ul>
+            </div>
+          );
+        })
+      )}
+    </section>
+  );
+}

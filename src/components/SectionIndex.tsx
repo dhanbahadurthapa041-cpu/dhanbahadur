@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { getAllDocs, SECTION_SUBSECTIONS, type Section } from "@/lib/content";
-import { PUB_CATEGORIES, PUB_ITEMS } from "@/lib/pub";
 import { STRINGS, type Lang, type Strings } from "@/lib/i18n";
-import DownloadRow from "./DownloadRow";
+import PubLibrary from "./PubLibrary";
 import Reveal from "./Reveal";
 
 function sectionTitle(t: Strings, section: Section): string {
@@ -124,16 +123,8 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
               ))}
             </ul>
           )}
-          {PUB_CATEGORIES.map((cat) => (
-            <div key={cat} className="mt-8">
-              <h2 className="font-display text-xl font-semibold text-maroon dark:text-clay">{subsectionLabel(cat, t)}</h2>
-              <ul className="mt-3 space-y-3">
-                {PUB_ITEMS.filter((item) => item.category === cat).map((item, i) => (
-                  <DownloadRow key={item.titleEn} index={i} item={item} />
-                ))}
-              </ul>
-            </div>
-          ))}
+          {/* Searchable download library (PUB_ITEMS grouped by category). */}
+          <PubLibrary />
         </>
       )}
 

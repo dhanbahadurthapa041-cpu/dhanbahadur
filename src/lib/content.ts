@@ -14,6 +14,74 @@ export interface Doc {
   date: string;
   subsection: string | null;
   html: string;
+  toc: TocEntry[];
+}
+
+export interface TocEntry {
+  /** Slug matching the rendered heading's id. */
+  id: string;
+  /** Plain-text heading for the TOC label. */
+  text: string;
+  level: 2 | 3;
+}
+
+/**
+ * Slug for a rendered heading: lowercase, whitespace→dashes, unicode kept
+ * (Nepali headings keep Devanagari), other punctuation dropped.
+ */
+export function slugifyHeading(raw: string): string {
+  return raw
+    .trim()
+    .toLowerCase()
+    .replace(/[\s_]+/g, "-")
+    .replace(/[^\p{L}\p{M}\p{N}-]+/gu, "")
+    .replace(/-{2,}/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function stripTags(html: string): string {
+  return html.replace(/<[^>]*>/g, "");
+}
+
+function decodeEntities(s: string): string {
+  return s
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;|&apos;/g, "'")
+    .replace(/&#(\d+);/g, (_, n: string) => String.fromCodePoint(Number(n)))
+    .replace(/&#x([0-9a-fA-F]+);/g, (_, h: string) => String.fromCodePoint(parseInt(h, 16)));
+}
+
+function escapeAttr(s: string): string {
+  return s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+/**
+ * Single pass over rendered h2/h3: inject ids + anchor links and collect the
+ * TOC. Duplicate headings get -2, -3 suffixes so ids stay unique.
+ */
+function addHeadingIds(html: string, lang: Lang): { html: string; toc: TocEntry[] } {
+  const seen = new Map<string, number>();
+  const toc: TocEntry[] = [];
+  const label = STRINGS[lang].headingLinkLabel;
+  const out = html.replace(
+    /<h([23])([^>]*)>([\s\S]*?)<\/h\1>/g,
+    (m: string, lvl: string, attrs: string, inner: string) => {
+      const text = decodeEntities(stripTags(inner)).trim().replace(/\s+/g, " ");
+      if (!text) return m;
+      const base = slugifyHeading(text) || `section-${toc.length + 1}`;
+      const n = seen.get(base) ?? 0;
+      seen.set(base, n + 1);
+      const id = n === 0 ? base : `${base}-${n + 1}`;
+      toc.push({ id, text, level: lvl === "2" ? 2 : 3 });
+      const withId = /\sid=/.test(attrs) ? attrs : ` id="${escapeAttr(id)}"${attrs}`;
+      const anchor = `<a class="heading-anchor" href="#${escapeAttr(id)}" aria-label="${escapeAttr(label)}: ${escapeAttr(text)}">#</a>`;
+      return `<h${lvl}${withId}>${inner}${anchor}</h${lvl}>`;
+    },
+  );
+  return { html: out, toc };
 }
 
 const CONTENT_DIR = path.join(process.cwd(), "content");
@@ -73,7 +141,8 @@ export function getDoc(section: Section, slug: string, lang: Lang): Doc | null {
     const file = path.join(sectionDir(section), `${slug}.${l}.md`);
     if (fs.existsSync(file)) {
       const { title, date, subsection, body } = parseFrontmatter(fs.readFileSync(file, "utf8"), l);
-      return { slug, section, lang: l, title, date, subsection, html: marked.parse(body) as string };
+      const { html, toc } = addHeadingIds(marked.parse(body) as string, l);
+      return { slug, section, lang: l, title, date, subsection, html, toc };
     }
   }
   return null;

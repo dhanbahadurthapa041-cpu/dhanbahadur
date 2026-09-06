@@ -2,6 +2,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getDoc, type Section } from "@/lib/content";
 import { STRINGS, type Lang } from "@/lib/i18n";
+import ReadingProgress from "./ReadingProgress";
+import { TocDrawer, TocRail } from "./Toc";
+
+/** Article id the progress bar measures and the TOC links target. */
+const ARTICLE_ID = "lesson-article";
 
 export default function DocView({
   section,
@@ -15,8 +20,11 @@ export default function DocView({
   const t = STRINGS[lang];
   const doc = getDoc(section, slug, lang);
   if (!doc) notFound();
+  // Reading aids only pay off on longer lessons — short docs keep the
+  // original single-column layout untouched.
+  const showToc = doc.toc.length >= 3;
   return (
-    <article>
+    <div>
       <Link href={`/${section}`} className="text-sm font-medium text-pine dark:text-mint">
         {t.backSection}
       </Link>
@@ -29,7 +37,14 @@ export default function DocView({
           {t.englishOnly}
         </p>
       )}
-      <div className="prose mt-6 dark:prose-invert" dangerouslySetInnerHTML={{ __html: doc.html }} />
-    </article>
+      {showToc && <ReadingProgress targetId={ARTICLE_ID} />}
+      {showToc && <TocDrawer toc={doc.toc} />}
+      <div className={showToc ? "mt-6 lg:grid lg:grid-cols-[minmax(0,1fr)_13rem] lg:items-start lg:gap-8" : undefined}>
+        <article id={showToc ? ARTICLE_ID : undefined}>
+          <div className={showToc ? "prose dark:prose-invert" : "prose mt-6 dark:prose-invert"} dangerouslySetInnerHTML={{ __html: doc.html }} />
+        </article>
+        {showToc && <TocRail toc={doc.toc} />}
+      </div>
+    </div>
   );
 }
