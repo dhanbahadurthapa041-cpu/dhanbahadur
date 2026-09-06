@@ -4,9 +4,10 @@ import type { Metadata } from "next";
 import { STRINGS } from "@/lib/i18n";
 import { getServerLang } from "@/lib/lang-server";
 import { homeMetadata } from "@/lib/seo";
+import Reveal from "@/components/Reveal";
 
 const CARD =
-  "group block rounded-xl border border-ink/15 bg-[#fffdf8] p-5 transition duration-200 hover:-translate-y-0.5 hover:border-pine/60 hover:shadow-[0_16px_32px_-24px_rgba(47,42,37,0.55)] dark:border-cream/15 dark:bg-cream/[0.04] dark:hover:border-mint/60";
+  "group block rounded-xl border border-ink/15 bg-[#fffdf8] p-5 transition duration-200 hover:-translate-y-0.5 hover:border-pine/60 hover:shadow-[0_16px_32px_-24px_rgba(47,42,37,0.55)] motion-reduce:transition-none motion-reduce:hover:translate-y-0 dark:border-cream/15 dark:bg-cream/[0.04] dark:hover:border-mint/60";
 
 const CARD_TITLE = "font-display text-xl font-semibold text-maroon dark:text-clay";
 
@@ -64,29 +65,21 @@ export default async function Home() {
       <div aria-hidden="true" className="border-t border-brass/60" />
 
       <section className="grid gap-4 py-10 sm:grid-cols-3">
-        <Link href="/pub" className={CARD}>
-          <h2 className={CARD_TITLE}>{t.pubTitle}</h2>
-          <p className={CARD_DESC}>{t.pubDesc}</p>
-        </Link>
-        <Link href="/writing" className={CARD}>
-          <h2 className={CARD_TITLE}>{t.writingTitle}</h2>
-          <p className={CARD_DESC}>{t.writingDesc}</p>
-        </Link>
-        <Link href="/grammar" className={CARD}>
-          <h2 className={CARD_TITLE}>{t.grammarTitle}</h2>
-          <p className={CARD_DESC}>{t.grammarDesc}</p>
-        </Link>
-        <Link href="/class-10" className={CARD}>
-          <h2 className={CARD_TITLE}>{t.class10Title}</h2>
-          <p className={CARD_DESC}>{t.class10Desc}</p>
-        </Link>
-        <Link href="/class-12" className={CARD}>
-          <h2 className={CARD_TITLE}>{t.class12Title}</h2>
-          <p className={CARD_DESC}>{t.class12Desc}</p>
-        </Link>
-        <Link href="/about" className={CARD}>
-          <h2 className={CARD_TITLE}>{t.navAbout}</h2>
-        </Link>
+        {[
+          { href: "/pub", title: t.pubTitle, desc: t.pubDesc },
+          { href: "/writing", title: t.writingTitle, desc: t.writingDesc },
+          { href: "/grammar", title: t.grammarTitle, desc: t.grammarDesc },
+          { href: "/class-10", title: t.class10Title, desc: t.class10Desc },
+          { href: "/class-12", title: t.class12Title, desc: t.class12Desc },
+          { href: "/about", title: t.navAbout, desc: null },
+        ].map((card, i) => (
+          <Reveal key={card.href} index={i}>
+            <Link href={card.href} className={`${CARD} h-full`}>
+              <h2 className={CARD_TITLE}>{card.title}</h2>
+              {card.desc && <p className={CARD_DESC}>{card.desc}</p>}
+            </Link>
+          </Reveal>
+        ))}
       </section>
     </div>
   );

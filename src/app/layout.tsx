@@ -58,7 +58,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var s=localStorage.getItem('dbt-theme');var d=s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme: dark)').matches);if(d){document.documentElement.classList.add('dark');}else{document.documentElement.classList.remove('dark');}}catch(e){}})();`,
+            __html: `(function(){try{document.documentElement.classList.add('js');var s=localStorage.getItem('dbt-theme');var d=s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme: dark)').matches);if(d){document.documentElement.classList.add('dark');}else{document.documentElement.classList.remove('dark');}}catch(e){}})();`,
           }}
         />
         <script
@@ -70,6 +70,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <LangProvider initialLang={lang}>
           <ThemeProvider>
             <Header />
+            {/* Round 2: no <ViewTransition> wrapper — the API is absent from
+                the installed stable React 19.2.8 (see globals.css). The
+                theme toggle stays a plain class swap. */}
             <main className="mx-auto max-w-4xl px-4 py-8">{children}</main>
             <Footer />
           </ThemeProvider>

@@ -3,6 +3,7 @@ import { getAllDocs, SECTION_SUBSECTIONS, type Section } from "@/lib/content";
 import { PUB_CATEGORIES, PUB_ITEMS } from "@/lib/pub";
 import { STRINGS, type Lang, type Strings } from "@/lib/i18n";
 import DownloadRow from "./DownloadRow";
+import Reveal from "./Reveal";
 
 function sectionTitle(t: Strings, section: Section): string {
   switch (section) {
@@ -100,9 +101,11 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
         <>
           {docs.length > 0 && (
             <ul className="mt-6 space-y-3">
-              {docs.map((d) => (
-                <li
+              {docs.map((d, i) => (
+                <Reveal
+                  as="li"
                   key={d.slug}
+                  index={i}
                   className="rounded-xl border border-ink/15 bg-[#fffdf8] p-4 dark:border-cream/15 dark:bg-cream/[0.04]"
                 >
                   <Link
@@ -117,7 +120,7 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                     </span>
                   )}
                   {d.date && <p className="text-xs text-ink/60 dark:text-cream/60">{d.date}</p>}
-                </li>
+                </Reveal>
               ))}
             </ul>
           )}
@@ -125,8 +128,8 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
             <div key={cat} className="mt-8">
               <h2 className="font-display text-xl font-semibold text-maroon dark:text-clay">{subsectionLabel(cat, t)}</h2>
               <ul className="mt-3 space-y-3">
-                {PUB_ITEMS.filter((i) => i.category === cat).map((i) => (
-                  <DownloadRow key={i.titleEn} item={i} />
+                {PUB_ITEMS.filter((item) => item.category === cat).map((item, i) => (
+                  <DownloadRow key={item.titleEn} index={i} item={item} />
                 ))}
               </ul>
             </div>
@@ -143,9 +146,11 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                 <h2 className="font-display text-xl font-semibold text-maroon dark:text-clay">{subsectionLabel(sub, t)}</h2>
                 {inGroup.length > 0 ? (
                   <ul className="mt-3 space-y-3">
-                    {inGroup.map((d) => (
-                      <li
+                    {inGroup.map((d, i) => (
+                      <Reveal
+                        as="li"
                         key={d.slug}
+                        index={i}
                         className="rounded-xl border border-ink/15 bg-[#fffdf8] p-4 dark:border-cream/15 dark:bg-cream/[0.04]"
                       >
                         <Link
@@ -160,7 +165,7 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                     </span>
                         )}
                         {d.date && <p className="text-xs text-ink/60 dark:text-cream/60">{d.date}</p>}
-                      </li>
+                      </Reveal>
                     ))}
                   </ul>
                 ) : (
@@ -194,9 +199,11 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
               <ul className="mt-3 space-y-3">
                 {docs
                   .filter((d) => docGroup(section, d) === null)
-                  .map((d) => (
-                    <li
+                  .map((d, i) => (
+                    <Reveal
+                      as="li"
                       key={d.slug}
+                      index={i}
                       className="rounded-xl border border-ink/15 bg-[#fffdf8] p-4 dark:border-cream/15 dark:bg-cream/[0.04]"
                     >
                       <Link
@@ -206,7 +213,7 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                         {d.title}
                       </Link>
                       {d.date && <p className="text-xs text-ink/60 dark:text-cream/60">{d.date}</p>}
-                    </li>
+                    </Reveal>
                   ))}
               </ul>
             </div>

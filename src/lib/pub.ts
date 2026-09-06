@@ -10,6 +10,10 @@ export interface PubItem {
   category: PubCategory;
   noteEn?: string;
   noteNe?: string;
+  /** Language-neutral format label for the badge pill, e.g. "PDF". */
+  format?: string;
+  /** Pre-formatted file size string, e.g. "2.4 MB". Rendered as-is. */
+  size?: string;
 }
 
 // Owner: to publish a file, drop it into public/downloads/
