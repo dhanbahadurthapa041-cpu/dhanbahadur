@@ -16,17 +16,23 @@ export default async function About() {
   const t = STRINGS[await getServerLang()];
   return (
     <article>
-      <Link href="/" className="text-sm text-emerald-700 dark:text-emerald-300">{t.backHome}</Link>
-      <h1 className="mt-2 text-3xl font-bold">{t.aboutTitle}</h1>
-      <Image
-        src="/images/profile.jpg"
-        alt={t.profileAlt}
-        width={192}
-        height={192}
-        className="mt-6 h-48 w-48 rounded-full object-cover"
-        priority
-      />
-      <div className="prose mt-4 space-y-4 dark:prose-invert">
+      <Link href="/" className="text-sm font-medium text-pine dark:text-mint">{t.backHome}</Link>
+      <h1 className="mt-2 font-display text-3xl font-semibold tracking-tight text-maroon sm:text-4xl dark:text-clay">{t.aboutTitle}</h1>
+      <div className="relative mt-6 w-fit">
+        <div
+          aria-hidden="true"
+          className="absolute -right-2 -bottom-2 h-full w-full rounded-2xl border border-brass"
+        />
+        <Image
+          src="/images/profile.jpg"
+          alt={t.profileAlt}
+          width={192}
+          height={192}
+          className="relative h-48 w-48 rounded-2xl object-cover"
+          priority
+        />
+      </div>
+      <div className="prose mt-6 max-w-none space-y-4 dark:prose-invert">
         <p>{t.aboutPara1}</p>
         <p>{t.aboutPara2}</p>
       </div>

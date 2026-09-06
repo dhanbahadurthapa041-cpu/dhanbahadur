@@ -17,15 +17,15 @@ export default function DocView({
   if (!doc) notFound();
   return (
     <article>
-      <Link href={`/${section}`} className="text-sm text-emerald-700 dark:text-emerald-300">
+      <Link href={`/${section}`} className="text-sm font-medium text-pine dark:text-mint">
         {t.backSection}
       </Link>
-      <h1 className="mt-2 text-3xl font-bold">{doc.title}</h1>
-      {doc.date && <p className="mt-1 text-xs text-zinc-500">{doc.date}</p>}
+      <h1 className="mt-2 font-display text-3xl font-semibold tracking-tight text-balance sm:text-4xl">{doc.title}</h1>
+      {doc.date && <p className="mt-1 text-xs text-ink/60 dark:text-cream/60">{doc.date}</p>}
       {/* Every slug has an English file, so a language mismatch always means
           English fallback — one shared "English only" badge covers it. */}
       {doc.lang !== lang && (
-        <p className="mt-2 inline-block rounded bg-amber-100 px-2 py-0.5 text-xs text-amber-900 dark:bg-amber-900/40 dark:text-amber-200">
+        <p className="mt-2 inline-block rounded-full bg-brass/25 px-2 py-0.5 text-xs text-ink dark:bg-brass/20 dark:text-cream">
           {t.englishOnly}
         </p>
       )}

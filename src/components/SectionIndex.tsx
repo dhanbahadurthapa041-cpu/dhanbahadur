@@ -90,11 +90,11 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
 
   return (
     <div>
-      <Link href="/" className="text-sm text-emerald-700 dark:text-emerald-300">
+      <Link href="/" className="text-sm font-medium text-pine dark:text-mint">
         {t.backHome}
       </Link>
-      <h1 className="mt-2 text-3xl font-bold">{sectionTitle(t, section)}</h1>
-      <p className="mt-2 text-zinc-600 dark:text-zinc-400">{sectionDesc(t, section)}</p>
+      <h1 className="mt-2 font-display text-3xl font-semibold tracking-tight text-maroon dark:text-clay">{sectionTitle(t, section)}</h1>
+      <p className="mt-2 text-ink/70 dark:text-cream/70">{sectionDesc(t, section)}</p>
 
       {section === "pub" && (
         <>
@@ -103,27 +103,27 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
               {docs.map((d) => (
                 <li
                   key={d.slug}
-                  className="rounded-lg border border-zinc-200 p-4 dark:border-zinc-800"
+                  className="rounded-xl border border-ink/15 bg-[#fffdf8] p-4 dark:border-cream/15 dark:bg-cream/[0.04]"
                 >
                   <Link
                     href={`/pub/${d.slug}`}
-                    className="text-lg font-semibold hover:text-emerald-700"
+                    className="text-lg font-semibold hover:text-pine dark:hover:text-mint"
                   >
                     {d.title}
                   </Link>
                   {d.lang !== lang && (
-                    <span className="ml-2 inline-block rounded bg-amber-100 px-2 py-0.5 align-middle text-xs text-amber-900 dark:bg-amber-900/40 dark:text-amber-200">
+                    <span className="ml-2 inline-block rounded-full bg-brass/25 px-2 py-0.5 align-middle text-xs text-ink dark:bg-brass/20 dark:text-cream">
                       {t.englishOnly}
                     </span>
                   )}
-                  {d.date && <p className="text-xs text-zinc-500">{d.date}</p>}
+                  {d.date && <p className="text-xs text-ink/60 dark:text-cream/60">{d.date}</p>}
                 </li>
               ))}
             </ul>
           )}
           {PUB_CATEGORIES.map((cat) => (
             <div key={cat} className="mt-8">
-              <h2 className="text-xl font-semibold">{subsectionLabel(cat, t)}</h2>
+              <h2 className="font-display text-xl font-semibold text-maroon dark:text-clay">{subsectionLabel(cat, t)}</h2>
               <ul className="mt-3 space-y-3">
                 {PUB_ITEMS.filter((i) => i.category === cat).map((i) => (
                   <DownloadRow key={i.titleEn} item={i} />
@@ -140,31 +140,31 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
             const inGroup = docs.filter((d) => docGroup(section, d) === sub);
             return (
               <div key={sub}>
-                <h2 className="text-xl font-semibold">{subsectionLabel(sub, t)}</h2>
+                <h2 className="font-display text-xl font-semibold text-maroon dark:text-clay">{subsectionLabel(sub, t)}</h2>
                 {inGroup.length > 0 ? (
                   <ul className="mt-3 space-y-3">
                     {inGroup.map((d) => (
                       <li
                         key={d.slug}
-                        className="rounded-lg border border-zinc-200 p-4 dark:border-zinc-800"
+                        className="rounded-xl border border-ink/15 bg-[#fffdf8] p-4 dark:border-cream/15 dark:bg-cream/[0.04]"
                       >
                         <Link
                           href={`/${section}/${d.slug}`}
-                          className="text-lg font-semibold hover:text-emerald-700"
+                          className="text-lg font-semibold hover:text-pine dark:hover:text-mint"
                         >
                           {d.title}
                         </Link>
                         {d.lang !== lang && (
-                          <span className="ml-2 inline-block rounded bg-amber-100 px-2 py-0.5 align-middle text-xs text-amber-900 dark:bg-amber-900/40 dark:text-amber-200">
-                            {t.englishOnly}
-                          </span>
+                    <span className="ml-2 inline-block rounded-full bg-brass/25 px-2 py-0.5 align-middle text-xs text-ink dark:bg-brass/20 dark:text-cream">
+                      {t.englishOnly}
+                    </span>
                         )}
-                        {d.date && <p className="text-xs text-zinc-500">{d.date}</p>}
+                        {d.date && <p className="text-xs text-ink/60 dark:text-cream/60">{d.date}</p>}
                       </li>
                     ))}
                   </ul>
                 ) : (
-                  <p className="mt-2 text-sm text-zinc-500">{t.comingSoon}</p>
+                  <p className="mt-2 text-sm text-ink/60 dark:text-cream/60">{t.comingSoon}</p>
                 )}
               </div>
             );
@@ -178,9 +178,9 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                 })
                 .map((d) => (
                   <div key={d.slug}>
-                    <Link href={`/${section}/${d.slug}`}>{d.title}</Link>
+                    <Link href={`/${section}/${d.slug}`} className="hover:text-pine dark:hover:text-mint">{d.title}</Link>
                     {d.lang !== lang && (
-                      <span className="ml-2 inline-block rounded bg-amber-100 px-2 py-0.5 align-middle text-xs text-amber-900 dark:bg-amber-900/40 dark:text-amber-200">
+                      <span className="ml-2 inline-block rounded-full bg-brass/25 px-2 py-0.5 align-middle text-xs text-ink dark:bg-brass/20 dark:text-cream">
                         {t.englishOnly}
                       </span>
                     )}
@@ -190,22 +190,22 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
           )}
           {docs.filter((d) => docGroup(section, d) === null).length > 0 && (
             <div>
-              <h2 className="text-xl font-semibold">{t.comingSoon}</h2>
+              <h2 className="font-display text-xl font-semibold text-maroon dark:text-clay">{t.comingSoon}</h2>
               <ul className="mt-3 space-y-3">
                 {docs
                   .filter((d) => docGroup(section, d) === null)
                   .map((d) => (
                     <li
                       key={d.slug}
-                      className="rounded-lg border border-zinc-200 p-4 dark:border-zinc-800"
+                      className="rounded-xl border border-ink/15 bg-[#fffdf8] p-4 dark:border-cream/15 dark:bg-cream/[0.04]"
                     >
                       <Link
                         href={`/${section}/${d.slug}`}
-                        className="text-lg font-semibold hover:text-emerald-700"
+                        className="text-lg font-semibold hover:text-pine dark:hover:text-mint"
                       >
                         {d.title}
                       </Link>
-                      {d.date && <p className="text-xs text-zinc-500">{d.date}</p>}
+                      {d.date && <p className="text-xs text-ink/60 dark:text-cream/60">{d.date}</p>}
                     </li>
                   ))}
               </ul>

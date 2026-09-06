@@ -3,18 +3,116 @@
 @custom-variant dark (&:where(.dark, .dark *));
 @plugin "@tailwindcss/typography";
 
+@theme {
+  /* Warm paper light theme */
+  --color-paper: #fbf6ee;
+  --color-ink: #2f2a25;
+  /* Accents */
+  --color-pine: #0f6a4b;
+  --color-pine-deep: #0a4a34;
+  --color-mint: #8fd0b2;
+  --color-brass: #c9b27c;
+  /* Section headers: maroon on paper, warm clay on chocolate */
+  --color-maroon: #7a2d2b;
+  --color-clay: #e3b3a5;
+  /* Chocolate dark theme (never pure black) */
+  --color-choc: #1e1411;
+  --color-cream: #e8e2d8;
+
+  --font-sans: var(--font-noto), ui-sans-serif, system-ui, "Noto Sans Devanagari", sans-serif;
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #18181b;
+  color-scheme: light;
 }
 
 .dark {
-  --background: #09090b;
-  --foreground: #f4f4f5;
+  color-scheme: dark;
+}
+
+html {
+  background-color: var(--color-paper);
+}
+
+.dark html {
+  background-color: var(--color-choc);
 }
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
+  background-color: var(--color-paper);
+  color: var(--color-ink);
 }
 
+.dark body {
+  background-color: var(--color-choc);
+  color: var(--color-cream);
+}
+
+/* Nepali reading size/leading; English inherits the UA default. */
+html[lang="ne"] body {
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+::selection {
+  background: rgba(201, 178, 124, 0.45);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-pine);
+  outline-offset: 2px;
+}
+
+/* Markdown prose: maroon serif headings, pine links, brass rules. */
+.prose {
+  --tw-prose-body: #2f2a25;
+  --tw-prose-headings: #7a2d2b;
+  --tw-prose-lead: rgba(47, 42, 37, 0.8);
+  --tw-prose-links: #0f6a4b;
+  --tw-prose-bold: #2f2a25;
+  --tw-prose-counters: #0f6a4b;
+  --tw-prose-bullets: #c9b27c;
+  --tw-prose-hr: rgba(201, 178, 124, 0.6);
+  --tw-prose-quotes: #2f2a25;
+  --tw-prose-quote-borders: #c9b27c;
+  --tw-prose-captions: rgba(47, 42, 37, 0.65);
+  --tw-prose-code: #7a2d2b;
+  --tw-prose-pre-code: #e8e2d8;
+  --tw-prose-pre-bg: #2f2a25;
+  --tw-prose-th-borders: rgba(47, 42, 37, 0.2);
+  --tw-prose-td-borders: rgba(47, 42, 37, 0.15);
+}
+
+.dark .prose {
+  --tw-prose-body: #e8e2d8;
+  --tw-prose-headings: #e3b3a5;
+  --tw-prose-lead: rgba(232, 226, 216, 0.8);
+  --tw-prose-links: #8fd0b2;
+  --tw-prose-bold: #e8e2d8;
+  --tw-prose-counters: #8fd0b2;
+  --tw-prose-bullets: #c9b27c;
+  --tw-prose-hr: rgba(201, 178, 124, 0.4);
+  --tw-prose-quotes: #e8e2d8;
+  --tw-prose-quote-borders: #c9b27c;
+  --tw-prose-captions: rgba(232, 226, 216, 0.65);
+  --tw-prose-code: #e3b3a5;
+  --tw-prose-pre-code: #e8e2d8;
+  --tw-prose-pre-bg: rgba(232, 226, 216, 0.06);
+  --tw-prose-th-borders: rgba(232, 226, 216, 0.25);
+  --tw-prose-td-borders: rgba(232, 226, 216, 0.15);
+}
+
+.prose :is(h1, h2, h3) {
+  font-family: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  letter-spacing: -0.01em;
+}
+
+.prose a {
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(15, 106, 75, 0.55);
+}
+
+.dark .prose a {
+  text-decoration-color: rgba(143, 208, 178, 0.55);
+}

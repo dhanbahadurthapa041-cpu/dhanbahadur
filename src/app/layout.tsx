@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Noto_Sans_Devanagari } from "next/font/google";
+import { Fraunces, Noto_Sans_Devanagari } from "next/font/google";
 import "./globals.css";
 import { LangProvider, ThemeProvider } from "@/lib/lang";
 import { getServerLang } from "@/lib/lang-server";
@@ -7,7 +7,15 @@ import { SITE_URL } from "@/lib/seo";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-const nepali = Noto_Sans_Devanagari({ subsets: ["devanagari", "latin"], display: "swap" });
+const nepali = Noto_Sans_Devanagari({
+  subsets: ["devanagari", "latin"],
+  display: "swap",
+  variable: "--font-noto",
+});
+
+// Display serif for headings — latin only to keep it light; Nepali glyphs
+// fall back to Noto Sans Devanagari.
+const display = Fraunces({ subsets: ["latin"], display: "swap", variable: "--font-fraunces" });
 
 const SITE_TITLE = "Dhan Bahadur Thapa | धन बहादुर थापा";
 const SITE_DESC =
@@ -58,11 +66,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           dangerouslySetInnerHTML={{ __html: JSON.stringify(WEBSITE_JSON_LD) }}
         />
       </head>
-      <body className={`${nepali.className} bg-white text-zinc-900 antialiased dark:bg-zinc-950 dark:text-zinc-100`}>
+      <body className={`${nepali.variable} ${display.variable} bg-paper font-sans text-ink antialiased dark:bg-choc dark:text-cream`}>
         <LangProvider initialLang={lang}>
           <ThemeProvider>
             <Header />
-            <main className="mx-auto max-w-3xl px-4 py-8">{children}</main>
+            <main className="mx-auto max-w-4xl px-4 py-8">{children}</main>
             <Footer />
           </ThemeProvider>
         </LangProvider>

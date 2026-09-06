@@ -11,23 +11,23 @@ export default function Header() {
   const { theme, toggleTheme } = useTheme();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const link = "hover:text-emerald-700 dark:hover:text-emerald-300";
+  const link = "hover:text-pine aria-[current=page]:font-semibold aria-[current=page]:text-pine dark:hover:text-mint dark:aria-[current=page]:text-mint";
   const showFacebook = FACEBOOK_URL.startsWith("http");
   const current = (href: string) =>
     pathname === href ? ({ "aria-current": "page" } as const) : {};
   const close = () => setOpen(false);
 
   return (
-    <header className="border-b border-zinc-200 dark:border-zinc-800">
-      <div className="mx-auto max-w-3xl px-4 py-3">
+    <header className="border-b border-ink/15 dark:border-cream/15">
+      <div className="mx-auto max-w-4xl px-4 py-3">
         <div className="flex items-center justify-between gap-2">
-          <Link href="/" className="font-bold" onClick={close} {...current("/")}>
+          <Link href="/" className="font-display text-lg font-semibold tracking-tight" onClick={close} {...current("/")}>
             {t.brandName}
           </Link>
           <div className="flex items-center gap-2">
             <button
               onClick={toggleTheme}
-              className="rounded border border-zinc-300 px-2 py-0.5 text-xs dark:border-zinc-700"
+              className="rounded-full border border-ink/20 px-2.5 py-1 text-xs transition hover:border-pine dark:border-cream/20 dark:hover:border-mint"
               aria-label={t.toggleTheme}
               title={t.toggleTheme}
               suppressHydrationWarning
@@ -74,7 +74,7 @@ export default function Header() {
             </button>
             <button
               onClick={() => setLang(lang === "ne" ? "en" : "ne")}
-              className="rounded border border-zinc-300 px-2 py-0.5 text-xs dark:border-zinc-700"
+              className="rounded-full border border-ink/20 px-2.5 py-1 text-xs transition hover:border-pine dark:border-cream/20 dark:hover:border-mint"
               aria-label={t.switchLang}
               title={t.switchLang}
             >
@@ -82,7 +82,7 @@ export default function Header() {
             </button>
             <button
               onClick={() => setOpen((v) => !v)}
-              className="rounded border border-zinc-300 px-2 py-0.5 text-xs md:hidden dark:border-zinc-700"
+              className="rounded-full border border-ink/20 px-2.5 py-1 text-xs transition hover:border-pine md:hidden dark:border-cream/20 dark:hover:border-mint"
               aria-expanded={open}
               aria-controls="primary-nav"
             >

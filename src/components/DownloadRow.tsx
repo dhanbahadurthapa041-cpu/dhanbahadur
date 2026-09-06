@@ -15,21 +15,21 @@ export default function DownloadRow({ item }: { item: DownloadRowItem }) {
   const title = lang === "ne" ? item.titleNe : item.titleEn;
   const note = lang === "ne" ? item.noteNe : item.noteEn;
   return (
-    <li className="flex items-center justify-between gap-4 rounded-lg border border-zinc-200 p-4 dark:border-zinc-800">
+    <li className="flex items-center justify-between gap-4 rounded-xl border border-ink/15 bg-[#fffdf8] p-4 dark:border-cream/15 dark:bg-cream/[0.04]">
       <div>
         <p className="font-medium">{title}</p>
-        {note && <p className="text-xs text-zinc-500">{note}</p>}
+        {note && <p className="text-xs text-ink/60 dark:text-cream/60">{note}</p>}
       </div>
       {item.file ? (
         <a
           href={`/downloads/${item.file}`}
           download
-          className="shrink-0 rounded bg-emerald-700 px-3 py-1.5 text-sm text-white hover:bg-emerald-800"
+          className="shrink-0 rounded-full bg-pine px-4 py-1.5 text-sm font-medium text-white transition hover:bg-pine-deep"
         >
           {t.download}
         </a>
       ) : (
-        <span className="shrink-0 rounded bg-zinc-200 px-3 py-1.5 text-sm text-zinc-500 dark:bg-zinc-800">
+        <span className="shrink-0 rounded-full bg-ink/10 px-4 py-1.5 text-sm text-ink/60 dark:bg-cream/10 dark:text-cream/60">
           {t.comingSoon}
         </span>
       )}
