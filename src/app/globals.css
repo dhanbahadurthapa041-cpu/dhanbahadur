@@ -20,6 +20,8 @@
   /* Muted brass rules & eyebrows */
   --color-brass: #c9b27c;
   --color-brass-dark: #e8d5a0;
+  /* Warm featured-cell tint (bento hero card, stats hero cell) */
+  --color-parchment: #faf3e3;
 
   /* Section headers: maroon on paper, warm clay on chocolate */
   --color-maroon: #7a2d2b;
@@ -35,6 +37,8 @@
   --font-sans: var(--font-noto), ui-sans-serif, system-ui, "Noto Sans Devanagari", sans-serif;
   --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
 
+  /* Intentional deviation from the A2 28px floor: 1.5rem (24px) keeps long
+     NE quotes readable at 360px (Task E audit). */
   --text-pullquote: clamp(1.5rem, 1.25rem + 2.5vw, 2.5rem);
   --text-pullquote--line-height: 1.25;
   --text-pullquote--font-weight: 400;
@@ -244,7 +248,9 @@ html[lang="ne"] .footer-tagline,
 :lang(ne) .brand-mark,
 html[lang="ne"] .brand-mark,
 :lang(ne) .badge-leak-guard,
-html[lang="ne"] .badge-leak-guard {
+html[lang="ne"] .badge-leak-guard,
+:lang(ne) footer h3,
+html[lang="ne"] footer h3 {
   text-transform: none;
   letter-spacing: 0;
 }
@@ -319,6 +325,12 @@ html[lang="ne"] p.has-drop-cap::first-letter {
   letter-spacing: 0.02em;
 }
 
+/* Lede must not reshape the drop-cap glyph itself (inherits from ::first-line) */
+:lang(en) .has-drop-cap > p:first-of-type::first-letter {
+  font-variant-caps: normal;
+  letter-spacing: 0;
+}
+
 :lang(ne) .has-drop-cap > p:first-of-type::first-line {
   font-variant-caps: normal;
   letter-spacing: 0;
@@ -384,7 +396,8 @@ html[lang="ne"] p.has-drop-cap::first-letter {
 
 h1.font-display,
 h2.font-display,
-h3.font-display {
+h3.font-display,
+h4.font-display {
   text-wrap: balance;
 }
 
@@ -397,8 +410,15 @@ h1.font-display {
   font-variation-settings: "SOFT" 100, "WONK" 1;
 }
 
+h2.font-display {
+  font-variation-settings: "SOFT" 0, "WONK" 0;
+}
+
 h3.font-display,
-.font-display.text-xs {
+h4.font-display,
+.font-display.text-xs,
+.font-display.text-\[11px\],
+.folio-text {
   font-variation-settings: "SOFT" 0, "WONK" 0;
 }
 
@@ -412,12 +432,13 @@ h3.font-display,
   font-optical-sizing: auto;
 }
 
-.prose {
+:lang(en) .prose,
+.prose[lang="en"] {
   font-variant-numeric: oldstyle-nums proportional-nums;
 }
 
-.prose :is(h1, h2, h3),
-.folio-text {
+:lang(en) .prose :is(h1, h2, h3),
+:lang(en) .folio-text {
   font-variant-numeric: lining-nums tabular-nums;
 }
 
@@ -492,12 +513,8 @@ h3.font-display,
   margin-inline: auto;
 }
 
-/* Portable hanging-quote fallback for non-Safari (Safari-only hanging-punctuation above) */
-@supports not (hanging-punctuation: first) {
-  .pullquote blockquote {
-    text-indent: -0.42em;
-  }
-}
+/* Non-Safari has no hanging-punctuation and no quote glyph to hang (Task B
+   audit): accept flush-left as graceful degradation instead of a false edge. */
 
 :lang(ne) .pullquote blockquote,
 .pullquote blockquote:lang(ne) {
@@ -767,7 +784,7 @@ h3.font-display,
     padding: 0 !important;
   }
 
-  main .grid > * + * {
+  main .grid:not(.stats-grid) > * + * {
     margin-top: 1rem;
   }
 

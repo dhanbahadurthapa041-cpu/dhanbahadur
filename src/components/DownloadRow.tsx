@@ -23,7 +23,7 @@ export default function DownloadRow({ item, index }: { item: DownloadRowItem; in
     <Reveal
       as="li"
       index={index}
-      className="flex items-center justify-between gap-4 rounded-2xl border border-brass/25 bg-surface-subtle p-4 sm:p-5 shadow-[0_1px_2px_rgba(47,42,37,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-brass/60 hover:shadow-[0_14px_28px_-16px_rgba(47,42,37,0.22)] focus-within:border-pine/60 motion-reduce:transition-none motion-reduce:hover:transform-none dark:border-cream/15 dark:bg-choc-elevated"
+      className="flex items-center justify-between gap-4 rounded-2xl border border-brass/25 bg-surface-subtle p-4 sm:p-5 shadow-[0_1px_2px_rgba(47,42,37,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-brass/60 hover:shadow-[0_14px_28px_-16px_rgba(47,42,37,0.22)] focus-within:border-pine/60 motion-reduce:transition-none motion-reduce:hover:transform-none dark:border-cream/15 dark:bg-choc-elevated dark:shadow-none dark:hover:shadow-none dark:focus-within:border-mint/60"
     >
       <div className="min-w-0">
         <p className="font-medium">{title}</p>

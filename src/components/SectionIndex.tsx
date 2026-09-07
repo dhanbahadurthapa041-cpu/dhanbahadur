@@ -69,7 +69,7 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
         <h1 className={`font-display text-3xl font-medium text-maroon [text-wrap:balance] [font-optical-sizing:auto] sm:text-4xl dark:text-clay ${lang === "en" ? "tracking-tight" : "tracking-normal"}`}>
           {sectionTitle(t, section)}
         </h1>
-        <p className="mt-2 text-base text-ink/75 sm:text-lg dark:text-cream/75">{sectionDesc(t, section)}</p>
+        <p className="mt-2 text-lg leading-[1.5] text-ink/75 sm:text-xl dark:text-cream/75">{sectionDesc(t, section)}</p>
       </div>
 
       {section === "pub" && (
@@ -81,7 +81,7 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                   as="li"
                   key={d.slug}
                   index={i}
-                  className="rounded-xl border border-brass/25 bg-surface-subtle p-4 shadow-[0_1px_2px_rgba(47,42,37,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-brass/60 hover:shadow-[0_12px_24px_-14px_rgba(47,42,37,0.16)] motion-reduce:transition-none motion-reduce:hover:transform-none dark:border-cream/15 dark:bg-choc-elevated"
+                  className="rounded-xl border border-brass/25 bg-surface-subtle p-4 shadow-[0_1px_2px_rgba(47,42,37,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-brass/60 hover:shadow-[0_12px_24px_-14px_rgba(47,42,37,0.16)] motion-reduce:transition-none motion-reduce:hover:transform-none dark:border-cream/15 dark:bg-choc-elevated dark:shadow-none dark:hover:shadow-none"
                 >
                   <Link
                     href={`/pub/${d.slug}`}
@@ -90,7 +90,7 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                     {d.title}
                   </Link>
                   {d.lang !== lang && (
-                    <span className="badge-leak-guard ml-2 inline-block max-w-full whitespace-nowrap rounded-full bg-brass/20 px-2.5 py-0.5 align-middle text-[11px] font-semibold uppercase tracking-[0.08em] text-ink dark:bg-brass/15 dark:text-cream">
+                    <span className={`badge-leak-guard ml-2 inline-block max-w-full whitespace-nowrap rounded-full bg-brass/20 px-2.5 py-0.5 align-middle text-[11px] font-semibold text-ink dark:bg-brass/15 dark:text-cream ${lang === "en" ? "uppercase tracking-[0.08em]" : "tracking-normal"}`}>
                       {t.englishOnly}
                     </span>
                   )}
@@ -118,7 +118,7 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                         as="li"
                         key={d.slug}
                         index={i}
-                        className="rounded-xl border border-brass/25 bg-surface-subtle p-4 shadow-[0_1px_2px_rgba(47,42,37,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-brass/60 hover:shadow-[0_12px_24px_-14px_rgba(47,42,37,0.16)] motion-reduce:transition-none motion-reduce:hover:transform-none dark:border-cream/15 dark:bg-choc-elevated"
+                        className="rounded-xl border border-brass/25 bg-surface-subtle p-4 shadow-[0_1px_2px_rgba(47,42,37,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-brass/60 hover:shadow-[0_12px_24px_-14px_rgba(47,42,37,0.16)] motion-reduce:transition-none motion-reduce:hover:transform-none dark:border-cream/15 dark:bg-choc-elevated dark:shadow-none dark:hover:shadow-none"
                       >
                         <Link
                           href={`/${section}/${d.slug}`}
@@ -127,7 +127,7 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                           {d.title}
                         </Link>
                         {d.lang !== lang && (
-                          <span className="badge-leak-guard ml-2 inline-block max-w-full whitespace-nowrap rounded-full bg-brass/20 px-2.5 py-0.5 align-middle text-[11px] font-semibold uppercase tracking-[0.08em] text-ink dark:bg-brass/15 dark:text-cream">
+                          <span className={`badge-leak-guard ml-2 inline-block max-w-full whitespace-nowrap rounded-full bg-brass/20 px-2.5 py-0.5 align-middle text-[11px] font-semibold text-ink dark:bg-brass/15 dark:text-cream ${lang === "en" ? "uppercase tracking-[0.08em]" : "tracking-normal"}`}>
                             {t.englishOnly}
                           </span>
                         )}
@@ -165,7 +165,7 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                   <div key={d.slug}>
                     <Link href={`/${section}/${d.slug}`} className="hover:text-pine dark:hover:text-mint">{d.title}</Link>
                     {d.lang !== lang && (
-                      <span className="badge-leak-guard ml-2 inline-block max-w-full whitespace-nowrap rounded-full bg-brass/20 px-2.5 py-0.5 align-middle text-[11px] font-semibold uppercase tracking-[0.08em] text-ink dark:bg-brass/15 dark:text-cream">
+                      <span className={`badge-leak-guard ml-2 inline-block max-w-full whitespace-nowrap rounded-full bg-brass/20 px-2.5 py-0.5 align-middle text-[11px] font-semibold text-ink dark:bg-brass/15 dark:text-cream ${lang === "en" ? "uppercase tracking-[0.08em]" : "tracking-normal"}`}>
                         {t.englishOnly}
                       </span>
                     )}
@@ -184,7 +184,7 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                       as="li"
                       key={d.slug}
                       index={i}
-                      className="rounded-xl border border-brass/25 bg-surface-subtle p-4 shadow-[0_1px_2px_rgba(47,42,37,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-brass/60 hover:shadow-[0_12px_24px_-14px_rgba(47,42,37,0.16)] motion-reduce:transition-none motion-reduce:hover:transform-none dark:border-cream/15 dark:bg-choc-elevated"
+                      className="rounded-xl border border-brass/25 bg-surface-subtle p-4 shadow-[0_1px_2px_rgba(47,42,37,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-brass/60 hover:shadow-[0_12px_24px_-14px_rgba(47,42,37,0.16)] motion-reduce:transition-none motion-reduce:hover:transform-none dark:border-cream/15 dark:bg-choc-elevated dark:shadow-none dark:hover:shadow-none"
                     >
                       <Link
                         href={`/${section}/${d.slug}`}

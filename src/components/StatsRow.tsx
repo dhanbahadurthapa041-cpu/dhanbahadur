@@ -67,7 +67,7 @@ export default function StatsRow() {
               key={i}
               className={`flex flex-col justify-between p-6 text-center sm:p-7 md:p-8 print:p-4 print:bg-white print:text-black print:break-inside-avoid ${
                 stat.featured
-                  ? "bg-[#faf3e3] border-t-2 border-t-brass/70 dark:bg-brass/[0.06] dark:border-t-brass-dark/50"
+                  ? "bg-parchment border-t-2 border-t-brass/70 dark:bg-brass/[0.06] dark:border-t-brass-dark/50"
                   : "bg-surface-subtle dark:bg-choc-elevated"
               }`}
             >
@@ -91,7 +91,7 @@ export default function StatsRow() {
               ) : (
                 <div>
                   {stat.featured && (
-                    <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-pine/80 dark:text-mint/80">
+                    <p className={`mb-2 text-[11px] font-semibold text-pine/80 dark:text-mint/80 ${isNe ? "tracking-normal" : "uppercase tracking-[0.14em]"}`}>
                       {isNe ? "★ मुख्य तथ्याङ्क" : "★ Hero metric"}
                     </p>
                   )}

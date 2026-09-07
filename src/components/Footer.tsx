@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useLang } from "@/lib/lang";
-import { SCHOOL_URL, FACEBOOK_URL, LOOMA_URL } from "@/lib/site";
+import { SCHOOL_URL, FACEBOOK_URL, LOOMA_URL, OFFICE_PHONE_HREF } from "@/lib/site";
 
 export default function Footer() {
   const { t, lang } = useLang();
@@ -16,7 +16,7 @@ export default function Footer() {
           <div className="sm:col-span-2 lg:col-span-1">
             <div className="flex items-center gap-2">
               <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-brass" />
-              <h2 className="brand-mark font-display text-xl font-semibold tracking-tight text-cream">
+              <h2 className={`brand-mark font-display text-xl font-semibold text-cream ${lang === "en" ? "tracking-tight" : "tracking-normal"}`}>
                 {t.siteOwner}
               </h2>
             </div>
@@ -119,7 +119,7 @@ export default function Footer() {
           {/* Column 4: Contact & Office */}
           <div>
             <h3 className="font-display text-sm font-semibold uppercase tracking-[0.15em] text-brass">
-              {lang === "ne" ? "सम्पर्क तथा कार्यालय" : "Contact & Office"}
+              {t.contactTitle}
             </h3>
             <div className="mt-4 space-y-3 text-sm text-cream/80">
               <p className="leading-snug text-cream/70">
@@ -127,9 +127,9 @@ export default function Footer() {
               </p>
               <div>
                 <a
-                  href="tel:+977-9800000000"
+                  href={OFFICE_PHONE_HREF}
                   className="inline-flex min-h-[44px] items-center gap-2 text-cream/90 transition hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint"
-                  aria-label={lang === "ne" ? "विद्यालय कार्यालयमा फोन गर्नुहोस्" : "Call school office"}
+                  aria-label={t.callOfficeLabel}
                 >
                   <svg
                     aria-hidden="true"
@@ -145,7 +145,7 @@ export default function Footer() {
                       d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"
                     />
                   </svg>
-                  <span>+977 (Office)</span>
+                  <span>{t.officePhoneDisplay}</span>
                 </a>
               </div>
             </div>
@@ -160,7 +160,7 @@ export default function Footer() {
               href="/sitemap.xml"
               className="text-cream/70 underline underline-offset-2 transition hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint"
             >
-              {lang === "ne" ? "साइटम्याप" : "Sitemap"}
+              {t.sitemapLink}
             </Link>
           </div>
           <p className="max-w-md">{t.footerNote}</p>
