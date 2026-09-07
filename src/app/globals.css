@@ -150,6 +150,9 @@ html[lang="ne"] body {
   .grain-overlay {
     opacity: 0.02;
   }
+  .divider-hairline,
+  .divider-gradient,
+  .divider-vignette,
   .pullquote,
   .pullquote * {
     animation: none !important;
@@ -159,7 +162,7 @@ html[lang="ne"] body {
   }
 }
 
-/* Hairline & gradient dividers */
+/* Hairline & gradient dividers (Phase A3) */
 .divider-hairline {
   border: 0;
   border-top: 1px solid var(--color-border);
@@ -179,6 +182,35 @@ html[lang="ne"] body {
     rgba(201, 178, 124, 0.5) 80%,
     transparent
   );
+}
+
+.dark .divider-gradient {
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(232, 213, 160, 0.5) 20%,
+    rgba(232, 213, 160, 0.5) 80%,
+    transparent
+  );
+}
+
+.on-pine .divider-gradient,
+[data-band="pine"] .divider-gradient {
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(232, 213, 160, 0.6) 20%,
+    rgba(232, 213, 160, 0.6) 80%,
+    transparent
+  );
+}
+
+/* Folio Marker typography overrides for Devanagari (Phase A3 §Folio marker) */
+:lang(ne) .folio-marker .folio-text,
+:lang(ne) .folio-text,
+html[lang="ne"] .folio-text {
+  text-transform: none;
+  letter-spacing: 0;
 }
 
 /* Progressive Drop Caps (with @supports & float fallback) */
@@ -672,6 +704,16 @@ p.has-drop-cap::first-letter {
     border: 0 !important;
     border-top: 1pt solid #333 !important;
     background: none !important;
+    height: 1pt !important;
+  }
+
+  .divider-vignette-ornament {
+    display: none !important;
+  }
+
+  .divider-vignette span:not(.divider-vignette-ornament) {
+    max-width: none !important;
+    background: #333 !important;
     height: 1pt !important;
   }
 

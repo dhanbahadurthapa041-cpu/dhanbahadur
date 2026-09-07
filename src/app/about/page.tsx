@@ -65,9 +65,7 @@ export default async function About() {
           </div>
         </div>
 
-        <Divider variant="vignette" />
-
-        {/* Editorial Pull Quote */}
+        {/* Editorial Pull Quote (with self-contained brass framing rules) */}
         <PullQuote
           quote={t.quote1Text}
           author={t.quote1Author}
@@ -75,7 +73,8 @@ export default async function About() {
           lang={lang}
         />
 
-        <Divider variant="gradient" />
+        {/* Ceremonial vignette transition to leadership cards (max 1x per page) */}
+        <Divider variant="vignette" />
 
         <div className="grid gap-6 sm:grid-cols-2 mt-8">
           <div className="rounded-2xl border border-brass/25 bg-[#fffdf8] p-6 dark:border-cream/15 dark:bg-choc-elevated">
