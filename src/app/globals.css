@@ -34,6 +34,10 @@
 
   --font-sans: var(--font-noto), ui-sans-serif, system-ui, "Noto Sans Devanagari", sans-serif;
   --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+
+  --text-pullquote: clamp(1.75rem, 1.25rem + 2.5vw, 2.5rem);
+  --text-pullquote--line-height: 1.25;
+  --text-pullquote--font-weight: 400;
 }
 
 :root {
@@ -145,6 +149,13 @@ html[lang="ne"] body {
 @media (prefers-reduced-motion: reduce) {
   .grain-overlay {
     opacity: 0.02;
+  }
+  .pullquote,
+  .pullquote * {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
   }
 }
 
@@ -275,6 +286,140 @@ p.has-drop-cap::first-letter {
 
 .dark .prose a {
   text-decoration-color: rgba(143, 208, 178, 0.55);
+}
+
+/* ---- Pull-Quote Component (Phase A2 / Implementationplan.md §2) ---- */
+.pullquote {
+  margin: 2.5rem auto;
+  padding: 2rem 0;
+  max-width: 44rem;
+}
+
+.pullquote::before,
+.pullquote::after {
+  content: "";
+  display: block;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(201, 178, 124, 0.6) 20%,
+    rgba(201, 178, 124, 0.6) 80%,
+    transparent
+  );
+}
+
+.pullquote::before {
+  margin-bottom: 1.5rem;
+}
+
+.pullquote::after {
+  margin-top: 1.5rem;
+}
+
+/* On pine band context: lighter brass rule to guarantee AA contrast */
+.on-pine .pullquote::before,
+.on-pine .pullquote::after,
+[data-band="pine"] .pullquote::before,
+[data-band="pine"] .pullquote::after {
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(232, 213, 160, 0.6) 20%,
+    rgba(232, 213, 160, 0.6) 80%,
+    transparent
+  );
+}
+
+.pullquote blockquote {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: var(--text-pullquote);
+  font-weight: 400; /* never bold */
+  font-style: normal; /* never fake-italic Devanagari */
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  text-wrap: balance;
+  hanging-punctuation: first;
+  font-optical-sizing: auto;
+  text-indent: 0;
+  max-inline-size: 34ch;
+  margin-inline: auto;
+}
+
+:lang(ne) .pullquote blockquote,
+.pullquote blockquote:lang(ne) {
+  font-family: var(--font-noto), "Noto Sans Devanagari", sans-serif;
+  letter-spacing: 0;
+  line-height: 1.55;
+  font-style: normal !important;
+  font-synthesis: none; /* block browser faux-bold/faux-italic */
+}
+
+@media (min-width: 1024px) {
+  :lang(ne) .pullquote blockquote,
+  .pullquote blockquote:lang(ne) {
+    line-height: 1.6;
+  }
+}
+
+.pullquote figcaption {
+  margin-top: 0.75rem;
+  font-family: var(--font-noto), Inter, system-ui, sans-serif;
+  font-size: 0.8125rem; /* 13px */
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+}
+
+.pullquote figcaption .role {
+  font-weight: 400;
+  letter-spacing: 0.06em;
+}
+
+/* NE: kill uppercase + letterspacing — Devanagari has no case */
+:lang(ne) .pullquote figcaption,
+.pullquote figcaption:lang(ne) {
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 0.875rem;
+}
+
+.dark .pullquote figcaption,
+.on-pine .pullquote figcaption,
+[data-band="pine"] .pullquote figcaption {
+  color: var(--color-brass-dark);
+}
+
+/* Placeholder TODO pattern (Phase A2 §5) */
+.pullquote.is-todo {
+  opacity: 1;
+  padding: 1.5rem 0;
+}
+
+.pullquote.is-todo::before,
+.pullquote.is-todo::after {
+  opacity: 0.5;
+}
+
+.pullquote.is-todo .todo-eyebrow {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-brass-dark, #c9b27c);
+}
+
+:lang(ne) .pullquote.is-todo .todo-eyebrow {
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.pullquote.is-todo .todo-note {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--color-ink-muted);
 }
 
 /* ---- Round 2: CSS-first motion (zero JS animation libs) ---- */
@@ -523,5 +668,38 @@ p.has-drop-cap::first-letter {
     border-top: 1pt solid #333 !important;
     background: none !important;
     height: 1pt !important;
+  }
+
+  /* Pull-quote print styling (Phase A2 §7) */
+  .pullquote {
+    margin: 18pt 0 !important;
+    padding: 12pt 0 !important;
+    max-width: 100% !important;
+  }
+  .pullquote blockquote {
+    font-size: 18pt !important;
+    line-height: 1.3 !important;
+    color: #000 !important;
+  }
+  :lang(ne) .pullquote blockquote {
+    line-height: 1.5 !important;
+  }
+  .pullquote::before,
+  .pullquote::after {
+    background: none !important;
+    border-top: 1pt solid #333 !important;
+    height: 1pt !important;
+  }
+  .pullquote figcaption {
+    font-size: 9pt !important;
+    color: #333 !important;
+  }
+  .pullquote.is-todo {
+    display: none !important;
+  }
+  .pullquote,
+  .pullquote blockquote,
+  .pullquote figure {
+    break-inside: avoid !important;
   }
 }

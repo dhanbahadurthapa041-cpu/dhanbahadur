@@ -3,11 +3,22 @@
 import { useLang } from "@/lib/lang";
 import CountUp from "./CountUp";
 
+interface StatItem {
+  num: number;
+  suffix: string;
+  fallbackText: string;
+  label: string;
+  desc: string;
+  accessible: string;
+  featured: boolean;
+  pending?: boolean;
+}
+
 export default function StatsRow() {
   const { lang, t } = useLang();
   const isNe = lang === "ne";
 
-  const stats = [
+  const stats: StatItem[] = [
     {
       num: 30,
       suffix: "+",
@@ -24,7 +35,7 @@ export default function StatsRow() {
       label: t.statStudentsLabel,
       desc: t.statStudentsDesc,
       accessible: isNe ? "१० हजार भन्दा बढी विद्यार्थीहरूलाई मार्गदर्शन" : "Over 10,000 students mentored",
-      featured: true,
+      featured: true, // Exactly one featured hero metric (students guided) per Phase A2 spec
     },
     {
       num: 4,
@@ -47,45 +58,76 @@ export default function StatsRow() {
   ];
 
   return (
-    <div className="w-full overflow-hidden rounded-2xl border border-[#E5DCCB] bg-[#fffdf8] shadow-[0_4px_20px_-8px_rgba(47,42,37,0.06)] dark:border-white/10 dark:bg-choc-elevated dark:shadow-none">
-      <div className="grid grid-cols-1 gap-px bg-[#E5DCCB] sm:grid-cols-2 lg:grid-cols-4 dark:bg-white/10">
-        {stats.map((stat, i) => (
-          <div
-            key={i}
-            className={`flex flex-col justify-between p-6 text-center sm:p-7 md:p-8 ${
-              stat.featured
-                ? "bg-[#faf3e3] dark:bg-brass/[0.06]"
-                : "bg-[#fffdf8] dark:bg-choc-elevated"
-            }`}
-          >
-            <div>
-              <p
-                className={`font-display font-semibold ${
-                  isNe ? "tracking-normal" : "tracking-tight"
-                } ${
-                  stat.featured
-                    ? "text-4xl sm:text-5xl text-pine dark:text-mint"
-                    : "text-3xl sm:text-4xl text-maroon dark:text-clay"
-                }`}
-              >
-                <CountUp
-                  end={stat.num}
-                  suffix={stat.suffix}
-                  fallbackText={stat.fallbackText}
-                  accessibleLabel={stat.accessible}
-                  isNepali={isNe}
-                />
+    <div className="w-full">
+      {/* Background-Gap-Trick card container */}
+      <div className="w-full overflow-hidden rounded-2xl border border-[#E5DCCB] bg-[#fffdf8] shadow-[0_4px_20px_-8px_rgba(47,42,37,0.06)] dark:border-white/10 dark:bg-choc-elevated dark:shadow-none print:shadow-none print:border-gray-300">
+        <div className="grid grid-cols-1 gap-px bg-[#E5DCCB] sm:grid-cols-2 lg:grid-cols-4 dark:bg-white/10 print:grid-cols-2 print:bg-gray-300">
+          {stats.map((stat, i) => (
+            <div
+              key={i}
+              className={`flex flex-col justify-between p-6 text-center sm:p-7 md:p-8 print:p-4 print:bg-white print:text-black print:break-inside-avoid ${
+                stat.featured
+                  ? "bg-[#faf3e3] dark:bg-brass/[0.06]"
+                  : "bg-[#fffdf8] dark:bg-choc-elevated"
+              }`}
+            >
+              {stat.pending ? (
+                <div>
+                  <span className="inline-block rounded-full bg-brass/25 dark:bg-brass/20 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-ink/70 dark:text-cream/70 mb-2">
+                    {isNe ? "पुष्टि हुन बाँकी" : "TBD · Confirm"}
+                  </span>
+                  <p className="font-display font-semibold text-4xl sm:text-5xl tabular-nums text-ink/30 dark:text-cream/25 print:text-black/40">
+                    <span aria-hidden="true">––</span>
+                    <span className="sr-only" role="status">
+                      {isNe
+                        ? `तथ्याङ्क पुष्टि हुन बाँकी: ${stat.label}`
+                        : `Statistic pending confirmation: ${stat.label}`}
+                    </span>
+                  </p>
+                  <h3 className="mt-2.5 font-display text-base font-medium text-ink dark:text-cream print:text-black">
+                    {stat.label}
+                  </h3>
+                </div>
+              ) : (
+                <div>
+                  <p
+                    className={`font-display font-semibold ${
+                      isNe ? "tracking-normal" : "tracking-tight"
+                    } ${
+                      stat.featured
+                        ? "text-4xl sm:text-5xl text-pine dark:text-mint print:text-black"
+                        : "text-3xl sm:text-4xl text-maroon dark:text-clay print:text-black"
+                    }`}
+                  >
+                    <CountUp
+                      end={stat.num}
+                      suffix={stat.suffix}
+                      fallbackText={stat.fallbackText}
+                      accessibleLabel={stat.accessible}
+                      isNepali={isNe}
+                    />
+                  </p>
+                  <h3 className="mt-2.5 font-display text-base font-medium text-ink dark:text-cream print:text-black">
+                    {stat.label}
+                  </h3>
+                </div>
+              )}
+              <p className="mt-1.5 text-xs text-ink/60 dark:text-cream/60 print:text-gray-600">
+                {stat.pending
+                  ? isNe
+                    ? "अङ्क पुष्टि हुन बाँकी — अस्थायी, प्रकाशित होइन।"
+                    : "Figure to be confirmed — placeholder, not yet published."
+                  : stat.desc}
               </p>
-              <h3 className="mt-2.5 font-display text-base font-medium text-ink dark:text-cream">
-                {stat.label}
-              </h3>
             </div>
-            <p className="mt-1.5 text-xs text-ink/60 dark:text-cream/60">
-              {stat.desc}
-            </p>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
+
+      {/* Proof-chain caption line under the row (Innocence Project / Sopact standard) */}
+      <p className="mt-3 text-center text-xs tracking-wide text-ink/50 dark:text-cream/50 print:text-black/60">
+        {t.statProofCaption}
+      </p>
     </div>
   );
 }

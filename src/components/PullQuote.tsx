@@ -1,63 +1,83 @@
 import React from "react";
 import type { Lang } from "@/lib/i18n";
 
-interface PullQuoteProps {
-  quote: string;
+export interface PullQuoteProps {
+  quote?: string;
   author?: string;
   role?: string;
+  cite?: string;
   lang?: Lang;
   className?: string;
+  isDuplicate?: boolean;
+  todo?: boolean;
+  todoNote?: string;
 }
 
 /**
- * Editorial PullQuote component adhering strictly to Implementationplan.md §2:
- * - Purely typographic, no container / callout card
- * - 28px mobile -> 34px tablet -> 40px desktop
- * - Weight: Regular (never bold)
- * - Tracking: -0.01em Latin only; strictly 0 for Devanagari
- * - Leading: 1.25 for English; 1.55 for Nepali (+25% room for matras)
- * - No fake italics on Devanagari
- * - Attribution with em dash and small-caps / letterspaced subtitle
+ * Editorial PullQuote component adhering strictly to PhaseA2-pullquote-statsrow-brief.md:
+ * - Purely typographic: no bg-*, no rounded, no shadow, no giant quote icon cliche.
+ * - Voice comes from size + measure + brass rules (linear gradient ::before/::after in CSS).
+ * - 28px mobile -> 34px tablet -> 40px desktop (fluid clamp via --text-pullquote).
+ * - Weight: 400 regular, normal style. Fraunces display (EN), Noto Sans Devanagari (NE).
+ * - Leading: 1.25 for EN; 1.55-1.6 for NE (+25% room for matras).
+ * - Tracking: -0.01em Latin only; strictly 0 for Devanagari.
+ * - Attribution: semantic figcaption with em-dash, neutral span for author (WHATWG cite rule),
+ *   small-caps / letterspaced subtitle on EN; unspaced on NE.
+ * - A11y: WCAG lang attribute; role="doc-pullquote" and aria-hidden="true" on verbatim-duplicate quotes.
+ * - Placeholder TODO pattern: quiet editorial furniture if quote is empty or todo=true.
  */
 export default function PullQuote({
   quote,
   author,
   role,
+  cite,
   lang = "en",
   className = "",
+  isDuplicate = false,
+  todo = false,
+  todoNote,
 }: PullQuoteProps) {
   const isNe = lang === "ne";
+  const isTodo = todo || !quote || quote.trim().length === 0;
+
+  if (isTodo) {
+    return (
+      <figure
+        className={`pullquote is-todo mx-auto text-center ${className}`}
+        data-todo="true"
+        lang={lang}
+        aria-hidden="true"
+      >
+        <span className="todo-eyebrow">
+          {isNe ? "उद्धरण · तय हुन बाँकी" : "Pull-quote · TBD"}
+        </span>
+        <p className="todo-note">
+          {todoNote ??
+            (isNe
+              ? "यस निबन्धबाट ≤२५ शब्द चयन गर्न बाँकी।"
+              : "Father to select ≤25 words from this essay.")}
+        </p>
+      </figure>
+    );
+  }
 
   return (
     <figure
       lang={lang}
-      className={`relative mx-auto max-w-4xl text-center py-8 sm:py-12 px-4 sm:px-8 ${className}`}
+      className={`pullquote not-prose relative mx-auto text-center ${className}`}
     >
-      {/* Decorative brass accent eyebrow bar */}
-      <div aria-hidden="true" className="mx-auto mb-6 sm:mb-8 h-0.5 w-12 sm:w-16 bg-brass" />
-
       <blockquote
-        className={`font-display font-normal text-balance text-[28px] sm:text-[34px] md:text-[40px] ${
-          isNe
-            ? "leading-[1.55] tracking-normal"
-            : "leading-[1.25] tracking-[-0.01em]"
-        }`}
+        cite={cite}
+        role={isDuplicate ? "doc-pullquote" : undefined}
+        aria-hidden={isDuplicate ? true : undefined}
       >
-        “{quote}”
+        <p>“{quote}”</p>
       </blockquote>
 
       {(author || role) && (
-        <figcaption className="mt-6 sm:mt-8 flex flex-col items-center justify-center gap-1.5">
-          {author && (
-            <cite className="not-italic font-display text-[13px] font-medium tracking-wide text-brass dark:text-brass-dark">
-              — {author}
-            </cite>
-          )}
-          {role && (
-            <span className="text-xs uppercase tracking-[0.14em] opacity-75">
-              {role}
-            </span>
-          )}
+        <figcaption>
+          — {author && <span className="author">{author}</span>}
+          {role && <span className="role">{author ? `, ${role}` : role}</span>}
         </figcaption>
       )}
     </figure>

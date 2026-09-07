@@ -114,7 +114,7 @@ export default async function Home() {
       {/* ===================================================================
           BAND 3: Chapter-Break Pull Quote (Full-Bleed Deep Pine)
           =================================================================== */}
-      <section className="full-bleed bg-pine py-16 text-cream sm:py-24 dark:bg-[#0a3828]">
+      <section className="full-bleed bg-pine on-pine py-16 text-cream sm:py-24 dark:bg-[#0a3828]">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
           <PullQuote
             quote={t.quote1Text}

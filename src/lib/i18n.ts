@@ -103,6 +103,7 @@ export const STRINGS = {
     statResourcesNum: "100+",
     statResourcesLabel: "Lesson Notes & Guides",
     statResourcesDesc: "Open educational resources",
+    statProofCaption: "As of 2026 · Figures supplied by D. B. Thapa",
     // Editorial pull quotes
     quote1Text: "Education is not merely the transmission of facts; it is the deliberate cultivation of curiosity, character, and self-reliance in every young mind.",
     quote1Author: "Dhan Bahadur Thapa",
@@ -230,6 +231,7 @@ export const STRINGS = {
     statResourcesNum: "१००+",
     statResourcesLabel: "अध्ययन पाठ तथा नोटहरू",
     statResourcesDesc: "खुला डिजिटल अध्ययन स्रोतहरू",
+    statProofCaption: "सन् २०२६ सम्मको विवरण · डि. बि. थापाद्वारा उपलब्ध गराइएको तथ्याङ्क",
     // Editorial pull quotes
     quote1Text: "शिक्षा केवल जानकारीको सङ्ग्रह होइन; यो प्रत्येक विद्यार्थीको मनमा जिज्ञासा, अनुशासन र स्वावलम्बनको ज्योति बाल्ने साधना हो।",
     quote1Author: "धन बहादुर थापा",
