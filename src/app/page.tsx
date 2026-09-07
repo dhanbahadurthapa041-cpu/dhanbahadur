@@ -48,7 +48,7 @@ export default async function Home() {
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <Link
                   href="/pub"
-                  className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-pine px-7 py-3.5 text-sm font-semibold text-white shadow-[0_8px_20px_-8px_rgba(15,106,75,0.45)] transition hover:bg-pine-deep hover:shadow-[0_12px_24px_-8px_rgba(15,106,75,0.55)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine active:translate-y-px motion-reduce:transition-none motion-reduce:transform-none dark:bg-mint dark:text-choc dark:hover:bg-mint dark:focus-visible:outline-mint"
+                  className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-pine px-7 py-3.5 text-sm font-semibold text-white shadow-[0_8px_20px_-8px_rgba(15,106,75,0.45)] transition hover:bg-pine-deep hover:shadow-[0_12px_24px_-8px_rgba(15,106,75,0.55)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine active:translate-y-px motion-reduce:transition-none motion-reduce:transform-none dark:bg-mint dark:text-choc dark:hover:bg-mint/85 dark:focus-visible:outline-mint"
                 >
                   <span>{t.explorePub}</span>
                   <span aria-hidden="true">→</span>
@@ -179,7 +179,7 @@ export default async function Home() {
               >
                 <div>
                   <div className="flex items-center justify-between gap-2">
-                    <span className="rounded-full bg-brass/20 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-ink dark:bg-brass/15 dark:text-cream">
+                    <span className="badge-leak-guard rounded-full bg-brass/20 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-ink dark:bg-brass/15 dark:text-cream">
                       SEE Prep
                     </span>
                     <span className="rounded-full border border-ink/15 px-2.5 py-0.5 text-[11px] font-medium text-ink/60 dark:border-cream/20 dark:text-cream/60">
@@ -209,7 +209,7 @@ export default async function Home() {
               >
                 <div>
                   <div className="flex items-center justify-between gap-2">
-                    <span className="rounded-full bg-brass/20 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-ink dark:bg-brass/15 dark:text-cream">
+                    <span className="badge-leak-guard rounded-full bg-brass/20 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-ink dark:bg-brass/15 dark:text-cream">
                       NEB +2
                     </span>
                     <span className="rounded-full border border-ink/15 px-2.5 py-0.5 text-[11px] font-medium text-ink/60 dark:border-cream/20 dark:text-cream/60">
@@ -239,7 +239,7 @@ export default async function Home() {
               >
                 <div>
                   <div className="flex items-center justify-between gap-2">
-                    <span className="rounded-full bg-brass/20 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-ink dark:bg-brass/15 dark:text-cream">
+                    <span className="badge-leak-guard rounded-full bg-brass/20 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-ink dark:bg-brass/15 dark:text-cream">
                       Rules & Exercises
                     </span>
                     <span className="rounded-full border border-ink/15 px-2.5 py-0.5 text-[11px] font-medium text-ink/60 dark:border-cream/20 dark:text-cream/60">
@@ -269,7 +269,7 @@ export default async function Home() {
               >
                 <div>
                   <div className="flex items-center justify-between gap-2">
-                    <span className="rounded-full bg-brass/20 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-ink dark:bg-brass/15 dark:text-cream">
+                    <span className="badge-leak-guard rounded-full bg-brass/20 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-ink dark:bg-brass/15 dark:text-cream">
                       Composition
                     </span>
                     <span className="rounded-full border border-ink/15 px-2.5 py-0.5 text-[11px] font-medium text-ink/60 dark:border-cream/20 dark:text-cream/60">
@@ -299,7 +299,7 @@ export default async function Home() {
               >
                 <div>
                   <div className="flex items-center justify-between gap-2">
-                    <span className="rounded-full bg-brass/20 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-ink dark:bg-brass/15 dark:text-cream">
+                    <span className="badge-leak-guard rounded-full bg-brass/20 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-ink dark:bg-brass/15 dark:text-cream">
                       Library
                     </span>
                     <span className="rounded-full border border-ink/15 px-2.5 py-0.5 text-[11px] font-medium text-ink/60 dark:border-cream/20 dark:text-cream/60">
@@ -329,7 +329,7 @@ export default async function Home() {
               >
                 <div>
                   <div className="flex items-center justify-between gap-2">
-                    <span className="rounded-full bg-brass/20 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-ink dark:bg-brass/15 dark:text-cream">
+                    <span className="badge-leak-guard rounded-full bg-brass/20 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-ink dark:bg-brass/15 dark:text-cream">
                       Biography
                     </span>
                     <span className="rounded-full border border-ink/15 px-2.5 py-0.5 text-[11px] font-medium text-ink/60 dark:border-cream/20 dark:text-cream/60">
@@ -378,7 +378,7 @@ export default async function Home() {
               <div className="mt-6">
                 <Link
                   href="/pub"
-                  className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-pine px-6 py-3 text-sm font-semibold text-white transition hover:bg-pine-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine active:translate-y-px motion-reduce:transition-none dark:bg-mint dark:text-choc dark:hover:bg-mint dark:focus-visible:outline-mint"
+                  className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-pine px-6 py-3 text-sm font-semibold text-white transition hover:bg-pine-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine active:translate-y-px motion-reduce:transition-none dark:bg-mint dark:text-choc dark:hover:bg-mint/85 dark:focus-visible:outline-mint"
                 >
                   <span>{t.explorePub}</span>
                   <span aria-hidden="true">→</span>
@@ -471,10 +471,13 @@ export default async function Home() {
           </div>
         </div>
       </section>
-      {/* Gold-thread seam on the B6/footer boundary (choc-on-choc needs separation) */}
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <Divider variant="gradient" className="my-0" />
-      </div>
+      {/* Gold-thread seam on the B6/footer boundary: full-bleed choc so the
+          thread never floats on a paper sliver in light mode */}
+      <section className="full-bleed bg-choc">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <Divider variant="gradient" className="my-0" />
+        </div>
+      </section>
     </div>
   );
 }

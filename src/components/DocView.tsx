@@ -74,7 +74,7 @@ export default function DocView({
             English fallback — one shared "English only" badge covers it. */}
         {doc.lang !== lang && (
           <p className="mt-2 inline-block">
-            <span className="badge-leak-guard rounded-full bg-brass/20 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-ink dark:bg-brass/15 dark:text-cream">
+            <span className={`badge-leak-guard rounded-full bg-brass/20 px-2.5 py-0.5 text-[11px] font-semibold text-ink dark:bg-brass/15 dark:text-cream ${lang === "en" ? "uppercase tracking-[0.08em]" : "tracking-normal"}`}>
               {t.englishOnly}
             </span>
           </p>
