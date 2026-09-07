@@ -76,8 +76,8 @@ export function TocRail({ toc }: { toc: TocEntry[] }) {
   const active = useScrollSpy(toc.map((e) => e.id).join("\n"));
   return (
     <nav aria-label={t.onThisPage} className="toc-rail hidden lg:block">
-      <div className="sticky top-6 max-h-[calc(100vh-3rem)] overflow-auto rounded-xl border border-ink/15 bg-[#fffdf8] p-4 dark:border-cream/15 dark:bg-cream/[0.04]">
-        <p className="mb-2 px-2 text-xs font-semibold uppercase tracking-[0.18em] text-ink/60 dark:text-cream/60">
+      <div className="sticky top-6 max-h-[calc(100vh-3rem)] overflow-auto rounded-xl border border-ink/15 bg-surface-subtle p-4 dark:border-cream/15 dark:bg-cream/[0.04]">
+        <p className="mb-2 px-2 text-xs font-semibold uppercase tracking-[0.18em] text-ink/70 dark:text-cream/75">
           {t.onThisPage}
         </p>
         <TocLinks toc={toc} active={active} />
@@ -98,7 +98,7 @@ export function TocDrawer({ toc }: { toc: TocEntry[] }) {
         aria-expanded={open}
         aria-controls="toc-drawer-list"
         onClick={() => setOpen((v) => !v)}
-        className="flex w-full items-center justify-between gap-2 rounded-xl border border-ink/15 bg-[#fffdf8] px-4 py-2.5 text-sm font-semibold transition motion-reduce:transition-none dark:border-cream/15 dark:bg-cream/[0.04]"
+        className="flex min-h-[44px] w-full items-center justify-between gap-2 rounded-xl border border-ink/15 bg-surface-subtle px-4 py-2.5 text-sm font-semibold transition motion-reduce:transition-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine dark:border-cream/15 dark:bg-cream/[0.04] dark:focus-visible:outline-mint"
       >
         {t.onThisPage}
         <svg
@@ -117,7 +117,7 @@ export function TocDrawer({ toc }: { toc: TocEntry[] }) {
           <path d="m6 9 6 6 6-6" />
         </svg>
       </button>
-      <div hidden={!open} className="mt-2 rounded-xl border border-ink/15 bg-[#fffdf8] p-3 dark:border-cream/15 dark:bg-cream/[0.04]">
+      <div hidden={!open} className="mt-2 rounded-xl border border-ink/15 bg-surface-subtle p-3 dark:border-cream/15 dark:bg-cream/[0.04]">
         <TocLinks toc={toc} active={active} listId="toc-drawer-list" onNavigate={() => setOpen(false)} />
       </div>
     </div>

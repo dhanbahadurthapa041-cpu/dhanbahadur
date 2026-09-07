@@ -4,35 +4,77 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  /* Warm paper light theme */
+  /* Warm paper light theme floor */
   --color-paper: #fbf6ee;
+  --color-surface-subtle: #fffdf8;
+  --color-linen: #f3ead9;
   --color-ink: #2f2a25;
-  /* Accents */
+  --color-ink-muted: #6b6259;
+
+  /* Deep pine brand accents */
   --color-pine: #0f6a4b;
   --color-pine-deep: #0a4a34;
+  --color-pine-dark: #0c3d2c;
   --color-mint: #8fd0b2;
+
+  /* Muted brass rules & eyebrows */
   --color-brass: #c9b27c;
+  --color-brass-dark: #e8d5a0;
+  /* Warm featured-cell tint (bento hero card, stats hero cell) */
+  --color-parchment: #faf3e3;
+
   /* Section headers: maroon on paper, warm clay on chocolate */
   --color-maroon: #7a2d2b;
   --color-clay: #e3b3a5;
-  /* Chocolate dark theme (never pure black) */
+
+  /* Dark chocolate theme base (warm espresso, never cold black) */
   --color-choc: #1e1411;
+  --color-choc-elevated: #2a1e18;
+  --color-choc-overlay: #3a2e27;
   --color-cream: #e8e2d8;
+  --color-border: #e5dccb;
 
   --font-sans: var(--font-noto), ui-sans-serif, system-ui, "Noto Sans Devanagari", sans-serif;
   --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+
+  /* Intentional deviation from the A2 28px floor: 1.5rem (24px) keeps long
+     NE quotes readable at 360px (Task E audit). */
+  --text-pullquote: clamp(1.5rem, 1.25rem + 2.5vw, 2.5rem);
+  --text-pullquote--line-height: 1.25;
+  --text-pullquote--font-weight: 400;
 }
 
 :root {
   color-scheme: light;
+  --color-bg: #fbf6ee;
+  --color-bg-subtle: #fffdf8;
+  --color-bg-muted: #f3ead9;
+  --color-border: #e5dccb;
+  --color-fg: #2f2a25;
+  --color-fg-muted: #6b6259;
+  --color-accent: #0f6a4b;
+  --color-accent-hover: #0a4a34;
+  --color-maroon: #7a2d2b;
+  --color-brass: #c9b27c;
 }
 
 .dark {
   color-scheme: dark;
+  --color-bg: #1e1411;
+  --color-bg-subtle: #2a1e18;
+  --color-bg-muted: #3a2e27;
+  --color-border: rgba(255, 255, 255, 0.12);
+  --color-fg: #e8e2d8;
+  --color-fg-muted: #a79e93;
+  --color-accent: #4cc38a;
+  --color-accent-hover: #7ad6a5;
+  --color-maroon: #d98a87;
+  --color-brass: #e8d5a0;
 }
 
 html {
   background-color: var(--color-paper);
+  overflow-x: clip;
 }
 
 .dark html {
@@ -42,6 +84,7 @@ html {
 body {
   background-color: var(--color-paper);
   color: var(--color-ink);
+  overflow-x: clip;
 }
 
 .dark body {
@@ -49,10 +92,26 @@ body {
   color: var(--color-cream);
 }
 
-/* Nepali reading size/leading; English inherits the UA default. */
+/* English reading size & leading */
+html[lang="en"] body {
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+/* Nepali reading size & leading (+20% air for upper/lower matras) */
 html[lang="ne"] body {
   font-size: 18px;
-  line-height: 1.7;
+  line-height: 1.75;
+}
+
+/* Blanket font-synthesis:none for Devanagari (Task B §4) */
+html[lang="ne"] body,
+:lang(ne) {
+  font-synthesis: none;
+}
+:lang(ne) em,
+:lang(ne) i {
+  font-style: normal !important;
 }
 
 ::selection {
@@ -62,6 +121,219 @@ html[lang="ne"] body {
 :focus-visible {
   outline: 2px solid var(--color-pine);
   outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.dark :focus-visible {
+  outline-color: var(--color-mint);
+}
+
+@media (forced-colors: active) {
+  :focus-visible {
+    outline-color: CanvasText;
+  }
+}
+
+html {
+  scroll-padding-top: 84px;
+}
+
+/* Josh Comeau 3-column grid bleed system (Implementationplan.md §1A) */
+.bleed-wrapper {
+  --viewport-padding: 1rem;
+  display: grid;
+  grid-template-columns: 1fr min(44rem, 100%) 1fr;
+  padding-inline: var(--viewport-padding);
+}
+
+@media (min-width: 768px) {
+  .bleed-wrapper {
+    --viewport-padding: 1.5rem;
+  }
+}
+
+.bleed-wrapper > * {
+  grid-column: 2;
+  width: 100%;
+}
+
+.bleed-wrapper > .full-bleed {
+  grid-column: 1 / -1;
+  margin-inline: calc(var(--viewport-padding) * -1);
+}
+
+/* Static SVG noise grain texture (whisper-quiet paper feel, zero CPU) */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  height: 100lvh;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.038;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 180px 180px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grain-overlay {
+    opacity: 0.02;
+  }
+  .divider-hairline,
+  .divider-gradient,
+  .divider-vignette,
+  .pullquote,
+  .pullquote * {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* Hairline & gradient dividers (Phase A3) */
+.divider-hairline {
+  border: 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.dark .divider-hairline {
+  border-top-color: rgba(255, 255, 255, 0.12);
+}
+
+.divider-gradient {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(201, 178, 124, 0.5) 20%,
+    rgba(201, 178, 124, 0.5) 80%,
+    transparent
+  );
+}
+
+.dark .divider-gradient {
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(232, 213, 160, 0.5) 20%,
+    rgba(232, 213, 160, 0.5) 80%,
+    transparent
+  );
+}
+
+.on-pine .divider-gradient,
+[data-band="pine"] .divider-gradient {
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(232, 213, 160, 0.6) 20%,
+    rgba(232, 213, 160, 0.6) 80%,
+    transparent
+  );
+}
+
+/* Folio Marker typography overrides for Devanagari (Phase A3 §Folio marker) */
+:lang(ne) .folio-marker .folio-text,
+:lang(ne) .folio-text,
+html[lang="ne"] .folio-text {
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* Devanagari uppercase / letter-spacing leak guards (no case distinction / avoid conjunct splitting) */
+:lang(ne) .footer-tagline,
+html[lang="ne"] .footer-tagline,
+:lang(ne) .brand-mark,
+html[lang="ne"] .brand-mark,
+:lang(ne) .badge-leak-guard,
+html[lang="ne"] .badge-leak-guard,
+:lang(ne) footer h3,
+html[lang="ne"] footer h3 {
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* Progressive Drop Caps (with @supports & float fallback, Phase A4) */
+.has-drop-cap > p:first-of-type::first-letter,
+p.has-drop-cap::first-letter {
+  font-size: 3.4rem;
+  font-weight: 700;
+  float: left;
+  line-height: 0.85;
+  margin: 0.15rem 0.5rem 0 0;
+  color: var(--color-maroon);
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-optical-sizing: auto;
+  font-synthesis: none; /* never faux-bold Devanagari fallback */
+}
+
+.dark .has-drop-cap > p:first-of-type::first-letter,
+.dark p.has-drop-cap::first-letter {
+  color: var(--color-clay);
+}
+
+@supports (initial-letter: 3) or (-webkit-initial-letter: 3) {
+  .has-drop-cap > p:first-of-type::first-letter,
+  p.has-drop-cap::first-letter {
+    font-size: unset;
+    float: unset;
+    line-height: unset;
+    margin: unset;
+    padding-right: 0.35rem;
+    -webkit-initial-letter: 3;
+    initial-letter: 3;
+  }
+}
+
+@media (max-width: 640px) {
+  .has-drop-cap > p:first-of-type::first-letter,
+  p.has-drop-cap::first-letter {
+    font-size: 2.8rem;
+    margin-right: 0.35rem;
+  }
+  @supports (initial-letter: 2) or (-webkit-initial-letter: 2) {
+    .has-drop-cap > p:first-of-type::first-letter,
+    p.has-drop-cap::first-letter {
+      -webkit-initial-letter: 2;
+      initial-letter: 2;
+    }
+  }
+}
+
+/* Devanagari kill-switch: defense-in-depth even if gating misses (Phase A4 §2) */
+:lang(ne) .has-drop-cap > p:first-of-type::first-letter,
+:lang(ne) p.has-drop-cap::first-letter,
+html[lang="ne"] .has-drop-cap > p:first-of-type::first-letter,
+html[lang="ne"] p.has-drop-cap::first-letter {
+  initial-letter: normal;
+  -webkit-initial-letter: normal;
+  float: none;
+  font-size: inherit;
+  line-height: inherit;
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
+  font-weight: inherit;
+  color: inherit;
+}
+
+/* EN-only ::first-line small-caps lede (Task B §8) */
+:lang(en) .has-drop-cap > p:first-of-type::first-line {
+  font-variant-caps: small-caps;
+  letter-spacing: 0.02em;
+}
+
+/* Lede must not reshape the drop-cap glyph itself (inherits from ::first-line) */
+:lang(en) .has-drop-cap > p:first-of-type::first-letter {
+  font-variant-caps: normal;
+  letter-spacing: 0;
+}
+
+:lang(ne) .has-drop-cap > p:first-of-type::first-line {
+  font-variant-caps: normal;
+  letter-spacing: 0;
 }
 
 /* Markdown prose: maroon serif headings, pine links, brass rules. */
@@ -105,7 +377,73 @@ html[lang="ne"] body {
 
 .prose :is(h1, h2, h3) {
   font-family: var(--font-fraunces), Georgia, "Times New Roman", serif;
+}
+
+:lang(en) .prose :is(h1, h2, h3),
+.prose[lang="en"] :is(h1, h2, h3) {
   letter-spacing: -0.01em;
+}
+
+:lang(ne) .prose :is(h1, h2, h3),
+.prose[lang="ne"] :is(h1, h2, h3) {
+  letter-spacing: 0;
+}
+
+/* Display headings calibration (Task B §1, §7) */
+.font-display {
+  font-optical-sizing: auto;
+}
+
+h1.font-display,
+h2.font-display,
+h3.font-display,
+h4.font-display {
+  text-wrap: balance;
+}
+
+:lang(ne) h1.font-display,
+:lang(ne) h2.font-display {
+  letter-spacing: 0;
+}
+
+h1.font-display {
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+}
+
+h2.font-display {
+  font-variation-settings: "SOFT" 0, "WONK" 0;
+}
+
+h3.font-display,
+h4.font-display,
+.font-display.text-xs,
+.font-display.text-\[11px\],
+.folio-text {
+  font-variation-settings: "SOFT" 0, "WONK" 0;
+}
+
+/* Prose microtype: pretty body, balance headings, numeral registers (Task B §6) */
+.prose :is(p, li, figcaption) {
+  text-wrap: pretty;
+}
+
+.prose :is(h1, h2, h3) {
+  text-wrap: balance;
+  font-optical-sizing: auto;
+}
+
+:lang(en) .prose,
+.prose[lang="en"] {
+  font-variant-numeric: oldstyle-nums proportional-nums;
+}
+
+:lang(en) .prose :is(h1, h2, h3),
+:lang(en) .folio-text {
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.prose ::marker {
+  font-size: 0.9em;
 }
 
 .prose a {
@@ -115,6 +453,144 @@ html[lang="ne"] body {
 
 .dark .prose a {
   text-decoration-color: rgba(143, 208, 178, 0.55);
+}
+
+/* ---- Pull-Quote Component (Phase A2 / Implementationplan.md §2) ---- */
+.pullquote {
+  margin: 2.5rem auto;
+  padding: 2rem 0;
+  max-width: 44rem;
+}
+
+.pullquote::before,
+.pullquote::after {
+  content: "";
+  display: block;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(201, 178, 124, 0.6) 20%,
+    rgba(201, 178, 124, 0.6) 80%,
+    transparent
+  );
+}
+
+.pullquote::before {
+  margin-bottom: 1.5rem;
+}
+
+.pullquote::after {
+  margin-top: 1.5rem;
+}
+
+/* On pine band context: lighter brass rule to guarantee AA contrast */
+.on-pine .pullquote::before,
+.on-pine .pullquote::after,
+[data-band="pine"] .pullquote::before,
+[data-band="pine"] .pullquote::after {
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(232, 213, 160, 0.6) 20%,
+    rgba(232, 213, 160, 0.6) 80%,
+    transparent
+  );
+}
+
+.pullquote blockquote {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: var(--text-pullquote);
+  font-weight: 400; /* never bold */
+  font-style: normal; /* never fake-italic Devanagari */
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  text-wrap: balance;
+  hanging-punctuation: first;
+  font-optical-sizing: auto;
+  text-indent: 0;
+  max-inline-size: 34ch;
+  margin-inline: auto;
+}
+
+/* Non-Safari has no hanging-punctuation and no quote glyph to hang (Task B
+   audit): accept flush-left as graceful degradation instead of a false edge. */
+
+:lang(ne) .pullquote blockquote,
+.pullquote blockquote:lang(ne) {
+  font-family: var(--font-noto), "Noto Sans Devanagari", sans-serif;
+  letter-spacing: 0;
+  line-height: 1.55;
+  font-style: normal !important;
+  font-synthesis: none; /* block browser faux-bold/faux-italic */
+}
+
+@media (min-width: 1024px) {
+  :lang(ne) .pullquote blockquote,
+  .pullquote blockquote:lang(ne) {
+    line-height: 1.6;
+  }
+}
+
+.pullquote figcaption {
+  margin-top: 0.75rem;
+  font-family: var(--font-noto), Inter, system-ui, sans-serif;
+  font-size: 0.8125rem; /* 13px */
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+}
+
+.pullquote figcaption .role {
+  font-weight: 400;
+  letter-spacing: 0.06em;
+}
+
+/* NE: kill uppercase + letterspacing — Devanagari has no case */
+:lang(ne) .pullquote figcaption,
+.pullquote figcaption:lang(ne) {
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 0.875rem;
+}
+
+.dark .pullquote figcaption,
+.on-pine .pullquote figcaption,
+[data-band="pine"] .pullquote figcaption,
+[data-band="choc"] .pullquote figcaption {
+  color: var(--color-brass-dark);
+}
+
+/* Placeholder TODO pattern (Phase A2 §5) */
+.pullquote.is-todo {
+  opacity: 1;
+  padding: 1.5rem 0;
+}
+
+.pullquote.is-todo::before,
+.pullquote.is-todo::after {
+  opacity: 0.5;
+}
+
+.pullquote.is-todo .todo-eyebrow {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-brass-dark, #c9b27c);
+}
+
+:lang(ne) .pullquote.is-todo .todo-eyebrow {
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.pullquote.is-todo .todo-note {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--color-ink-muted);
 }
 
 /* ---- Round 2: CSS-first motion (zero JS animation libs) ---- */
@@ -196,37 +672,84 @@ html[lang="ne"] body {
 }
 
 /* ---- Round 2: print ---- */
+/* ---- Round 4: Editorial print stylesheet (Implementationplan.md) ---- */
 @media print {
-  /* Hide site chrome and interactive toggles. */
+  @page {
+    margin: 18mm 16mm;
+    size: A4;
+  }
+
+  /* Hide site chrome, interactive toggles, grain, and decorative furniture */
   header,
   footer,
   nav,
   button,
   .toc-drawer,
+  .toc-rail,
   .reading-progress,
-  .heading-anchor {
+  .heading-anchor,
+  .grain-overlay,
+  .no-print {
     display: none !important;
   }
+
   html,
   body,
   .dark body {
     background: #fff !important;
+    background-image: none !important;
   }
-  /* Reveal entrances are scroll-driven: force everything visible on paper.
-     Without this, below-fold cards (still awaiting IntersectionObserver)
-     would print blank via `.js .reveal:not(.is-visible)`. */
+
+  /* Disable animations and transitions for paper export */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* Reveal entrances: force everything visible on paper */
   .reveal {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
   }
+
   body {
     color: #000 !important;
     font-family: Georgia, "Noto Sans Devanagari", "Times New Roman", serif;
-    font-size: 12pt;
+    font-size: 11pt;
     line-height: 1.5;
   }
-  /* Black-on-white prose in both themes (the .dark class persists on <html>). */
+
+  /* Drop caps survive ink cleanly in dark ink (float path explicit on paper) */
+  .has-drop-cap > p:first-of-type::first-letter,
+  p.has-drop-cap::first-letter {
+    color: #000 !important;
+    float: left !important;
+    initial-letter: normal !important;
+    -webkit-initial-letter: normal !important;
+  }
+
+  :lang(ne) .has-drop-cap > p:first-of-type::first-letter,
+  :lang(ne) p.has-drop-cap::first-letter {
+    float: none !important;
+    font-size: inherit !important;
+  }
+
+  thead {
+    display: table-header-group !important;
+  }
+
+  pre {
+    white-space: pre-wrap !important;
+  }
+
+  /* Black-on-white prose in both themes */
   .prose,
   .dark .prose {
     --tw-prose-body: #000;
@@ -236,60 +759,148 @@ html[lang="ne"] body {
     --tw-prose-bold: #000;
     --tw-prose-counters: #000;
     --tw-prose-bullets: #000;
-    --tw-prose-hr: #999;
+    --tw-prose-hr: #333;
     --tw-prose-quotes: #000;
-    --tw-prose-quote-borders: #999;
-    --tw-prose-captions: #000;
+    --tw-prose-quote-borders: #333;
+    --tw-prose-captions: #333;
     --tw-prose-code: #000;
     --tw-prose-pre-code: #000;
     --tw-prose-pre-bg: #fff;
-    --tw-prose-th-borders: #999;
-    --tw-prose-td-borders: #999;
+    --tw-prose-th-borders: #333;
+    --tw-prose-td-borders: #333;
     max-width: none !important;
     color: #000 !important;
   }
+
   main {
     max-width: none !important;
     padding: 0 !important;
   }
-  /* Single column. */
-  main .grid {
+
+  /* Single column layout for print (preserving 2-col stats-grid) */
+  main .grid:not(.stats-grid),
+  .bleed-wrapper {
     display: block !important;
+    padding: 0 !important;
   }
-  main .grid > * + * {
+
+  main .grid:not(.stats-grid) > * + * {
     margin-top: 1rem;
   }
+
   h1,
   h2,
-  h3 {
+  h3,
+  h4 {
     color: #000 !important;
     break-after: avoid;
   }
-  /* Keep each heading with the paragraph that follows it. */
+
+  /* Keep headings glued to the next paragraph */
   h2 + p,
-  h3 + p {
+  h3 + p,
+  h4 + p {
     break-before: avoid;
   }
+
   p,
   li {
     orphans: 3;
     widows: 3;
   }
+
   a {
     color: #000 !important;
     text-decoration: underline !important;
   }
-  /* Expand external hrefs so URLs survive on paper. */
+
+  /* Expand external hrefs so URLs survive on paper */
   a[href^="http"]::after {
     content: " (" attr(href) ")";
     font-size: 0.85em;
     word-break: break-all;
   }
+  a[href^="#"]::after,
+  a[href^="javascript:"]::after {
+    content: "";
+  }
+
   img,
   pre,
   figure,
-  blockquote {
+  blockquote,
+  .card,
+  table {
     break-inside: avoid;
     max-width: 100% !important;
+  }
+
+  /* Table rules survive toner */
+  table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+  }
+
+  th,
+  td {
+    border: 1pt solid #333 !important;
+    padding: 5pt !important;
+    text-align: left;
+  }
+
+  hr,
+  .divider-hairline,
+  .divider-gradient {
+    border: 0 !important;
+    border-top: 1pt solid #333 !important;
+    background: none !important;
+    height: 1pt !important;
+  }
+
+  .divider-vignette {
+    gap: 0 !important;
+  }
+
+  .divider-vignette-ornament {
+    display: none !important;
+  }
+
+  .divider-vignette span:not(.divider-vignette-ornament) {
+    max-width: none !important;
+    background: #333 !important;
+    height: 1pt !important;
+  }
+
+  /* Pull-quote print styling (Phase A2 §7) */
+  .pullquote {
+    margin: 18pt 0 !important;
+    padding: 12pt 0 !important;
+    max-width: 100% !important;
+  }
+  .pullquote blockquote {
+    font-size: 18pt !important;
+    line-height: 1.3 !important;
+    color: #000 !important;
+  }
+  :lang(ne) .pullquote blockquote {
+    line-height: 1.5 !important;
+  }
+  .pullquote::before,
+  .pullquote::after {
+    background: none !important;
+    border-top: 1pt solid #333 !important;
+    height: 1pt !important;
+  }
+  .pullquote figcaption {
+    font-size: 9pt !important;
+    color: #333 !important;
+  }
+  .pullquote.is-todo {
+    display: none !important;
+  }
+  .pullquote,
+  .pullquote blockquote,
+  .pullquote figure {
+    break-inside: avoid !important;
   }
 }

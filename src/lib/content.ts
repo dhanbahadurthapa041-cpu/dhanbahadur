@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { marked } from "marked";
-import { STRINGS, type Lang } from "./i18n";
+import { STRINGS, type Lang, type Strings } from "./i18n";
 
 export const SECTIONS = ["pub", "writing", "grammar", "class-10", "class-12"] as const;
 export type Section = (typeof SECTIONS)[number];
@@ -15,7 +15,20 @@ export interface Doc {
   subsection: string | null;
   html: string;
   toc: TocEntry[];
+  /**
+   * Drop-cap opt-in (Phase A4 §4.1): frontmatter `dropcap: true|false`.
+   * Explicit flag wins; default EN true, NE false (NE needs hand vetting).
+   */
+  dropcap: boolean;
+  /** True only when frontmatter explicitly set `dropcap: true` (NE vetting). */
+  dropcapExplicit: boolean;
 }
+
+/**
+ * Canary openers for NE drop-cap QA (Phase A4 §4.3): any NE opener starting
+ * with these must render WITHOUT cap in Chrome/Safari/Firefox before opt-in.
+ */
+export const DROP_CAP_CANARY = ["स्थिति", "क्ष", "त्र", "ज्ञ", "श्र", "हिन्दी", "र्य"];
 
 export interface TocEntry {
   /** Slug matching the rendered heading's id. */
@@ -93,11 +106,12 @@ function parseFrontmatter(
   title: string;
   date: string;
   subsection: string | null;
+  dropcapRaw: string | undefined;
   body: string;
 } {
   const fallback = STRINGS[lang].untitled;
   const match = raw.match(/^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/);
-  if (!match) return { title: fallback, date: "", subsection: null, body: raw };
+  if (!match) return { title: fallback, date: "", subsection: null, dropcapRaw: undefined, body: raw };
   const meta: Record<string, string> = {};
   for (const line of match[1].split("\n")) {
     const i = line.indexOf(":");
@@ -107,6 +121,7 @@ function parseFrontmatter(
     title: meta.title ?? fallback,
     date: meta.date ?? "",
     subsection: meta.subsection ?? null,
+    dropcapRaw: meta.dropcap?.toLowerCase(),
     body: match[2],
   };
 }
@@ -140,9 +155,12 @@ export function getDoc(section: Section, slug: string, lang: Lang): Doc | null {
   for (const l of [lang, lang === "ne" ? "en" : "ne"] as Lang[]) {
     const file = path.join(sectionDir(section), `${slug}.${l}.md`);
     if (fs.existsSync(file)) {
-      const { title, date, subsection, body } = parseFrontmatter(fs.readFileSync(file, "utf8"), l);
+      const { title, date, subsection, dropcapRaw, body } = parseFrontmatter(fs.readFileSync(file, "utf8"), l);
       const { html, toc } = addHeadingIds(marked.parse(body) as string, l);
-      return { slug, section, lang: l, title, date, subsection, html, toc };
+      const dropcapExplicit = dropcapRaw === "true";
+      const dropcap =
+        dropcapRaw === "true" ? true : dropcapRaw === "false" ? false : l === "en";
+      return { slug, section, lang: l, title, date, subsection, html, toc, dropcap, dropcapExplicit };
     }
   }
   return null;
@@ -193,3 +211,33 @@ export const SECTION_SUBSECTIONS: Record<Section, string[]> = {
     "unseen-texts",
   ],
 };
+
+export function sectionTitle(t: Strings, section: Section): string {
+  switch (section) {
+    case "pub":
+      return t.pubTitle;
+    case "writing":
+      return t.writingTitle;
+    case "grammar":
+      return t.grammarTitle;
+    case "class-10":
+      return t.class10Title;
+    case "class-12":
+      return t.class12Title;
+  }
+}
+
+export function sectionDesc(t: Strings, section: Section): string {
+  switch (section) {
+    case "pub":
+      return t.pubDesc;
+    case "writing":
+      return t.writingDesc;
+    case "grammar":
+      return t.grammarDesc;
+    case "class-10":
+      return t.class10Desc;
+    case "class-12":
+      return t.class12Desc;
+  }
+}

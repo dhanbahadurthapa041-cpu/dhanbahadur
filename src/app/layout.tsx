@@ -6,6 +6,7 @@ import { getServerLang } from "@/lib/lang-server";
 import { SITE_URL } from "@/lib/seo";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import GrainOverlay from "@/components/GrainOverlay";
 
 const nepali = Noto_Sans_Devanagari({
   subsets: ["devanagari", "latin"],
@@ -66,14 +67,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           dangerouslySetInnerHTML={{ __html: JSON.stringify(WEBSITE_JSON_LD) }}
         />
       </head>
-      <body className={`${nepali.variable} ${display.variable} bg-paper font-sans text-ink antialiased dark:bg-choc dark:text-cream`}>
+      <body className={`${nepali.variable} ${display.variable} bg-paper font-sans text-ink antialiased min-h-screen flex flex-col dark:bg-choc dark:text-cream`}>
+        <GrainOverlay />
         <LangProvider initialLang={lang}>
           <ThemeProvider>
             <Header />
-            {/* Round 2: no <ViewTransition> wrapper — the API is absent from
-                the installed stable React 19.2.8 (see globals.css). The
-                theme toggle stays a plain class swap. */}
-            <main className="mx-auto max-w-4xl px-4 py-8">{children}</main>
+            <main className="w-full flex-1">{children}</main>
             <Footer />
           </ThemeProvider>
         </LangProvider>

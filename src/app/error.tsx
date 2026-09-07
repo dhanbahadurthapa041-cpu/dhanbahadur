@@ -9,10 +9,10 @@ export default function Error({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   return (
-    <div className="py-16 text-center">
-      <h1 className="font-display text-3xl font-semibold tracking-tight">{t.errorTitle}</h1>
+    <div className="mx-auto max-w-4xl px-4 py-20 text-center">
+      <h1 className={`font-display text-3xl font-semibold ${lang === "en" ? "tracking-tight" : "tracking-normal"}`}>{t.errorTitle}</h1>
       <p className="mt-2 text-ink/70 dark:text-cream/70">{t.errorBody}</p>
       <div className="mt-6 flex justify-center gap-3">
         <button
