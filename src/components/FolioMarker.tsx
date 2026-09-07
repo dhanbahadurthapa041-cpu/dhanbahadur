@@ -20,10 +20,10 @@ export default function FolioMarker({
 }: FolioMarkerProps) {
   return (
     <div
-      className={`folio-marker flex items-center gap-3 text-xs font-semibold text-pine dark:text-mint ${className}`}
+      className={`folio-marker flex items-center gap-3 text-[11px] font-medium text-pine dark:text-mint ${className}`}
     >
       <span aria-hidden="true" className="h-px w-8 bg-brass/80 dark:bg-brass-dark/80" />
-      <span className="folio-text uppercase tracking-[0.2em]">{label}</span>
+      <span className="folio-text max-w-[64ch] [text-wrap:balance] uppercase tracking-[0.14em]">{label}</span>
       {badge && (
         <span className="rounded-full bg-brass/20 px-2 py-0.5 text-[10px] font-medium tracking-normal text-ink dark:bg-brass/15 dark:text-cream">
           {badge}

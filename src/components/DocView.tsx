@@ -63,7 +63,7 @@ export default function DocView({
       <div className="mt-4">
         <FolioMarker label={`${section.replace("-", " ")}`} className="mb-2.5" />
         <h1
-          className={`font-display text-3xl font-semibold text-maroon sm:text-4xl dark:text-clay ${
+          className={`font-display text-3xl font-medium text-maroon [text-wrap:balance] [font-optical-sizing:auto] sm:text-4xl dark:text-clay ${
             doc.lang === "en" ? "tracking-tight" : "tracking-normal"
           }`}
         >

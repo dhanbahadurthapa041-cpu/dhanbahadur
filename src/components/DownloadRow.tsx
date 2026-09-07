@@ -23,7 +23,7 @@ export default function DownloadRow({ item, index }: { item: DownloadRowItem; in
     <Reveal
       as="li"
       index={index}
-      className="flex items-center justify-between gap-4 rounded-2xl border border-brass/25 bg-[#fffdf8] p-4 sm:p-5 transition hover:border-brass/70 dark:border-cream/15 dark:bg-choc-elevated dark:hover:border-cream/30"
+      className="flex items-center justify-between gap-4 rounded-2xl border border-brass/25 bg-surface-subtle p-4 sm:p-5 shadow-[0_1px_2px_rgba(47,42,37,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-brass/60 hover:shadow-[0_14px_28px_-16px_rgba(47,42,37,0.22)] focus-within:border-pine/60 motion-reduce:transition-none motion-reduce:hover:transform-none dark:border-cream/15 dark:bg-choc-elevated"
     >
       <div className="min-w-0">
         <p className="font-medium">{title}</p>
@@ -31,7 +31,7 @@ export default function DownloadRow({ item, index }: { item: DownloadRowItem; in
         {(item.format || item.size) && (
           <p className="mt-1.5 flex flex-wrap items-center gap-2 text-xs">
             {item.format && (
-              <span className="rounded-full bg-brass/25 px-2 py-0.5 font-semibold uppercase tracking-wide text-ink dark:bg-brass/20 dark:text-cream">
+              <span className="rounded-full bg-brass/20 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-ink dark:bg-brass/15 dark:text-cream">
                 {item.format}
               </span>
             )}

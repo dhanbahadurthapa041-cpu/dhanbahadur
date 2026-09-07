@@ -109,8 +109,8 @@ function PubLibraryInner() {
               onClick={() => setCat(chip.value)}
               className={`rounded-full border px-3 py-1 text-sm transition motion-reduce:transition-none ${
                 pressed
-                  ? "border-pine bg-pine font-semibold text-white dark:border-mint dark:bg-mint dark:text-ink"
-                  : "border-ink/20 hover:border-pine dark:border-cream/20 dark:hover:border-mint"
+                  ? "border-pine bg-pine font-semibold text-white shadow-[0_6px_16px_-8px_rgba(15,106,75,0.5)] dark:border-mint dark:bg-mint dark:text-ink"
+                  : "border-ink/20 bg-surface-subtle shadow-[0_1px_2px_rgba(47,42,37,0.06)] hover:border-pine dark:border-cream/20 dark:bg-choc-elevated dark:hover:border-mint"
               }`}
             >
               {chip.label} <span className="opacity-70">({chip.count})</span>
@@ -131,7 +131,7 @@ function PubLibraryInner() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder={t.libSearchPlaceholder}
-          className="w-full rounded-xl border border-ink/20 bg-[#fffdf8] px-4 py-2 text-sm outline-none placeholder:text-ink/40 focus:border-pine dark:border-cream/20 dark:bg-cream/[0.04] dark:placeholder:text-cream/40 dark:focus:border-mint"
+          className="w-full rounded-xl border border-ink/20 bg-surface-subtle px-4 py-2 text-sm outline-none placeholder:text-ink/40 focus:border-pine focus:ring-2 focus:ring-pine/20 dark:border-cream/20 dark:bg-choc-elevated dark:placeholder:text-cream/40 dark:focus:border-mint dark:focus:ring-mint/20"
         />
       </div>
 
@@ -140,7 +140,7 @@ function PubLibraryInner() {
       </p>
 
       {filtered.length === 0 ? (
-        <div className="mt-3 rounded-xl border border-ink/15 bg-[#fffdf8] p-6 text-center dark:border-cream/15 dark:bg-cream/[0.04]">
+        <div className="mt-3 rounded-xl border border-brass/25 bg-surface-subtle p-6 text-center dark:border-cream/15 dark:bg-choc-elevated">
           <p className="font-semibold">{t.libEmptyTitle}</p>
           <p className="mt-1 text-sm text-ink/60 dark:text-cream/60">{t.libEmptyBody}</p>
           <button
@@ -157,7 +157,7 @@ function PubLibraryInner() {
           if (items.length === 0) return null;
           return (
             <div key={c} className="mt-6">
-              <h2 className="font-display text-xl font-semibold text-maroon dark:text-clay">{labelFor(c)}</h2>
+              <h2 className="flex items-center gap-3 font-display text-xl font-semibold text-maroon after:h-px after:flex-1 after:bg-brass/30 dark:text-clay dark:after:bg-brass/20">{labelFor(c)}</h2>
               <ul className="mt-3 space-y-3">
                 {items.map((item, i) => (
                   <DownloadRow key={item.titleEn} index={i} item={item} />

@@ -96,10 +96,10 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
       </Link>
       <div className="mt-6">
         <FolioMarker label={t.folioCurriculum} className="mb-3" />
-        <h1 className={`font-display text-3xl font-semibold text-maroon sm:text-4xl dark:text-clay ${lang === "en" ? "tracking-tight" : "tracking-normal"}`}>
+        <h1 className={`font-display text-3xl font-medium text-maroon [text-wrap:balance] [font-optical-sizing:auto] sm:text-4xl dark:text-clay ${lang === "en" ? "tracking-tight" : "tracking-normal"}`}>
           {sectionTitle(t, section)}
         </h1>
-        <p className="mt-2 text-ink/75 dark:text-cream/75">{sectionDesc(t, section)}</p>
+        <p className="mt-2 text-base text-ink/75 sm:text-lg dark:text-cream/75">{sectionDesc(t, section)}</p>
       </div>
 
       {section === "pub" && (
@@ -111,7 +111,7 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                   as="li"
                   key={d.slug}
                   index={i}
-                  className="rounded-xl border border-ink/15 bg-[#fffdf8] p-4 dark:border-cream/15 dark:bg-cream/[0.04]"
+                  className="rounded-xl border border-brass/25 bg-surface-subtle p-4 shadow-[0_1px_2px_rgba(47,42,37,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-brass/60 hover:shadow-[0_12px_24px_-14px_rgba(47,42,37,0.16)] motion-reduce:transition-none motion-reduce:hover:transform-none dark:border-cream/15 dark:bg-choc-elevated"
                 >
                   <Link
                     href={`/pub/${d.slug}`}
@@ -120,7 +120,7 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                     {d.title}
                   </Link>
                   {d.lang !== lang && (
-                    <span className="ml-2 inline-block rounded-full bg-brass/25 px-2 py-0.5 align-middle text-xs text-ink dark:bg-brass/20 dark:text-cream">
+                    <span className="ml-2 inline-block rounded-full bg-brass/20 px-2 py-0.5 align-middle text-[11px] font-semibold uppercase tracking-[0.08em] text-ink dark:bg-brass/15 dark:text-cream">
                       {t.englishOnly}
                     </span>
                   )}
@@ -140,7 +140,7 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
             const inGroup = docs.filter((d) => docGroup(section, d) === sub);
             return (
               <div key={sub}>
-                <h2 className="font-display text-xl font-semibold text-maroon dark:text-clay">{subsectionLabel(sub, t)}</h2>
+                <h2 className="flex items-center gap-3 font-display text-xl font-semibold text-maroon after:h-px after:flex-1 after:bg-brass/30 dark:text-clay dark:after:bg-brass/20">{subsectionLabel(sub, t)}</h2>
                 {inGroup.length > 0 ? (
                   <ul className="mt-3 space-y-3">
                     {inGroup.map((d, i) => (
@@ -148,7 +148,7 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                         as="li"
                         key={d.slug}
                         index={i}
-                        className="rounded-xl border border-ink/15 bg-[#fffdf8] p-4 dark:border-cream/15 dark:bg-cream/[0.04]"
+                        className="rounded-xl border border-brass/25 bg-surface-subtle p-4 shadow-[0_1px_2px_rgba(47,42,37,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-brass/60 hover:shadow-[0_12px_24px_-14px_rgba(47,42,37,0.16)] motion-reduce:transition-none motion-reduce:hover:transform-none dark:border-cream/15 dark:bg-choc-elevated"
                       >
                         <Link
                           href={`/${section}/${d.slug}`}
@@ -157,9 +157,9 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                           {d.title}
                         </Link>
                         {d.lang !== lang && (
-                    <span className="ml-2 inline-block rounded-full bg-brass/25 px-2 py-0.5 align-middle text-xs text-ink dark:bg-brass/20 dark:text-cream">
-                      {t.englishOnly}
-                    </span>
+                          <span className="ml-2 inline-block rounded-full bg-brass/20 px-2 py-0.5 align-middle text-[11px] font-semibold uppercase tracking-[0.08em] text-ink dark:bg-brass/15 dark:text-cream">
+                            {t.englishOnly}
+                          </span>
                         )}
                         {d.date && <p className="text-xs text-ink/60 dark:text-cream/60">{d.date}</p>}
                       </Reveal>
@@ -192,7 +192,7 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
           )}
           {docs.filter((d) => docGroup(section, d) === null).length > 0 && (
             <div>
-              <h2 className="font-display text-xl font-semibold text-maroon dark:text-clay">{t.comingSoon}</h2>
+              <h2 className="flex items-center gap-3 font-display text-xl font-semibold text-maroon after:h-px after:flex-1 after:bg-brass/30 dark:text-clay dark:after:bg-brass/20">{t.comingSoon}</h2>
               <ul className="mt-3 space-y-3">
                 {docs
                   .filter((d) => docGroup(section, d) === null)
@@ -201,7 +201,7 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                       as="li"
                       key={d.slug}
                       index={i}
-                      className="rounded-xl border border-ink/15 bg-[#fffdf8] p-4 dark:border-cream/15 dark:bg-cream/[0.04]"
+                      className="rounded-xl border border-brass/25 bg-surface-subtle p-4 shadow-[0_1px_2px_rgba(47,42,37,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-brass/60 hover:shadow-[0_12px_24px_-14px_rgba(47,42,37,0.16)] motion-reduce:transition-none motion-reduce:hover:transform-none dark:border-cream/15 dark:bg-choc-elevated"
                     >
                       <Link
                         href={`/${section}/${d.slug}`}

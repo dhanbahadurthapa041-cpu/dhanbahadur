@@ -114,6 +114,7 @@ export const STRINGS = {
     // Section folios & headers
     folioOverview: "Section 01 • Overview",
     folioMetrics: "Section 02 • Experience & Reach",
+    folioQuote: "Philosophy • Educational Creed",
     folioCurriculum: "Section 03 • Academic Curriculum",
     folioLibrary: "Section 04 • Publications & Resources",
     folioCommunity: "Section 05 • Institutional Leadership",
@@ -242,6 +243,7 @@ export const STRINGS = {
     // Section folios & headers
     folioOverview: "खण्ड ०१ • परिचय",
     folioMetrics: "खण्ड ०२ • अनुभव तथा प्रभाव",
+    folioQuote: "दृष्टिकोण • शैक्षिक दर्शन",
     folioCurriculum: "खण्ड ०३ • शैक्षिक पाठ्यक्रम",
     folioLibrary: "खण्ड ०४ • प्रकाशन तथा स्रोतहरू",
     folioCommunity: "खण्ड ०५ • संस्थागत नेतृत्व",

@@ -100,6 +100,16 @@ html[lang="ne"] body {
   line-height: 1.75;
 }
 
+/* Blanket font-synthesis:none for Devanagari (Task B §4) */
+html[lang="ne"] body,
+:lang(ne) {
+  font-synthesis: none;
+}
+:lang(ne) em,
+:lang(ne) i {
+  font-style: normal !important;
+}
+
 ::selection {
   background: rgba(201, 178, 124, 0.45);
 }
@@ -277,6 +287,17 @@ html[lang="ne"] p.has-drop-cap::first-letter {
   color: inherit;
 }
 
+/* EN-only ::first-line small-caps lede (Task B §8) */
+:lang(en) .has-drop-cap > p:first-of-type::first-line {
+  font-variant-caps: small-caps;
+  letter-spacing: 0.02em;
+}
+
+:lang(ne) .has-drop-cap > p:first-of-type::first-line {
+  font-variant-caps: normal;
+  letter-spacing: 0;
+}
+
 /* Markdown prose: maroon serif headings, pine links, brass rules. */
 .prose {
   --tw-prose-body: #2f2a25;
@@ -328,6 +349,54 @@ html[lang="ne"] p.has-drop-cap::first-letter {
 :lang(ne) .prose :is(h1, h2, h3),
 .prose[lang="ne"] :is(h1, h2, h3) {
   letter-spacing: 0;
+}
+
+/* Display headings calibration (Task B §1, §7) */
+.font-display {
+  font-optical-sizing: auto;
+}
+
+h1.font-display,
+h2.font-display,
+h3.font-display {
+  text-wrap: balance;
+}
+
+:lang(ne) h1.font-display,
+:lang(ne) h2.font-display {
+  letter-spacing: 0;
+}
+
+h1.font-display {
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+}
+
+h3.font-display,
+.font-display.text-xs {
+  font-variation-settings: "SOFT" 0, "WONK" 0;
+}
+
+/* Prose microtype: pretty body, balance headings, numeral registers (Task B §6) */
+.prose :is(p, li, figcaption) {
+  text-wrap: pretty;
+}
+
+.prose :is(h1, h2, h3) {
+  text-wrap: balance;
+  font-optical-sizing: auto;
+}
+
+.prose {
+  font-variant-numeric: oldstyle-nums proportional-nums;
+}
+
+.prose :is(h1, h2, h3),
+.folio-text {
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.prose ::marker {
+  font-size: 0.9em;
 }
 
 .prose a {
@@ -398,8 +467,10 @@ html[lang="ne"] p.has-drop-cap::first-letter {
 }
 
 /* Portable hanging-quote fallback for non-Safari (Safari-only hanging-punctuation above) */
-.pullquote blockquote .q {
-  text-indent: -0.42em;
+@supports not (hanging-punctuation: first) {
+  .pullquote blockquote {
+    text-indent: -0.42em;
+  }
 }
 
 :lang(ne) .pullquote blockquote,

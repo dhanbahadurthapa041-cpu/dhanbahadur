@@ -60,15 +60,15 @@ export default function StatsRow() {
   return (
     <div className="w-full">
       {/* Background-Gap-Trick card container */}
-      <div className="w-full overflow-hidden rounded-2xl border border-[#E5DCCB] bg-[#fffdf8] shadow-[0_4px_20px_-8px_rgba(47,42,37,0.06)] dark:border-white/10 dark:bg-choc-elevated dark:shadow-none print:shadow-none print:border-gray-300">
-        <div className="grid grid-cols-1 gap-px bg-[#E5DCCB] sm:grid-cols-2 lg:grid-cols-4 dark:bg-white/10 print:grid-cols-2 print:bg-gray-300">
+      <div className="w-full overflow-hidden rounded-2xl border border-border bg-surface-subtle shadow-[0_4px_20px_-8px_rgba(47,42,37,0.06)] dark:border-white/10 dark:bg-choc-elevated dark:shadow-none print:shadow-none print:border-gray-300">
+        <div className="grid grid-cols-1 gap-px bg-border sm:grid-cols-2 lg:grid-cols-4 dark:bg-white/10 print:grid-cols-2 print:bg-gray-300">
           {stats.map((stat, i) => (
             <div
               key={i}
               className={`flex flex-col justify-between p-6 text-center sm:p-7 md:p-8 print:p-4 print:bg-white print:text-black print:break-inside-avoid ${
                 stat.featured
-                  ? "bg-[#faf3e3] dark:bg-brass/[0.06]"
-                  : "bg-[#fffdf8] dark:bg-choc-elevated"
+                  ? "bg-[#faf3e3] border-t-2 border-t-brass/70 dark:bg-brass/[0.06] dark:border-t-brass-dark/50"
+                  : "bg-surface-subtle dark:bg-choc-elevated"
               }`}
             >
               {stat.pending ? (
@@ -90,6 +90,11 @@ export default function StatsRow() {
                 </div>
               ) : (
                 <div>
+                  {stat.featured && (
+                    <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-pine/80 dark:text-mint/80">
+                      {isNe ? "★ मुख्य तथ्याङ्क" : "★ Hero metric"}
+                    </p>
+                  )}
                   <p
                     className={`font-display font-semibold ${
                       isNe ? "tracking-normal" : "tracking-tight"
@@ -110,6 +115,9 @@ export default function StatsRow() {
                   <h3 className="mt-2.5 font-display text-base font-medium text-ink dark:text-cream print:text-black">
                     {stat.label}
                   </h3>
+                  {stat.featured && (
+                    <span aria-hidden="true" className="mx-auto mt-3 block h-px w-8 bg-brass/60 dark:bg-brass-dark/40" />
+                  )}
                 </div>
               )}
               <p className="mt-1.5 text-xs text-ink/60 dark:text-cream/60 print:text-gray-600">
