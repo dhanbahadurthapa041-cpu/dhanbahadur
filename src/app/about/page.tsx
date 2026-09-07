@@ -31,7 +31,11 @@ export default async function About() {
       <article className="mt-6">
         <FolioMarker label={t.folioOverview} className="mb-4" />
 
-        <h1 className="font-display text-4xl font-semibold tracking-tight text-maroon sm:text-5xl dark:text-clay">
+        <h1
+          className={`font-display text-4xl font-semibold text-maroon sm:text-5xl dark:text-clay ${
+            lang === "en" ? "tracking-tight" : "tracking-normal"
+          }`}
+        >
           {t.aboutTitle}
         </h1>
 
@@ -51,7 +55,7 @@ export default async function About() {
             />
           </figure>
 
-          <div className="prose max-w-none dark:prose-invert has-drop-cap">
+          <div className={`prose max-w-none dark:prose-invert ${lang === "en" ? "has-drop-cap" : ""}`}>
             <p className="text-lg leading-relaxed text-ink/85 dark:text-cream/85">
               {t.aboutPara1}
             </p>
@@ -69,7 +73,6 @@ export default async function About() {
           author={t.quote1Author}
           role={t.quote1Role}
           lang={lang}
-          variant="subtle"
         />
 
         <Divider variant="gradient" />

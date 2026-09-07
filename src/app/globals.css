@@ -105,11 +105,11 @@ html[lang="ne"] body {
   outline-offset: 2px;
 }
 
-/* Josh Comeau 3-column grid bleed system */
+/* Josh Comeau 3-column grid bleed system (Implementationplan.md §1A) */
 .bleed-wrapper {
   --viewport-padding: 1rem;
   display: grid;
-  grid-template-columns: 1fr min(68rem, 100%) 1fr;
+  grid-template-columns: 1fr min(44rem, 100%) 1fr;
   padding-inline: var(--viewport-padding);
 }
 
@@ -127,14 +127,12 @@ html[lang="ne"] body {
 .bleed-wrapper > .full-bleed {
   grid-column: 1 / -1;
   margin-inline: calc(var(--viewport-padding) * -1);
-  width: calc(100% + (var(--viewport-padding) * 2));
 }
 
 /* Static SVG noise grain texture (whisper-quiet paper feel, zero CPU) */
 .grain-overlay {
   position: fixed;
   inset: 0;
-  width: 100vw;
   height: 100lvh;
   pointer-events: none;
   z-index: 9999;
@@ -258,7 +256,16 @@ p.has-drop-cap::first-letter {
 
 .prose :is(h1, h2, h3) {
   font-family: var(--font-fraunces), Georgia, "Times New Roman", serif;
+}
+
+:lang(en) .prose :is(h1, h2, h3),
+.prose[lang="en"] :is(h1, h2, h3) {
   letter-spacing: -0.01em;
+}
+
+:lang(ne) .prose :is(h1, h2, h3),
+.prose[lang="ne"] :is(h1, h2, h3) {
+  letter-spacing: 0;
 }
 
 .prose a {
@@ -362,6 +369,7 @@ p.has-drop-cap::first-letter {
   nav,
   button,
   .toc-drawer,
+  .toc-rail,
   .reading-progress,
   .heading-anchor,
   .grain-overlay,

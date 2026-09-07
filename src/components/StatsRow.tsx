@@ -47,8 +47,8 @@ export default function StatsRow() {
   ];
 
   return (
-    <div className="w-full rounded-2xl border border-brass/30 bg-[#fffdf8] shadow-[0_4px_20px_-8px_rgba(47,42,37,0.06)] dark:border-cream/10 dark:bg-choc-elevated dark:shadow-none">
-      <div className="grid grid-cols-1 divide-y divide-brass/20 sm:grid-cols-2 sm:divide-y-0 sm:divide-x lg:grid-cols-4 dark:divide-cream/10">
+    <div className="w-full rounded-2xl border border-[#E5DCCB] bg-[#fffdf8] shadow-[0_4px_20px_-8px_rgba(47,42,37,0.06)] dark:border-white/10 dark:bg-choc-elevated dark:shadow-none">
+      <div className="grid grid-cols-1 divide-y divide-[#E5DCCB] sm:grid-cols-2 sm:divide-y-0 sm:divide-x lg:grid-cols-4 dark:divide-white/10">
         {stats.map((stat, i) => (
           <div
             key={i}

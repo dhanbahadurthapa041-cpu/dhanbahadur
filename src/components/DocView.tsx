@@ -34,7 +34,11 @@ export default function DocView({
       </Link>
       <div className="mt-4">
         <FolioMarker label={`${section.replace("-", " ")}`} className="mb-2.5" />
-        <h1 className="font-display text-3xl font-semibold tracking-tight text-maroon sm:text-4xl dark:text-clay">
+        <h1
+          className={`font-display text-3xl font-semibold text-maroon sm:text-4xl dark:text-clay ${
+            doc.lang === "en" ? "tracking-tight" : "tracking-normal"
+          }`}
+        >
           {doc.title}
         </h1>
         {doc.date && <p className="mt-1 text-xs text-ink/60 dark:text-cream/60">{doc.date}</p>}
@@ -49,7 +53,10 @@ export default function DocView({
       {showToc && <ReadingProgress targetId={ARTICLE_ID} />}
       {showToc && <TocDrawer toc={doc.toc} />}
       <div className={showToc ? "mt-8 lg:grid lg:grid-cols-[minmax(0,1fr)_13rem] lg:items-start lg:gap-8" : undefined}>
-        <article id={showToc ? ARTICLE_ID : undefined} className="has-drop-cap">
+        <article
+          id={showToc ? ARTICLE_ID : undefined}
+          className={doc.lang === "en" ? "has-drop-cap" : undefined}
+        >
           <div className={showToc ? "prose dark:prose-invert max-w-none" : "prose mt-6 dark:prose-invert max-w-none"} dangerouslySetInnerHTML={{ __html: doc.html }} />
         </article>
         {showToc && <TocRail toc={doc.toc} />}

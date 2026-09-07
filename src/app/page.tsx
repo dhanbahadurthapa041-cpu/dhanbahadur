@@ -9,7 +9,6 @@ import Reveal from "@/components/Reveal";
 import FolioMarker from "@/components/FolioMarker";
 import StatsRow from "@/components/StatsRow";
 import PullQuote from "@/components/PullQuote";
-import Divider from "@/components/Divider";
 
 // Language comes from the `dbt-lang` cookie per request — never statically cache.
 export const dynamic = "force-dynamic";
@@ -23,17 +22,21 @@ export default async function Home() {
   const t = STRINGS[lang];
 
   return (
-    <div className="w-full">
+    <div className="bleed-wrapper w-full">
       {/* ===================================================================
           BAND 1: Editorial Hero (Warm Paper floor, Maroon Display H1)
           =================================================================== */}
-      <section className="w-full py-12 sm:py-16 md:py-20 lg:py-24">
+      <section className="full-bleed w-full py-12 sm:py-16 md:py-20 lg:py-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
             <div>
               <FolioMarker label={t.tagline} className="mb-5" />
 
-              <h1 className="font-display text-5xl font-semibold leading-[1.03] tracking-tight text-maroon sm:text-6xl lg:text-7xl dark:text-clay">
+              <h1
+                className={`font-display text-5xl font-semibold leading-[1.03] text-maroon sm:text-6xl lg:text-7xl dark:text-clay ${
+                  lang === "en" ? "tracking-tight" : "tracking-normal"
+                }`}
+              >
                 {t.heroTitle}
               </h1>
 
@@ -44,7 +47,7 @@ export default async function Home() {
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <Link
                   href="/pub"
-                  className="inline-flex items-center gap-2 rounded-full bg-pine px-7 py-3.5 text-sm font-semibold text-white shadow-[0_8px_20px_-8px_rgba(15,106,75,0.45)] transition hover:bg-pine-deep hover:shadow-[0_12px_24px_-8px_rgba(15,106,75,0.55)] dark:bg-pine dark:hover:bg-pine-dark"
+                  className="inline-flex items-center gap-2 rounded-full bg-pine px-7 py-3.5 text-sm font-semibold text-white shadow-[0_8px_20px_-8px_rgba(15,106,75,0.45)] transition hover:bg-pine-deep hover:shadow-[0_12px_24px_-8px_rgba(15,106,75,0.55)] dark:bg-mint dark:text-choc dark:hover:bg-[#a3dfc4]"
                 >
                   <span>{t.explorePub}</span>
                   <span aria-hidden="true">→</span>
@@ -101,7 +104,7 @@ export default async function Home() {
       {/* ===================================================================
           BAND 2: KPI Stats Strip (Warm Linen Tint band with dividers)
           =================================================================== */}
-      <section className="w-full border-y border-brass/25 bg-[#f3ead9] py-12 sm:py-16 dark:border-cream/10 dark:bg-[#251b17]">
+      <section className="full-bleed w-full border-y border-brass/25 bg-[#f3ead9] py-12 sm:py-16 dark:border-cream/10 dark:bg-[#251b17]">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <FolioMarker label={t.folioMetrics} className="justify-center mb-6" />
           <StatsRow />
@@ -111,15 +114,14 @@ export default async function Home() {
       {/* ===================================================================
           BAND 3: Chapter-Break Pull Quote (Full-Bleed Deep Pine)
           =================================================================== */}
-      <section className="w-full bg-pine py-16 text-cream sm:py-24 dark:bg-[#0a3828]">
+      <section className="full-bleed w-full bg-pine py-16 text-cream sm:py-24 dark:bg-[#0a3828]">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
           <PullQuote
             quote={t.quote1Text}
             author={t.quote1Author}
             role={t.quote1Role}
             lang={lang}
-            variant="pine"
-            className="my-0"
+            className="my-0 text-cream"
           />
         </div>
       </section>
@@ -127,12 +129,16 @@ export default async function Home() {
       {/* ===================================================================
           BAND 4: Academic Curriculum & Learning Pathways (Bento Grid)
           =================================================================== */}
-      <section className="w-full py-16 sm:py-24">
+      <section className="full-bleed w-full py-16 sm:py-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
             <div>
               <FolioMarker label={t.folioCurriculum} className="mb-3" />
-              <h2 className="font-display text-3xl font-semibold tracking-tight text-maroon sm:text-4xl lg:text-5xl dark:text-clay">
+              <h2
+                className={`font-display text-3xl font-semibold text-maroon sm:text-4xl lg:text-5xl dark:text-clay ${
+                  lang === "en" ? "tracking-tight" : "tracking-normal"
+                }`}
+              >
                 {t.curriculumEyebrow}
               </h2>
               <p className="mt-3 max-w-2xl text-base text-ink/75 sm:text-lg dark:text-cream/75">
@@ -317,12 +323,16 @@ export default async function Home() {
       {/* ===================================================================
           BAND 5: Teacher's Library & Curriculum Downloads Preview
           =================================================================== */}
-      <section className="w-full border-t border-brass/25 bg-[#fffdf8] py-16 sm:py-20 dark:border-cream/10 dark:bg-choc-elevated">
+      <section className="full-bleed w-full border-t border-brass/25 bg-[#fffdf8] py-16 sm:py-20 dark:border-cream/10 dark:bg-choc-elevated">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:items-center">
             <div>
               <FolioMarker label={t.folioLibrary} className="mb-3" />
-              <h2 className="font-display text-3xl font-semibold tracking-tight text-maroon sm:text-4xl dark:text-clay">
+              <h2
+                className={`font-display text-3xl font-semibold text-maroon sm:text-4xl dark:text-clay ${
+                  lang === "en" ? "tracking-tight" : "tracking-normal"
+                }`}
+              >
                 {t.featuredPubsEyebrow}
               </h2>
               <p className="mt-3.5 text-base leading-relaxed text-ink/75 dark:text-cream/75">
@@ -331,7 +341,7 @@ export default async function Home() {
               <div className="mt-6">
                 <Link
                   href="/pub"
-                  className="inline-flex items-center gap-2 rounded-full bg-pine px-6 py-3 text-sm font-semibold text-white transition hover:bg-pine-deep"
+                  className="inline-flex items-center gap-2 rounded-full bg-pine px-6 py-3 text-sm font-semibold text-white transition hover:bg-pine-deep dark:bg-mint dark:text-choc dark:hover:bg-[#a3dfc4]"
                 >
                   <span>{t.explorePub}</span>
                   <span aria-hidden="true">→</span>
@@ -375,12 +385,16 @@ export default async function Home() {
       {/* ===================================================================
           BAND 6: School Leadership & Digital Learning CTA (Dark Chocolate)
           =================================================================== */}
-      <section className="w-full bg-[#1e1411] py-16 text-cream sm:py-24 border-t border-brass/20">
+      <section className="full-bleed w-full bg-[#1e1411] py-16 text-cream sm:py-24 border-t border-brass/20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
             <div>
               <FolioMarker label={t.folioCommunity} className="mb-4 text-brass" />
-              <h2 className="font-display text-3xl font-semibold tracking-tight text-cream sm:text-4xl lg:text-5xl">
+              <h2
+                className={`font-display text-3xl font-semibold text-cream sm:text-4xl lg:text-5xl ${
+                  lang === "en" ? "tracking-tight" : "tracking-normal"
+                }`}
+              >
                 {t.schoolLeadershipTitle}
               </h2>
               <p className="mt-4 max-w-lg text-base leading-relaxed text-cream/75 sm:text-lg">
@@ -409,17 +423,14 @@ export default async function Home() {
               </div>
             </div>
 
-            <div className="rounded-2xl border border-brass/30 bg-[#2a1e18] p-8 sm:p-10 shadow-2xl">
-              <div aria-hidden="true" className="mb-4 h-0.5 w-10 bg-brass" />
-              <blockquote className="font-display text-xl sm:text-2xl font-normal leading-relaxed text-cream/90">
-                “{t.quote2Text}”
-              </blockquote>
-              <figcaption className="mt-6">
-                <cite className="not-italic font-display text-sm font-medium text-brass">
-                  — {t.quote2Author}
-                </cite>
-                <p className="text-xs text-cream/60 mt-0.5">{t.quote2Role}</p>
-              </figcaption>
+            <div className="rounded-2xl border border-brass/30 bg-[#2a1e18] p-4 sm:p-6 shadow-2xl">
+              <PullQuote
+                quote={t.quote2Text}
+                author={t.quote2Author}
+                role={t.quote2Role}
+                lang={lang}
+                className="text-cream py-4 sm:py-6"
+              />
             </div>
           </div>
         </div>
