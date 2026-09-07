@@ -71,7 +71,7 @@ export default function PullQuote({
         role={isDuplicate ? "doc-pullquote" : undefined}
         aria-hidden={isDuplicate ? true : undefined}
       >
-        <p>{author ? `“${quote}”` : quote}</p>
+        <p>{author ? (<><span className="q" aria-hidden="true">“</span>{quote}”</>) : quote}</p>
       </blockquote>
 
       {(author || role) && (
