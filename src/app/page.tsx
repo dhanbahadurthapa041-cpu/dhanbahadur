@@ -22,11 +22,11 @@ export default async function Home() {
   const t = STRINGS[lang];
 
   return (
-    <div className="bleed-wrapper w-full">
+    <div className="bleed-wrapper">
       {/* ===================================================================
           BAND 1: Editorial Hero (Warm Paper floor, Maroon Display H1)
           =================================================================== */}
-      <section className="full-bleed w-full py-12 sm:py-16 md:py-20 lg:py-24">
+      <section className="full-bleed py-12 sm:py-16 md:py-20 lg:py-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
             <div>
@@ -104,7 +104,7 @@ export default async function Home() {
       {/* ===================================================================
           BAND 2: KPI Stats Strip (Warm Linen Tint band with dividers)
           =================================================================== */}
-      <section className="full-bleed w-full border-y border-brass/25 bg-[#f3ead9] py-12 sm:py-16 dark:border-cream/10 dark:bg-[#251b17]">
+      <section className="full-bleed border-y border-brass/25 bg-[#f3ead9] py-12 sm:py-16 dark:border-cream/10 dark:bg-[#251b17]">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <FolioMarker label={t.folioMetrics} className="justify-center mb-6" />
           <StatsRow />
@@ -114,7 +114,7 @@ export default async function Home() {
       {/* ===================================================================
           BAND 3: Chapter-Break Pull Quote (Full-Bleed Deep Pine)
           =================================================================== */}
-      <section className="full-bleed w-full bg-pine py-16 text-cream sm:py-24 dark:bg-[#0a3828]">
+      <section className="full-bleed bg-pine py-16 text-cream sm:py-24 dark:bg-[#0a3828]">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
           <PullQuote
             quote={t.quote1Text}
@@ -129,7 +129,7 @@ export default async function Home() {
       {/* ===================================================================
           BAND 4: Academic Curriculum & Learning Pathways (Bento Grid)
           =================================================================== */}
-      <section className="full-bleed w-full py-16 sm:py-24">
+      <section className="full-bleed py-16 sm:py-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
             <div>
@@ -323,7 +323,7 @@ export default async function Home() {
       {/* ===================================================================
           BAND 5: Teacher's Library & Curriculum Downloads Preview
           =================================================================== */}
-      <section className="full-bleed w-full border-t border-brass/25 bg-[#fffdf8] py-16 sm:py-20 dark:border-cream/10 dark:bg-choc-elevated">
+      <section className="full-bleed border-t border-brass/25 bg-[#fffdf8] py-16 sm:py-20 dark:border-cream/10 dark:bg-choc-elevated">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:items-center">
             <div>
@@ -385,7 +385,7 @@ export default async function Home() {
       {/* ===================================================================
           BAND 6: School Leadership & Digital Learning CTA (Dark Chocolate)
           =================================================================== */}
-      <section className="full-bleed w-full bg-[#1e1411] py-16 text-cream sm:py-24 border-t border-brass/20">
+      <section className="full-bleed bg-[#1e1411] py-16 text-cream sm:py-24 border-t border-brass/20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
             <div>
@@ -423,15 +423,13 @@ export default async function Home() {
               </div>
             </div>
 
-            <div className="rounded-2xl border border-brass/30 bg-[#2a1e18] p-4 sm:p-6 shadow-2xl">
-              <PullQuote
-                quote={t.quote2Text}
-                author={t.quote2Author}
-                role={t.quote2Role}
-                lang={lang}
-                className="text-cream py-4 sm:py-6"
-              />
-            </div>
+            <PullQuote
+              quote={t.quote2Text}
+              author={t.quote2Author}
+              role={t.quote2Role}
+              lang={lang}
+              className="text-cream py-4 sm:py-6"
+            />
           </div>
         </div>
       </section>

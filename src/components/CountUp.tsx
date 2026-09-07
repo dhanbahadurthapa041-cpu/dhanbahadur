@@ -31,7 +31,7 @@ function formatNum(n: number, isNepali: boolean): string {
  * Accessible, jitter-free count-up component.
  * Conforms to Implementationplan.md §3:
  * - Server renders final authored text immediately (no-JS / SEO friendly)
- * - Single-fire IntersectionObserver (threshold: 0.4)
+ * - Single-fire IntersectionObserver (threshold: 0.35)
  * - requestAnimationFrame with easeOutCubic (time-based, no frame speedups)
  * - Respects prefers-reduced-motion: reduce
  * - Tabular figures (tabular-nums) to avoid horizontal jitter

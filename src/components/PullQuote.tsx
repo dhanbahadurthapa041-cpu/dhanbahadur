@@ -49,7 +49,7 @@ export default function PullQuote({
       {(author || role) && (
         <figcaption className="mt-6 sm:mt-8 flex flex-col items-center justify-center gap-1.5">
           {author && (
-            <cite className="not-italic font-display text-base sm:text-lg font-medium tracking-wide text-brass dark:text-brass-dark">
+            <cite className="not-italic font-display text-[13px] font-medium tracking-wide text-brass dark:text-brass-dark">
               — {author}
             </cite>
           )}

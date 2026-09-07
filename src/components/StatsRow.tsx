@@ -58,7 +58,9 @@ export default function StatsRow() {
           >
             <div>
               <p
-                className={`font-display font-semibold tracking-tight ${
+                className={`font-display font-semibold ${
+                  isNe ? "tracking-normal" : "tracking-tight"
+                } ${
                   stat.featured
                     ? "text-4xl sm:text-5xl text-pine dark:text-mint"
                     : "text-3xl sm:text-4xl text-maroon dark:text-clay"

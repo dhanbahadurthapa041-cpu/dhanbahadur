@@ -96,7 +96,7 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
       </Link>
       <div className="mt-6">
         <FolioMarker label={t.folioCurriculum} className="mb-3" />
-        <h1 className="font-display text-3xl font-semibold tracking-tight text-maroon sm:text-4xl dark:text-clay">
+        <h1 className={`font-display text-3xl font-semibold text-maroon sm:text-4xl dark:text-clay ${lang === "en" ? "tracking-tight" : "tracking-normal"}`}>
           {sectionTitle(t, section)}
         </h1>
         <p className="mt-2 text-ink/75 dark:text-cream/75">{sectionDesc(t, section)}</p>
