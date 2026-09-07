@@ -74,11 +74,11 @@ export default function StatsRow() {
               {stat.pending ? (
                 <div>
                   <span className="inline-block rounded-full bg-brass/25 dark:bg-brass/20 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-ink/70 dark:text-cream/70 mb-2">
-                    {isNe ? "पुष्टि हुन बाँकी" : "TBD · Confirm"}
+                    {isNe ? `पुष्टि हुन बाँकी: ${stat.label}` : `TODO(father): confirm ${stat.label}`}
                   </span>
-                  <p className="font-display font-semibold text-4xl sm:text-5xl tabular-nums text-ink/30 dark:text-cream/25 print:text-black/40">
+                  <p className={`font-display font-semibold text-4xl sm:text-5xl tabular-nums text-ink/30 dark:text-cream/25 print:text-black/40 ${isNe ? "tracking-normal" : "tracking-tight"}`}>
                     <span aria-hidden="true">––</span>
-                    <span className="sr-only" role="status">
+                    <span className="sr-only" role="status" aria-live="polite">
                       {isNe
                         ? `तथ्याङ्क पुष्टि हुन बाँकी: ${stat.label}`
                         : `Statistic pending confirmation: ${stat.label}`}

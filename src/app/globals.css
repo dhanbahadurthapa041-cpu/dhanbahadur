@@ -346,6 +346,11 @@ p.has-drop-cap::first-letter {
   margin-inline: auto;
 }
 
+/* Portable hanging-quote fallback for non-Safari (Safari-only hanging-punctuation above) */
+.pullquote blockquote .q {
+  text-indent: -0.42em;
+}
+
 :lang(ne) .pullquote blockquote,
 .pullquote blockquote:lang(ne) {
   font-family: var(--font-noto), "Noto Sans Devanagari", sans-serif;

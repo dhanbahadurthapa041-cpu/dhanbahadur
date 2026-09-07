@@ -103,7 +103,7 @@ export const STRINGS = {
     statResourcesNum: "100+",
     statResourcesLabel: "Lesson Notes & Guides",
     statResourcesDesc: "Open educational resources",
-    statProofCaption: "As of 2026 · Figures supplied by D. B. Thapa",
+    statProofCaption: "As of 2026 · figures supplied by D. B. Thapa",
     // Editorial pull quotes
     quote1Text: "Education is not merely the transmission of facts; it is the deliberate cultivation of curiosity, character, and self-reliance in every young mind.",
     quote1Author: "Dhan Bahadur Thapa",

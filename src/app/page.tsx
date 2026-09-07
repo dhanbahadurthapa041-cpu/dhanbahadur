@@ -104,7 +104,7 @@ export default async function Home() {
       {/* ===================================================================
           BAND 2: KPI Stats Strip (Warm Linen Tint band with dividers)
           =================================================================== */}
-      <section className="full-bleed border-y border-brass/25 bg-[#f3ead9] py-12 sm:py-16 dark:border-cream/10 dark:bg-[#251b17]">
+      <section className="full-bleed border-y border-brass/25 bg-[#f3ead9] py-12 sm:py-16 dark:border-cream/10 dark:bg-choc">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <FolioMarker label={t.folioMetrics} className="justify-center mb-6" />
           <StatsRow />
@@ -116,6 +116,7 @@ export default async function Home() {
           =================================================================== */}
       <section className="full-bleed bg-pine on-pine py-16 text-cream sm:py-24 dark:bg-[#0a3828]">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
+          {/* Unique epigraphs, not verbatim body repeats → isDuplicate false (exposed to AT) */}
           <PullQuote
             quote={t.quote1Text}
             author={t.quote1Author}
@@ -423,6 +424,7 @@ export default async function Home() {
               </div>
             </div>
 
+            {/* Unique epigraph, not a body duplicate → isDuplicate false */}
             <PullQuote
               quote={t.quote2Text}
               author={t.quote2Author}
