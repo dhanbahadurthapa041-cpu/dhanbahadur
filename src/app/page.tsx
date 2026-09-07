@@ -26,7 +26,7 @@ export default async function Home() {
       {/* ===================================================================
           BAND 1: Editorial Hero (Warm Paper floor, Maroon Display H1)
           =================================================================== */}
-      <section className="full-bleed py-12 sm:py-16 md:py-20 lg:py-24">
+      <section className="full-bleed py-24 sm:py-32 lg:py-40">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
             <div>
@@ -104,7 +104,7 @@ export default async function Home() {
       {/* ===================================================================
           BAND 2: KPI Stats Strip (Warm Linen Tint band with dividers)
           =================================================================== */}
-      <section className="full-bleed border-y border-brass/25 bg-[#f3ead9] py-12 sm:py-16 dark:border-cream/10 dark:bg-choc">
+      <section className="full-bleed border-y border-brass/25 bg-[#f3ead9] py-16 sm:py-24 lg:py-32 dark:border-cream/10 dark:bg-choc">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <FolioMarker label={t.folioMetrics} className="justify-center mb-6" />
           <StatsRow />
@@ -114,7 +114,7 @@ export default async function Home() {
       {/* ===================================================================
           BAND 3: Chapter-Break Pull Quote (Full-Bleed Deep Pine)
           =================================================================== */}
-      <section className="full-bleed bg-pine on-pine py-16 text-cream sm:py-24 dark:bg-[#0a3828]">
+      <section className="full-bleed bg-pine on-pine py-24 sm:py-32 lg:py-40 text-cream dark:bg-[#0a3828]">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
           {/* Unique epigraphs, not verbatim body repeats → isDuplicate false (exposed to AT) */}
           <PullQuote
@@ -130,7 +130,7 @@ export default async function Home() {
       {/* ===================================================================
           BAND 4: Academic Curriculum & Learning Pathways (Bento Grid)
           =================================================================== */}
-      <section className="full-bleed py-16 sm:py-24">
+      <section className="full-bleed py-24 sm:py-32 lg:py-40">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
             <div>
@@ -324,7 +324,7 @@ export default async function Home() {
       {/* ===================================================================
           BAND 5: Teacher's Library & Curriculum Downloads Preview
           =================================================================== */}
-      <section className="full-bleed border-t border-brass/25 bg-[#fffdf8] py-16 sm:py-20 dark:border-cream/10 dark:bg-choc-elevated">
+      <section className="full-bleed border-t border-brass/25 bg-[#fffdf8] py-20 sm:py-28 lg:py-36 dark:border-cream/10 dark:bg-choc-elevated">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:items-center">
             <div>
@@ -386,7 +386,7 @@ export default async function Home() {
       {/* ===================================================================
           BAND 6: School Leadership & Digital Learning CTA (Dark Chocolate)
           =================================================================== */}
-      <section className="full-bleed bg-[#1e1411] py-16 text-cream sm:py-24 border-t border-brass/20">
+      <section className="full-bleed bg-[#1e1411] py-24 sm:py-32 lg:py-40 text-cream border-t border-brass/20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
             <div>

@@ -213,7 +213,7 @@ html[lang="ne"] .folio-text {
   letter-spacing: 0;
 }
 
-/* Progressive Drop Caps (with @supports & float fallback) */
+/* Progressive Drop Caps (with @supports & float fallback, Phase A4) */
 .has-drop-cap > p:first-of-type::first-letter,
 p.has-drop-cap::first-letter {
   font-size: 3.4rem;
@@ -223,6 +223,8 @@ p.has-drop-cap::first-letter {
   margin: 0.15rem 0.5rem 0 0;
   color: var(--color-maroon);
   font-family: var(--font-fraunces), Georgia, serif;
+  font-optical-sizing: auto;
+  font-synthesis: none; /* never faux-bold Devanagari fallback */
 }
 
 .dark .has-drop-cap > p:first-of-type::first-letter,
@@ -256,6 +258,23 @@ p.has-drop-cap::first-letter {
       initial-letter: 2;
     }
   }
+}
+
+/* Devanagari kill-switch: defense-in-depth even if gating misses (Phase A4 §2) */
+:lang(ne) .has-drop-cap > p:first-of-type::first-letter,
+:lang(ne) p.has-drop-cap::first-letter,
+html[lang="ne"] .has-drop-cap > p:first-of-type::first-letter,
+html[lang="ne"] p.has-drop-cap::first-letter {
+  initial-letter: normal;
+  -webkit-initial-letter: normal;
+  float: none;
+  font-size: inherit;
+  line-height: inherit;
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
+  font-weight: inherit;
+  color: inherit;
 }
 
 /* Markdown prose: maroon serif headings, pine links, brass rules. */

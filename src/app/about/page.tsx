@@ -20,7 +20,7 @@ export default async function About() {
   const t = STRINGS[lang];
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-8 sm:py-12">
+    <div className="mx-auto max-w-4xl px-4 py-16 sm:py-24 lg:py-32">
       <Link
         href="/"
         className="inline-flex items-center gap-1 text-sm font-medium text-pine transition hover:text-pine-deep dark:text-mint dark:hover:text-cream"
