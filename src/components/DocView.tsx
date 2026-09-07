@@ -9,6 +9,31 @@ import FolioMarker from "./FolioMarker";
 /** Article id the progress bar measures and the TOC links target. */
 const ARTICLE_ID = "lesson-article";
 
+/**
+ * Runtime drop-cap guard (Phase A4 §4.2): suppress the cap when the opener's
+ * first grapheme is Devanagari/Vedic, a quote, digit, emoji/symbol, or when
+ * markup leads with an icon/sr-only span. Quote-steals-cap is the #1 field
+ * breakage. NE openers pass only via explicit frontmatter vetting.
+ */
+function openerAllowsDropCap(html: string, docLang: string, explicit: boolean): boolean {
+  const text = html
+    .replace(/<[^>]*>/g, "")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;|&apos;/g, "'")
+    .trimStart();
+  const first = text.charAt(0);
+  if (!first) return false;
+  if (/^["'"“”‘’«»]/.test(first)) return false;
+  if (/^[0-9]/.test(first)) return false;
+  if (/[\u0900-\u097F\u1CD0-\u1CFF]/.test(first)) return explicit;
+  if (!/[A-Za-z]/.test(first)) return false;
+  if (/^<(span|i|svg|img|a)[^>]*class="[^"]*(sr-only|icon)/i.test(html.trimStart())) return false;
+  return docLang === "en" || explicit;
+}
+
 export default function DocView({
   section,
   slug,
@@ -55,7 +80,11 @@ export default function DocView({
       <div className={showToc ? "mt-8 lg:grid lg:grid-cols-[minmax(0,1fr)_13rem] lg:items-start lg:gap-8" : undefined}>
         <article
           id={showToc ? ARTICLE_ID : undefined}
-          className={doc.lang === "en" ? "has-drop-cap" : undefined}
+          className={
+            doc.dropcap && openerAllowsDropCap(doc.html, doc.lang, doc.dropcapExplicit)
+              ? "has-drop-cap"
+              : undefined
+          }
         >
           <div className={showToc ? "prose dark:prose-invert max-w-none" : "prose mt-6 dark:prose-invert max-w-none"} dangerouslySetInnerHTML={{ __html: doc.html }} />
         </article>

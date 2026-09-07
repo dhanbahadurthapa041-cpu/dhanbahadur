@@ -611,11 +611,13 @@ html[lang="ne"] p.has-drop-cap::first-letter {
     line-height: 1.5;
   }
 
-  /* Drop caps survive ink cleanly in dark ink */
+  /* Drop caps survive ink cleanly in dark ink (float path explicit on paper) */
   .has-drop-cap > p:first-of-type::first-letter,
   p.has-drop-cap::first-letter {
     color: #000 !important;
     float: left !important;
+    initial-letter: normal !important;
+    -webkit-initial-letter: normal !important;
   }
 
   /* Black-on-white prose in both themes */
