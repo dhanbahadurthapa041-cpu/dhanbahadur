@@ -3,6 +3,7 @@ import { getAllDocs, SECTION_SUBSECTIONS, type Section } from "@/lib/content";
 import { STRINGS, type Lang, type Strings } from "@/lib/i18n";
 import PubLibrary from "./PubLibrary";
 import Reveal from "./Reveal";
+import FolioMarker from "./FolioMarker";
 
 function sectionTitle(t: Strings, section: Section): string {
   switch (section) {
@@ -89,12 +90,17 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
   const grouped = new Set(docs.map((d) => docGroup(section, d)));
 
   return (
-    <div>
-      <Link href="/" className="text-sm font-medium text-pine dark:text-mint">
+    <div className="mx-auto max-w-4xl px-4 py-8 sm:py-12">
+      <Link href="/" className="inline-flex items-center gap-1 text-sm font-medium text-pine transition hover:text-pine-deep dark:text-mint dark:hover:text-cream">
         {t.backHome}
       </Link>
-      <h1 className="mt-2 font-display text-3xl font-semibold tracking-tight text-maroon dark:text-clay">{sectionTitle(t, section)}</h1>
-      <p className="mt-2 text-ink/70 dark:text-cream/70">{sectionDesc(t, section)}</p>
+      <div className="mt-6">
+        <FolioMarker label={t.folioCurriculum} className="mb-3" />
+        <h1 className="font-display text-3xl font-semibold tracking-tight text-maroon sm:text-4xl dark:text-clay">
+          {sectionTitle(t, section)}
+        </h1>
+        <p className="mt-2 text-ink/75 dark:text-cream/75">{sectionDesc(t, section)}</p>
+      </div>
 
       {section === "pub" && (
         <>

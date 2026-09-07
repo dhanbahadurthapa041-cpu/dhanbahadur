@@ -23,7 +23,7 @@ export default function DownloadRow({ item, index }: { item: DownloadRowItem; in
     <Reveal
       as="li"
       index={index}
-      className="flex items-center justify-between gap-4 rounded-xl border border-ink/15 bg-[#fffdf8] p-4 dark:border-cream/15 dark:bg-cream/[0.04]"
+      className="flex items-center justify-between gap-4 rounded-2xl border border-brass/25 bg-[#fffdf8] p-4 sm:p-5 transition hover:border-brass/70 dark:border-cream/15 dark:bg-choc-elevated dark:hover:border-cream/30"
     >
       <div className="min-w-0">
         <p className="font-medium">{title}</p>

@@ -8,7 +8,7 @@ export const dynamic = "force-dynamic";
 export default async function NotFound() {
   const t = STRINGS[await getServerLang()];
   return (
-    <div className="py-16 text-center">
+    <div className="mx-auto max-w-4xl px-4 py-20 text-center">
       <h1 className="font-display text-3xl font-semibold tracking-tight">{t.notFoundTitle}</h1>
       <p className="mt-2 text-ink/70 dark:text-cream/70">{t.notFoundBody}</p>
       <Link
