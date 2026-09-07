@@ -31,7 +31,7 @@ export default function DownloadRow({ item, index }: { item: DownloadRowItem; in
         {(item.format || item.size) && (
           <p className="mt-1.5 flex flex-wrap items-center gap-2 text-xs">
             {item.format && (
-              <span className="rounded-full bg-brass/20 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-ink dark:bg-brass/15 dark:text-cream">
+              <span className={`badge-leak-guard rounded-full bg-brass/20 px-2 py-0.5 text-[11px] font-semibold uppercase ${lang === "ne" ? "tracking-normal" : "tracking-[0.08em]"} text-ink dark:bg-brass/15 dark:text-cream`}>
                 {item.format}
               </span>
             )}
@@ -45,12 +45,15 @@ export default function DownloadRow({ item, index }: { item: DownloadRowItem; in
         <a
           href={`/downloads/${item.file}`}
           download
-          className="shrink-0 rounded-full bg-pine px-4 py-1.5 text-sm font-medium text-white transition hover:bg-pine-deep"
+          className="shrink-0 inline-flex min-h-[44px] items-center rounded-full bg-pine px-4 py-2 text-sm font-semibold text-white transition hover:bg-pine-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine active:translate-y-px motion-reduce:transition-none dark:bg-mint dark:text-choc dark:focus-visible:outline-mint"
         >
           {t.download}
         </a>
       ) : (
-        <span className="shrink-0 rounded-full bg-ink/10 px-4 py-1.5 text-sm text-ink/60 dark:bg-cream/10 dark:text-cream/60">
+        <span
+          aria-disabled="true"
+          className="shrink-0 inline-flex min-h-[44px] items-center rounded-full border border-dashed border-brass/40 bg-ink/5 px-4 py-2 text-sm text-ink/60 select-none dark:border-cream/20 dark:bg-cream/5 dark:text-cream/60"
+        >
           {t.comingSoon}
         </span>
       )}

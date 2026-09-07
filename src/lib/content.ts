@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { marked } from "marked";
-import { STRINGS, type Lang } from "./i18n";
+import { STRINGS, type Lang, type Strings } from "./i18n";
 
 export const SECTIONS = ["pub", "writing", "grammar", "class-10", "class-12"] as const;
 export type Section = (typeof SECTIONS)[number];
@@ -211,3 +211,33 @@ export const SECTION_SUBSECTIONS: Record<Section, string[]> = {
     "unseen-texts",
   ],
 };
+
+export function sectionTitle(t: Strings, section: Section): string {
+  switch (section) {
+    case "pub":
+      return t.pubTitle;
+    case "writing":
+      return t.writingTitle;
+    case "grammar":
+      return t.grammarTitle;
+    case "class-10":
+      return t.class10Title;
+    case "class-12":
+      return t.class12Title;
+  }
+}
+
+export function sectionDesc(t: Strings, section: Section): string {
+  switch (section) {
+    case "pub":
+      return t.pubDesc;
+    case "writing":
+      return t.writingDesc;
+    case "grammar":
+      return t.grammarDesc;
+    case "class-10":
+      return t.class10Desc;
+    case "class-12":
+      return t.class12Desc;
+  }
+}

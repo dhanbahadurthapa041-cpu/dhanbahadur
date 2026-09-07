@@ -13,7 +13,7 @@ export default function Header() {
   const [open, setOpen] = useState(false);
 
   const link =
-    "transition-colors text-ink/80 hover:text-pine aria-[current=page]:font-semibold aria-[current=page]:text-pine dark:text-cream/80 dark:hover:text-mint dark:aria-[current=page]:text-mint";
+    "transition-colors text-ink/80 hover:text-pine aria-[current=page]:font-semibold aria-[current=page]:text-pine aria-[current=page]:underline aria-[current=page]:decoration-brass aria-[current=page]:decoration-2 aria-[current=page]:underline-offset-4 dark:text-cream/80 dark:hover:text-mint dark:aria-[current=page]:text-mint dark:aria-[current=page]:decoration-brass-dark";
   const showFacebook = FACEBOOK_URL.startsWith("http");
   const current = (href: string) =>
     pathname === href ? ({ "aria-current": "page" } as const) : {};
@@ -25,7 +25,7 @@ export default function Header() {
         <div className="flex items-center justify-between gap-4">
           <Link
             href="/"
-            className="flex items-center gap-2 font-display text-lg font-semibold tracking-tight text-maroon transition hover:text-pine dark:text-clay dark:hover:text-mint"
+            className={`brand-mark flex items-center gap-2 font-display text-lg font-semibold ${lang === "en" ? "tracking-tight" : "tracking-normal"} text-maroon transition hover:text-pine dark:text-clay dark:hover:text-mint`}
             onClick={close}
             {...current("/")}
           >
@@ -36,8 +36,9 @@ export default function Header() {
           <div className="flex items-center gap-2.5">
             <button
               onClick={toggleTheme}
-              className="flex h-8 w-8 items-center justify-center rounded-full border border-brass/40 bg-[#fffdf8] text-xs transition hover:border-pine hover:text-pine dark:border-cream/20 dark:bg-choc-elevated dark:hover:border-mint dark:hover:text-mint"
+              className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-brass/40 bg-surface-subtle text-xs transition hover:border-pine hover:text-pine focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine dark:border-cream/20 dark:bg-choc-elevated dark:hover:border-mint dark:hover:text-mint dark:focus-visible:outline-mint"
               aria-label={t.toggleTheme}
+              aria-pressed={theme === "dark"}
               title={t.toggleTheme}
               suppressHydrationWarning
             >
@@ -84,16 +85,16 @@ export default function Header() {
 
             <button
               onClick={() => setLang(lang === "ne" ? "en" : "ne")}
-              className="rounded-full border border-brass/40 bg-[#fffdf8] px-3 py-1 text-xs font-semibold tracking-wide transition hover:border-pine hover:text-pine dark:border-cream/20 dark:bg-choc-elevated dark:hover:border-mint dark:hover:text-mint"
+              className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-brass/40 bg-surface-subtle px-3.5 py-1 text-xs font-semibold tracking-wide transition hover:border-pine hover:text-pine focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine dark:border-cream/20 dark:bg-choc-elevated dark:hover:border-mint dark:hover:text-mint dark:focus-visible:outline-mint"
               aria-label={t.switchLang}
               title={t.switchLang}
             >
-              {lang === "ne" ? "EN" : "नेपाली"}
+              <span lang={lang === "ne" ? "en" : "ne"}>{lang === "ne" ? "EN" : "नेपाली"}</span>
             </button>
 
             <button
               onClick={() => setOpen((v) => !v)}
-              className="flex h-8 items-center gap-1.5 rounded-full border border-brass/40 bg-[#fffdf8] px-3 text-xs font-medium transition hover:border-pine md:hidden dark:border-cream/20 dark:bg-choc-elevated dark:hover:border-mint"
+              className="flex min-h-[44px] items-center gap-1.5 rounded-full border border-brass/40 bg-surface-subtle px-3.5 text-xs font-medium transition hover:border-pine focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine md:hidden dark:border-cream/20 dark:bg-choc-elevated dark:hover:border-mint dark:focus-visible:outline-mint"
               aria-expanded={open}
               aria-controls="primary-nav"
             >

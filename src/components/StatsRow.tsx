@@ -61,7 +61,7 @@ export default function StatsRow() {
     <div className="w-full">
       {/* Background-Gap-Trick card container */}
       <div className="w-full overflow-hidden rounded-2xl border border-border bg-surface-subtle shadow-[0_4px_20px_-8px_rgba(47,42,37,0.06)] dark:border-white/10 dark:bg-choc-elevated dark:shadow-none print:shadow-none print:border-gray-300">
-        <div className="grid grid-cols-1 gap-px bg-border sm:grid-cols-2 lg:grid-cols-4 dark:bg-white/10 print:grid-cols-2 print:bg-gray-300">
+        <div className="stats-grid grid grid-cols-1 gap-px bg-border sm:grid-cols-2 lg:grid-cols-4 dark:bg-white/10 print:grid-cols-2 print:bg-gray-300">
           {stats.map((stat, i) => (
             <div
               key={i}
@@ -120,7 +120,7 @@ export default function StatsRow() {
                   )}
                 </div>
               )}
-              <p className="mt-1.5 text-xs text-ink/60 dark:text-cream/60 print:text-gray-600">
+              <p className="mt-1.5 text-xs text-ink/70 dark:text-cream/75 print:text-gray-600">
                 {stat.pending
                   ? isNe
                     ? "अङ्क पुष्टि हुन बाँकी — अस्थायी, प्रकाशित होइन।"
@@ -133,7 +133,7 @@ export default function StatsRow() {
       </div>
 
       {/* Proof-chain caption line under the row (Innocence Project / Sopact standard) */}
-      <p className="mt-3 text-center text-xs tracking-wide text-ink/50 dark:text-cream/50 print:text-black/60">
+      <p className={`mt-3 text-center text-xs text-ink/60 dark:text-cream/70 print:text-black/60 ${isNe ? "tracking-normal" : "tracking-wide"}`}>
         {t.statProofCaption}
       </p>
     </div>

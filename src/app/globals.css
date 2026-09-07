@@ -35,7 +35,7 @@
   --font-sans: var(--font-noto), ui-sans-serif, system-ui, "Noto Sans Devanagari", sans-serif;
   --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
 
-  --text-pullquote: clamp(1.75rem, 1.25rem + 2.5vw, 2.5rem);
+  --text-pullquote: clamp(1.5rem, 1.25rem + 2.5vw, 2.5rem);
   --text-pullquote--line-height: 1.25;
   --text-pullquote--font-weight: 400;
 }
@@ -117,6 +117,21 @@ html[lang="ne"] body,
 :focus-visible {
   outline: 2px solid var(--color-pine);
   outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.dark :focus-visible {
+  outline-color: var(--color-mint);
+}
+
+@media (forced-colors: active) {
+  :focus-visible {
+    outline-color: CanvasText;
+  }
+}
+
+html {
+  scroll-padding-top: 84px;
 }
 
 /* Josh Comeau 3-column grid bleed system (Implementationplan.md §1A) */
@@ -219,6 +234,17 @@ html[lang="ne"] body,
 :lang(ne) .folio-marker .folio-text,
 :lang(ne) .folio-text,
 html[lang="ne"] .folio-text {
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* Devanagari uppercase / letter-spacing leak guards (no case distinction / avoid conjunct splitting) */
+:lang(ne) .footer-tagline,
+html[lang="ne"] .footer-tagline,
+:lang(ne) .brand-mark,
+html[lang="ne"] .brand-mark,
+:lang(ne) .badge-leak-guard,
+html[lang="ne"] .badge-leak-guard {
   text-transform: none;
   letter-spacing: 0;
 }
@@ -514,7 +540,8 @@ h3.font-display,
 
 .dark .pullquote figcaption,
 .on-pine .pullquote figcaption,
-[data-band="pine"] .pullquote figcaption {
+[data-band="pine"] .pullquote figcaption,
+[data-band="choc"] .pullquote figcaption {
   color: var(--color-brass-dark);
 }
 
@@ -691,6 +718,20 @@ h3.font-display,
     -webkit-initial-letter: normal !important;
   }
 
+  :lang(ne) .has-drop-cap > p:first-of-type::first-letter,
+  :lang(ne) p.has-drop-cap::first-letter {
+    float: none !important;
+    font-size: inherit !important;
+  }
+
+  thead {
+    display: table-header-group !important;
+  }
+
+  pre {
+    white-space: pre-wrap !important;
+  }
+
   /* Black-on-white prose in both themes */
   .prose,
   .dark .prose {
@@ -719,8 +760,8 @@ h3.font-display,
     padding: 0 !important;
   }
 
-  /* Single column layout for print */
-  main .grid,
+  /* Single column layout for print (preserving 2-col stats-grid) */
+  main .grid:not(.stats-grid),
   .bleed-wrapper {
     display: block !important;
     padding: 0 !important;

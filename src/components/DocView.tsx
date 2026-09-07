@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getDoc, type Section } from "@/lib/content";
+import { getDoc, sectionTitle, type Section } from "@/lib/content";
 import { STRINGS, type Lang } from "@/lib/i18n";
 import ReadingProgress from "./ReadingProgress";
 import { TocDrawer, TocRail } from "./Toc";
@@ -61,7 +61,7 @@ export default function DocView({
         {t.backSection}
       </Link>
       <div className="mt-4">
-        <FolioMarker label={`${section.replace("-", " ")}`} className="mb-2.5" />
+        <FolioMarker label={sectionTitle(t, section)} className="mb-2.5" />
         <h1
           className={`font-display text-3xl font-medium text-maroon [text-wrap:balance] [font-optical-sizing:auto] sm:text-4xl dark:text-clay ${
             doc.lang === "en" ? "tracking-tight" : "tracking-normal"
@@ -73,8 +73,10 @@ export default function DocView({
         {/* Every slug has an English file, so a language mismatch always means
             English fallback — one shared "English only" badge covers it. */}
         {doc.lang !== lang && (
-          <p className="mt-2 inline-block rounded-full bg-brass/25 px-2.5 py-0.5 text-xs text-ink dark:bg-brass/20 dark:text-cream">
-            {t.englishOnly}
+          <p className="mt-2 inline-block">
+            <span className="badge-leak-guard rounded-full bg-brass/20 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-ink dark:bg-brass/15 dark:text-cream">
+              {t.englishOnly}
+            </span>
           </p>
         )}
       </div>

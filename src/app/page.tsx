@@ -48,7 +48,7 @@ export default async function Home() {
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <Link
                   href="/pub"
-                  className="inline-flex items-center gap-2 rounded-full bg-pine px-7 py-3.5 text-sm font-semibold text-white shadow-[0_8px_20px_-8px_rgba(15,106,75,0.45)] transition hover:bg-pine-deep hover:shadow-[0_12px_24px_-8px_rgba(15,106,75,0.55)] dark:bg-mint dark:text-choc dark:hover:bg-[#a3dfc4]"
+                  className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-pine px-7 py-3.5 text-sm font-semibold text-white shadow-[0_8px_20px_-8px_rgba(15,106,75,0.45)] transition hover:bg-pine-deep hover:shadow-[0_12px_24px_-8px_rgba(15,106,75,0.55)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine active:translate-y-px motion-reduce:transition-none motion-reduce:transform-none dark:bg-mint dark:text-choc dark:hover:bg-[#a3dfc4] dark:focus-visible:outline-mint"
                 >
                   <span>{t.explorePub}</span>
                   <span aria-hidden="true">→</span>
@@ -56,14 +56,14 @@ export default async function Home() {
 
                 <Link
                   href="/grammar"
-                  className="inline-flex items-center gap-2 rounded-full border border-brass/70 bg-surface-subtle px-6 py-3.5 text-sm font-semibold text-ink transition hover:border-pine hover:text-pine dark:border-cream/25 dark:bg-choc-elevated dark:text-cream dark:hover:border-mint dark:hover:text-mint"
+                  className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-brass/70 bg-surface-subtle px-6 py-3.5 text-sm font-semibold text-ink shadow-none transition hover:border-pine hover:text-pine focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine active:translate-y-px motion-reduce:transition-none motion-reduce:transform-none dark:border-cream/25 dark:bg-choc-elevated dark:text-cream dark:hover:border-mint dark:hover:text-mint dark:focus-visible:outline-mint"
                 >
                   <span>{t.browseGrammar}</span>
                 </Link>
               </div>
 
-              <div className="mt-10 flex flex-wrap items-center gap-2 text-xs text-ink/65 dark:text-cream/65">
-                <span className="font-semibold uppercase tracking-wider text-brass dark:text-brass-dark">
+              <div className="mt-8 flex flex-wrap items-center gap-2 text-xs text-ink/65 dark:text-cream/65">
+                <span className="font-semibold uppercase tracking-wider text-pine dark:text-mint">
                   Focus:
                 </span>
                 <span className="rounded-full bg-pine/10 px-3 py-1 font-medium text-pine dark:bg-mint/10 dark:text-mint">
@@ -88,7 +88,7 @@ export default async function Home() {
                 aria-hidden="true"
                 className="absolute -left-2 -top-2 h-full w-full rounded-3xl bg-brass/10 dark:bg-brass/[0.04]"
               />
-              <div className="relative overflow-hidden rounded-3xl shadow-[0_24px_48px_-20px_rgba(47,42,37,0.3)] ring-1 ring-inset ring-brass/40">
+              <div className="relative overflow-hidden rounded-3xl shadow-[0_24px_48px_-20px_rgba(47,42,37,0.3)] ring-1 ring-inset ring-brass/40 dark:shadow-none">
                 <Image
                   src="/images/profile.jpg"
                   alt={t.profileAlt}
@@ -174,7 +174,7 @@ export default async function Home() {
             <Reveal index={0} className="sm:col-span-2 lg:col-span-2">
               <Link
                 href="/class-10"
-                className="group flex flex-col justify-between h-full rounded-2xl border border-brass/30 bg-[#FAF3E3] p-6 sm:p-8 shadow-[0_1px_2px_rgba(47,42,37,0.06),0_2px_8px_-4px_rgba(47,42,37,0.08)] ring-1 ring-inset ring-white/40 transition duration-200 hover:-translate-y-1 hover:border-pine/70 hover:shadow-[0_2px_4px_rgba(47,42,37,0.04),0_14px_28px_-16px_rgba(47,42,37,0.18)] focus-visible:border-pine/70 dark:border-cream/15 dark:bg-brass/[0.06] dark:ring-white/5 dark:hover:border-mint/60"
+                className="group flex flex-col justify-between h-full rounded-2xl border border-brass/30 bg-[#FAF3E3] p-6 sm:p-8 shadow-[0_1px_2px_rgba(47,42,37,0.06),0_2px_8px_-4px_rgba(47,42,37,0.08)] ring-1 ring-inset ring-white/40 transition duration-200 hover:-translate-y-1 hover:border-pine/70 hover:shadow-[0_2px_4px_rgba(47,42,37,0.04),0_14px_28px_-16px_rgba(47,42,37,0.18)] focus-visible:border-pine/70 dark:border-cream/15 dark:bg-brass/[0.06] dark:ring-white/5 dark:shadow-none dark:hover:shadow-none dark:hover:border-mint/60"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2">
@@ -204,7 +204,7 @@ export default async function Home() {
             <Reveal index={1}>
               <Link
                 href="/class-12"
-                className="group flex flex-col justify-between h-full rounded-2xl border border-brass/30 bg-surface-subtle p-6 sm:p-8 shadow-[0_1px_2px_rgba(47,42,37,0.06),0_2px_8px_-4px_rgba(47,42,37,0.08)] ring-1 ring-inset ring-white/40 transition duration-200 hover:-translate-y-1 hover:border-pine/70 hover:shadow-[0_2px_4px_rgba(47,42,37,0.04),0_14px_28px_-16px_rgba(47,42,37,0.18)] focus-visible:border-pine/70 dark:border-cream/15 dark:bg-choc-elevated dark:ring-white/5 dark:hover:border-mint/60"
+                className="group flex flex-col justify-between h-full rounded-2xl border border-brass/30 bg-surface-subtle p-6 sm:p-8 shadow-[0_1px_2px_rgba(47,42,37,0.06),0_2px_8px_-4px_rgba(47,42,37,0.08)] ring-1 ring-inset ring-white/40 transition duration-200 hover:-translate-y-1 hover:border-pine/70 hover:shadow-[0_2px_4px_rgba(47,42,37,0.04),0_14px_28px_-16px_rgba(47,42,37,0.18)] focus-visible:border-pine/70 dark:border-cream/15 dark:bg-choc-elevated dark:ring-white/5 dark:shadow-none dark:hover:shadow-none dark:hover:border-mint/60"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2">
@@ -234,7 +234,7 @@ export default async function Home() {
             <Reveal index={2}>
               <Link
                 href="/grammar"
-                className="group flex flex-col justify-between h-full rounded-2xl border border-brass/30 bg-surface-subtle p-6 sm:p-8 shadow-[0_1px_2px_rgba(47,42,37,0.06),0_2px_8px_-4px_rgba(47,42,37,0.08)] ring-1 ring-inset ring-white/40 transition duration-200 hover:-translate-y-1 hover:border-pine/70 hover:shadow-[0_2px_4px_rgba(47,42,37,0.04),0_14px_28px_-16px_rgba(47,42,37,0.18)] focus-visible:border-pine/70 dark:border-cream/15 dark:bg-choc-elevated dark:ring-white/5 dark:hover:border-mint/60"
+                className="group flex flex-col justify-between h-full rounded-2xl border border-brass/30 bg-surface-subtle p-6 sm:p-8 shadow-[0_1px_2px_rgba(47,42,37,0.06),0_2px_8px_-4px_rgba(47,42,37,0.08)] ring-1 ring-inset ring-white/40 transition duration-200 hover:-translate-y-1 hover:border-pine/70 hover:shadow-[0_2px_4px_rgba(47,42,37,0.04),0_14px_28px_-16px_rgba(47,42,37,0.18)] focus-visible:border-pine/70 dark:border-cream/15 dark:bg-choc-elevated dark:ring-white/5 dark:shadow-none dark:hover:shadow-none dark:hover:border-mint/60"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2">
@@ -264,7 +264,7 @@ export default async function Home() {
             <Reveal index={3}>
               <Link
                 href="/writing"
-                className="group flex flex-col justify-between h-full rounded-2xl border border-brass/30 bg-surface-subtle p-6 sm:p-8 shadow-[0_1px_2px_rgba(47,42,37,0.06),0_2px_8px_-4px_rgba(47,42,37,0.08)] ring-1 ring-inset ring-white/40 transition duration-200 hover:-translate-y-1 hover:border-pine/70 hover:shadow-[0_2px_4px_rgba(47,42,37,0.04),0_14px_28px_-16px_rgba(47,42,37,0.18)] focus-visible:border-pine/70 dark:border-cream/15 dark:bg-choc-elevated dark:ring-white/5 dark:hover:border-mint/60"
+                className="group flex flex-col justify-between h-full rounded-2xl border border-brass/30 bg-surface-subtle p-6 sm:p-8 shadow-[0_1px_2px_rgba(47,42,37,0.06),0_2px_8px_-4px_rgba(47,42,37,0.08)] ring-1 ring-inset ring-white/40 transition duration-200 hover:-translate-y-1 hover:border-pine/70 hover:shadow-[0_2px_4px_rgba(47,42,37,0.04),0_14px_28px_-16px_rgba(47,42,37,0.18)] focus-visible:border-pine/70 dark:border-cream/15 dark:bg-choc-elevated dark:ring-white/5 dark:shadow-none dark:hover:shadow-none dark:hover:border-mint/60"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2">
@@ -294,7 +294,7 @@ export default async function Home() {
             <Reveal index={4}>
               <Link
                 href="/pub"
-                className="group flex flex-col justify-between h-full rounded-2xl border border-brass/30 bg-surface-subtle p-6 sm:p-8 shadow-[0_1px_2px_rgba(47,42,37,0.06),0_2px_8px_-4px_rgba(47,42,37,0.08)] ring-1 ring-inset ring-white/40 transition duration-200 hover:-translate-y-1 hover:border-pine/70 hover:shadow-[0_2px_4px_rgba(47,42,37,0.04),0_14px_28px_-16px_rgba(47,42,37,0.18)] focus-visible:border-pine/70 dark:border-cream/15 dark:bg-choc-elevated dark:ring-white/5 dark:hover:border-mint/60"
+                className="group flex flex-col justify-between h-full rounded-2xl border border-brass/30 bg-surface-subtle p-6 sm:p-8 shadow-[0_1px_2px_rgba(47,42,37,0.06),0_2px_8px_-4px_rgba(47,42,37,0.08)] ring-1 ring-inset ring-white/40 transition duration-200 hover:-translate-y-1 hover:border-pine/70 hover:shadow-[0_2px_4px_rgba(47,42,37,0.04),0_14px_28px_-16px_rgba(47,42,37,0.18)] focus-visible:border-pine/70 dark:border-cream/15 dark:bg-choc-elevated dark:ring-white/5 dark:shadow-none dark:hover:shadow-none dark:hover:border-mint/60"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2">
@@ -324,7 +324,7 @@ export default async function Home() {
             <Reveal index={5} className="sm:col-span-2 lg:col-span-3">
               <Link
                 href="/about"
-                className="group flex flex-col justify-between h-full rounded-2xl border border-brass/30 bg-surface-subtle p-6 sm:p-8 shadow-[0_1px_2px_rgba(47,42,37,0.06),0_2px_8px_-4px_rgba(47,42,37,0.08)] ring-1 ring-inset ring-white/40 transition duration-200 hover:-translate-y-1 hover:border-pine/70 hover:shadow-[0_2px_4px_rgba(47,42,37,0.04),0_14px_28px_-16px_rgba(47,42,37,0.18)] focus-visible:border-pine/70 dark:border-cream/15 dark:bg-choc-elevated dark:ring-white/5 dark:hover:border-mint/60"
+                className="group flex flex-col justify-between h-full rounded-2xl border border-brass/30 bg-surface-subtle p-6 sm:p-8 shadow-[0_1px_2px_rgba(47,42,37,0.06),0_2px_8px_-4px_rgba(47,42,37,0.08)] ring-1 ring-inset ring-white/40 transition duration-200 hover:-translate-y-1 hover:border-pine/70 hover:shadow-[0_2px_4px_rgba(47,42,37,0.04),0_14px_28px_-16px_rgba(47,42,37,0.18)] focus-visible:border-pine/70 dark:border-cream/15 dark:bg-choc-elevated dark:ring-white/5 dark:shadow-none dark:hover:shadow-none dark:hover:border-mint/60"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2">
@@ -359,7 +359,7 @@ export default async function Home() {
       {/* ===================================================================
           BAND 5: Teacher's Library & Curriculum Downloads Preview
           =================================================================== */}
-      <section className="full-bleed border-t border-brass/30 bg-linen py-20 sm:py-28 lg:py-36 dark:border-cream/10 dark:bg-choc-elevated">
+      <section className="full-bleed border-t border-brass/30 bg-linen py-24 sm:py-32 lg:py-40 dark:border-cream/10 dark:bg-choc-elevated">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:items-center">
             <div>
@@ -377,7 +377,7 @@ export default async function Home() {
               <div className="mt-6">
                 <Link
                   href="/pub"
-                  className="inline-flex items-center gap-2 rounded-full bg-pine px-6 py-3 text-sm font-semibold text-white transition hover:bg-pine-deep dark:bg-mint dark:text-choc dark:hover:bg-[#a3dfc4]"
+                  className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-pine px-6 py-3 text-sm font-semibold text-white transition hover:bg-pine-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine active:translate-y-px motion-reduce:transition-none dark:bg-mint dark:text-choc dark:hover:bg-[#a3dfc4] dark:focus-visible:outline-mint"
                 >
                   <span>{t.explorePub}</span>
                   <span aria-hidden="true">→</span>
@@ -421,7 +421,7 @@ export default async function Home() {
       {/* ===================================================================
           BAND 6: School Leadership & Digital Learning CTA (Dark Chocolate)
           =================================================================== */}
-      <section className="full-bleed bg-choc py-24 sm:py-32 lg:py-40 text-cream border-t border-brass/20">
+      <section className="full-bleed bg-choc py-24 sm:py-32 lg:py-40 text-cream border-t border-brass/20" data-band="choc">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
             <div>
@@ -441,7 +441,7 @@ export default async function Home() {
                   href={SCHOOL_URL}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full bg-brass px-6 py-3 text-sm font-semibold text-choc transition hover:bg-brass-dark"
+                  className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-brass px-6 py-3 text-sm font-semibold text-choc transition hover:bg-brass-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint active:translate-y-px motion-reduce:transition-none"
                 >
                   <span>{t.visitSchoolBtn}</span>
                   <span aria-hidden="true">↗</span>
@@ -451,7 +451,7 @@ export default async function Home() {
                   href={LOOMA_URL}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-cream/30 bg-transparent px-6 py-3 text-sm font-semibold text-cream transition hover:border-mint hover:text-mint"
+                  className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-cream/30 bg-transparent px-6 py-3 text-sm font-semibold text-cream transition hover:border-mint hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint active:translate-y-px motion-reduce:transition-none"
                 >
                   <span>{t.visitLoomaBtn}</span>
                   <span aria-hidden="true">↗</span>
@@ -466,7 +466,7 @@ export default async function Home() {
                 author={t.quote2Author}
                 role={t.quote2Role}
                 lang={lang}
-                className="text-cream py-2"
+                className="text-cream"
               />
             </div>
           </div>
