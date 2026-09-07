@@ -23,14 +23,17 @@ function openerAllowsDropCap(html: string, docLang: string, explicit: boolean): 
     .replace(/&gt;/g, ">")
     .replace(/&quot;/g, '"')
     .replace(/&#39;|&apos;/g, "'")
+    .replace(/&#(\d+);/g, (_, n: string) => String.fromCodePoint(Number(n)))
+    .replace(/&#x([0-9a-fA-F]+);/g, (_, h: string) => String.fromCodePoint(parseInt(h, 16)))
     .trimStart();
   const first = text.charAt(0);
   if (!first) return false;
   if (/^["'"“”‘’«»]/.test(first)) return false;
-  if (/^[0-9]/.test(first)) return false;
+  if (/^[0-9\u0966-\u096F]/.test(first)) return false;
   if (/[\u0900-\u097F\u1CD0-\u1CFF]/.test(first)) return explicit;
   if (!/[A-Za-z]/.test(first)) return false;
-  if (/^<(span|i|svg|img|a)[^>]*class="[^"]*(sr-only|icon)/i.test(html.trimStart())) return false;
+  if (/^<(span|i|svg|img|a)[^>]*class=["'][^"']*(sr-only|icon)/i.test(html.trimStart())) return false;
+  if (/^<(svg|img)[^>]*>/i.test(html.trimStart())) return false;
   return docLang === "en" || explicit;
 }
 
