@@ -4,6 +4,5 @@ export const SCHOOL_URL = "https://bhawanisecondaryschool.vercel.app";
 // TODO: owner must supply the real Facebook page URL.
 export const FACEBOOK_URL = "#";
 export const LOOMA_URL = "https://looma.website/home";
-// TODO: owner must supply the real office phone number (digits only, E.164).
-export const OFFICE_PHONE_HREF = "tel:+9779800000000";
+export const OFFICE_PHONE_HREF = "tel:+9779848025242";
 
