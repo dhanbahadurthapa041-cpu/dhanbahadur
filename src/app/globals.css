@@ -707,6 +707,10 @@ p.has-drop-cap::first-letter {
     height: 1pt !important;
   }
 
+  .divider-vignette {
+    gap: 0 !important;
+  }
+
   .divider-vignette-ornament {
     display: none !important;
   }

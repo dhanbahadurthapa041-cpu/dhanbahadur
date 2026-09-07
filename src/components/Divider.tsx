@@ -26,9 +26,9 @@ export default function Divider({
         aria-hidden="true"
         className={`divider-vignette my-8 sm:my-14 flex items-center justify-center gap-4 text-brass/70 dark:text-brass-dark/70 ${className}`}
       >
-        <span className="h-px flex-1 max-w-[120px] bg-brass/30 dark:bg-brass-dark/30 print:max-w-none print:bg-[#333]" />
+        <span className="h-px flex-1 max-w-[120px] bg-brass/30 dark:bg-brass-dark/30" />
         <span className="divider-vignette-ornament text-xs select-none">✦</span>
-        <span className="h-px flex-1 max-w-[120px] bg-brass/30 dark:bg-brass-dark/30 print:max-w-none print:bg-[#333]" />
+        <span className="h-px flex-1 max-w-[120px] bg-brass/30 dark:bg-brass-dark/30" />
       </div>
     );
   }
