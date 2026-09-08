@@ -637,6 +637,167 @@ h4.font-display,
   }
 }
 
+/* ---- Phase B5: hero portrait parallax (CSS scroll-driven, view() timeline)
+   Fallback-first: resting composition is the designed state (visible, static).
+   Motion lives ONLY inside @supports (animation-timeline: view()), so older
+   browsers render today's static layout. Text column, caption, overlay grade
+   and grain never move. Total travel ~90px plate / ~45px photo « 50vh.
+   No overflow:clip on the figure: decor offsets extend beyond its bounds and
+   transforms never affect layout; the photo/overlay carry oversize bleed. */
+.parallax-plate,
+.parallax-photo,
+.parallax-frame-a,
+.parallax-frame-b {
+  transform: none;
+}
+
+@supports (animation-timeline: view()) {
+  .parallax-plate {
+    will-change: transform;
+    animation: plate-drift linear both;
+    animation-duration: 1ms; /* Firefox requires a non-zero duration */
+    animation-timeline: view();
+    animation-range: cover 0% cover 100%;
+  }
+  @keyframes plate-drift {
+    from {
+      transform: translate3d(0, -30px, 0);
+    }
+    to {
+      transform: translate3d(0, 60px, 0);
+    }
+  }
+
+  /* Photo counter-translates inside its frame (opposite sign to the plate).
+     scale(1.15) is the 15% oversize bleed so edges never show; fallback
+     (no support) renders plain object-cover with no scale. */
+  .parallax-photo {
+    will-change: transform;
+    animation: photo-drift linear both;
+    animation-duration: 1ms;
+    animation-timeline: view();
+    animation-range: cover 0% cover 100%;
+  }
+  @keyframes photo-drift {
+    from {
+      transform: translate3d(0, 20px, 0) scale(1.15);
+    }
+    to {
+      transform: translate3d(0, -25px, 0) scale(1.15);
+    }
+  }
+
+  .parallax-frame-a {
+    will-change: transform;
+    animation: frame-a-drift linear both;
+    animation-duration: 1ms;
+    animation-timeline: view();
+    animation-range: cover 0% cover 100%;
+  }
+  @keyframes frame-a-drift {
+    from {
+      transform: translate3d(0, 6px, 0);
+    }
+    to {
+      transform: translate3d(0, -6px, 0);
+    }
+  }
+
+  .parallax-frame-b {
+    will-change: transform;
+    animation: frame-b-drift linear both;
+    animation-duration: 1ms;
+    animation-timeline: view();
+    animation-range: cover 0% cover 100%;
+  }
+  @keyframes frame-b-drift {
+    from {
+      transform: translate3d(0, 4px, 0);
+    }
+    to {
+      transform: translate3d(0, -4px, 0);
+    }
+  }
+}
+
+/* Tablet: halve all travel (same choreography, smaller tokens). Keyframes
+   redefined inside the query win while it matches. */
+@media (min-width: 640px) and (max-width: 1023px) {
+  @supports (animation-timeline: view()) {
+    @keyframes plate-drift {
+      from {
+        transform: translate3d(0, -15px, 0);
+      }
+      to {
+        transform: translate3d(0, 30px, 0);
+      }
+    }
+    @keyframes photo-drift {
+      from {
+        transform: translate3d(0, 10px, 0) scale(1.15);
+      }
+      to {
+        transform: translate3d(0, -12px, 0) scale(1.15);
+      }
+    }
+    @keyframes frame-a-drift {
+      from {
+        transform: translate3d(0, 3px, 0);
+      }
+      to {
+        transform: translate3d(0, -3px, 0);
+      }
+    }
+    @keyframes frame-b-drift {
+      from {
+        transform: translate3d(0, 2px, 0);
+      }
+      to {
+        transform: translate3d(0, -2px, 0);
+      }
+    }
+  }
+}
+
+/* Phones + touch: static composition (momentum scroll makes linked
+   transforms unreliable; touch users never miss parallax). */
+@media (max-width: 639px), (hover: none) {
+  .parallax-plate,
+  .parallax-photo,
+  .parallax-frame-a,
+  .parallax-frame-b {
+    animation: none !important;
+    transform: none !important;
+    will-change: auto !important;
+  }
+}
+
+/* Reduced motion: identical static final composition. animation:none alone
+   does not detach scroll timelines, hence animation-timeline:auto as well. */
+@media (prefers-reduced-motion: reduce) {
+  .parallax-plate,
+  .parallax-photo,
+  .parallax-frame-a,
+  .parallax-frame-b {
+    animation: none !important;
+    animation-timeline: auto !important;
+    transform: none !important;
+    opacity: 1 !important;
+    will-change: auto !important;
+  }
+}
+
+@media print {
+  .parallax-plate,
+  .parallax-photo,
+  .parallax-frame-a,
+  .parallax-frame-b {
+    animation: none !important;
+    transform: none !important;
+    will-change: auto !important;
+  }
+}
+
 /* ---- Round 3: reading structure (TOC + progress + heading anchors) ---- */
 
 /* Anchor jumps glide only when motion is allowed; reduced-motion readers

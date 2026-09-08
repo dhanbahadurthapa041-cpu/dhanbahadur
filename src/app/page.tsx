@@ -78,15 +78,19 @@ export default async function Home() {
               </div>
             </div>
 
-            {/* Portrait with layered brass frame & botanical tone grading */}
-            <figure className="relative mx-auto w-full max-w-sm sm:max-w-md lg:max-w-none">
+            {/* Portrait with layered brass frame & botanical tone grading.
+                Phase B5: plate drifts on scroll (parallax-plate), photo +
+                grade counter-translate inside the frame (parallax-photo),
+                brass mount breathes the other way (frame-a/b). Caption and
+                text column stay static. */}
+            <figure className="parallax-plate relative mx-auto w-full max-w-sm sm:max-w-md lg:max-w-none">
               <div
                 aria-hidden="true"
-                className="absolute -right-3 -bottom-3 sm:-right-5 sm:-bottom-5 h-full w-full rounded-3xl border-2 border-brass/60 dark:border-brass-dark/40"
+                className="parallax-frame-a absolute -right-3 -bottom-3 sm:-right-5 sm:-bottom-5 h-full w-full rounded-3xl border-2 border-brass/60 dark:border-brass-dark/40"
               />
               <div
                 aria-hidden="true"
-                className="absolute -left-2 -top-2 h-full w-full rounded-3xl bg-brass/10 dark:bg-brass/[0.04]"
+                className="parallax-frame-b absolute -left-2 -top-2 h-full w-full rounded-3xl bg-brass/10 dark:bg-brass/[0.04]"
               />
               <div className="relative overflow-hidden rounded-3xl shadow-[0_24px_48px_-20px_rgba(47,42,37,0.3)] ring-1 ring-inset ring-brass/40 dark:shadow-none">
                 <Image
@@ -95,12 +99,12 @@ export default async function Home() {
                   width={520}
                   height={650}
                   sizes="(min-width:1024px) 460px, (min-width:640px) 380px, 90vw"
-                  className="aspect-[4/5] w-full object-cover sepia-[0.22] contrast-[1.02]"
+                  className="parallax-photo aspect-[4/5] w-full object-cover sepia-[0.22] contrast-[1.02]"
                   priority
                 />
                 <div
                   aria-hidden="true"
-                  className="pointer-events-none absolute inset-0 rounded-3xl bg-pine/10 mix-blend-multiply dark:bg-choc/20"
+                  className="parallax-photo pointer-events-none absolute -inset-[15%] rounded-3xl bg-pine/10 mix-blend-multiply dark:bg-choc/20"
                 />
               </div>
               {/* Duplicates the hero FolioMarker tagline above: decorative, hidden from AT */}
