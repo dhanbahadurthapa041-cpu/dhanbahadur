@@ -79,7 +79,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
               {STRINGS[lang].skipToMain}
             </a>
             <Header />
-            <main id="main-content" className="w-full flex-1">{children}</main>
+            <main id="main-content" tabIndex={-1} className="w-full flex-1 outline-none">{children}</main>
             <Footer />
           </ThemeProvider>
         </LangProvider>
