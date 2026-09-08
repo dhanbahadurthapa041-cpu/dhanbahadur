@@ -66,11 +66,18 @@ function useRevealState() {
       setVisible(true);
       return;
     }
-    pending.set(el, () => setVisible(true));
+    // Wait ~0.6s after entering view before playing the entrance, so the
+    // reader registers the element first instead of catching motion
+    // mid-flight. Above-the-fold content skips this (fast path above).
+    let timer = 0;
+    pending.set(el, () => {
+      timer = window.setTimeout(() => setVisible(true), 600);
+    });
     io.observe(el);
     return () => {
       pending.delete(el);
       io.unobserve(el);
+      window.clearTimeout(timer);
     };
   }, []);
 
