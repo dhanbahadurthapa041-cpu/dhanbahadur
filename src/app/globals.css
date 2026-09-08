@@ -644,11 +644,16 @@ h4.font-display,
    and grain never move. Total travel ~90px plate / ~45px photo « 50vh.
    No overflow:clip on the figure: decor offsets extend beyond its bounds and
    transforms never affect layout; the photo/overlay carry oversize bleed. */
+/* Travel is authored in px per the application brief §2-4 budgets (90/45/12/8px);
+   vh-equivalents would over-travel on tall viewports. Accepted override of the
+   technique brief §3B/3F vh-only preference. */
 .parallax-plate,
 .parallax-photo,
 .parallax-frame-a,
 .parallax-frame-b {
+  opacity: 1;
   transform: none;
+  will-change: auto;
 }
 
 @supports (animation-timeline: view()) {
@@ -783,6 +788,7 @@ h4.font-display,
     animation-timeline: auto !important;
     transform: none !important;
     opacity: 1 !important;
+    filter: none !important;
     will-change: auto !important;
   }
 }
@@ -793,7 +799,10 @@ h4.font-display,
   .parallax-frame-a,
   .parallax-frame-b {
     animation: none !important;
+    animation-timeline: auto !important;
     transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
     will-change: auto !important;
   }
 }
