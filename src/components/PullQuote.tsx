@@ -37,7 +37,6 @@ export default function PullQuote({
   todo = false,
   todoNote,
 }: PullQuoteProps) {
-  const isNe = lang === "ne";
   const isTodo = todo || !quote || quote.trim().length === 0;
   const t = STRINGS[lang];
 
