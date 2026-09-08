@@ -54,7 +54,7 @@ export default async function Home() {
               <div className="intro-beat-4 mt-8 flex flex-wrap items-center gap-4">
                 <Link
                   href="/pub"
-                  className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-pine px-7 py-3.5 text-sm font-semibold text-white shadow-[0_8px_20px_-8px_rgba(15,106,75,0.45)] transition motion-reduce:transition-none hover:bg-pine-deep hover:shadow-[0_12px_24px_-8px_rgba(15,106,75,0.55)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine active:translate-y-px motion-reduce:transition-none motion-reduce:translate-none dark:bg-mint dark:text-choc dark:hover:bg-mint/85 dark:focus-visible:outline-mint"
+                  className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-pine px-7 py-3.5 text-sm font-semibold text-white shadow-[0_8px_20px_-8px_rgba(15,106,75,0.45)] transition motion-reduce:transition-none hover:bg-pine-deep hover:shadow-[0_12px_24px_-8px_rgba(15,106,75,0.55)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine active:translate-y-px motion-reduce:active:translate-none motion-reduce:transition-none motion-reduce:translate-none dark:bg-mint dark:text-choc dark:hover:bg-mint/85 dark:focus-visible:outline-mint"
                 >
                   <span>{t.explorePub}</span>
                   <span aria-hidden="true">→</span>
@@ -62,7 +62,7 @@ export default async function Home() {
 
                 <Link
                   href="/grammar"
-                  className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-brass/70 bg-surface-subtle px-6 py-3.5 text-sm font-semibold text-ink shadow-none transition motion-reduce:transition-none hover:border-pine hover:text-pine focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine active:translate-y-px motion-reduce:transition-none motion-reduce:translate-none dark:border-cream/25 dark:bg-choc-elevated dark:text-cream dark:hover:border-mint dark:hover:text-mint dark:focus-visible:outline-mint"
+                  className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-brass/70 bg-surface-subtle px-6 py-3.5 text-sm font-semibold text-ink shadow-none transition motion-reduce:transition-none hover:border-pine hover:text-pine focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine active:translate-y-px motion-reduce:active:translate-none motion-reduce:transition-none motion-reduce:translate-none dark:border-cream/25 dark:bg-choc-elevated dark:text-cream dark:hover:border-mint dark:hover:text-mint dark:focus-visible:outline-mint"
                 >
                   <span>{t.browseGrammar}</span>
                 </Link>
@@ -206,7 +206,7 @@ export default async function Home() {
                 </div>
                 <div className="mt-6 flex items-center gap-1.5 text-sm font-semibold text-pine dark:text-mint">
                   <span>{t.readMore}</span>
-                  <span aria-hidden="true" className="transition-transform motion-reduce:transition-none motion-reduce:translate-none group-hover:translate-x-1">→</span>
+                  <span aria-hidden="true" className="transition-transform motion-reduce:transition-none motion-reduce:group-hover:translate-none group-hover:translate-x-1">→</span>
                 </div>
               </Link>
             </Reveal>
@@ -236,7 +236,7 @@ export default async function Home() {
                 </div>
                 <div className="mt-6 flex items-center gap-1.5 text-sm font-semibold text-pine dark:text-mint">
                   <span>{t.readMore}</span>
-                  <span aria-hidden="true" className="transition-transform motion-reduce:transition-none motion-reduce:translate-none group-hover:translate-x-1">→</span>
+                  <span aria-hidden="true" className="transition-transform motion-reduce:transition-none motion-reduce:group-hover:translate-none group-hover:translate-x-1">→</span>
                 </div>
               </Link>
             </Reveal>
@@ -266,7 +266,7 @@ export default async function Home() {
                 </div>
                 <div className="mt-6 flex items-center gap-1.5 text-sm font-semibold text-pine dark:text-mint">
                   <span>{t.browseGrammar}</span>
-                  <span aria-hidden="true" className="transition-transform motion-reduce:transition-none motion-reduce:translate-none group-hover:translate-x-1">→</span>
+                  <span aria-hidden="true" className="transition-transform motion-reduce:transition-none motion-reduce:group-hover:translate-none group-hover:translate-x-1">→</span>
                 </div>
               </Link>
             </Reveal>
@@ -296,7 +296,7 @@ export default async function Home() {
                 </div>
                 <div className="mt-6 flex items-center gap-1.5 text-sm font-semibold text-pine dark:text-mint">
                   <span>{t.readMore}</span>
-                  <span aria-hidden="true" className="transition-transform motion-reduce:transition-none motion-reduce:translate-none group-hover:translate-x-1">→</span>
+                  <span aria-hidden="true" className="transition-transform motion-reduce:transition-none motion-reduce:group-hover:translate-none group-hover:translate-x-1">→</span>
                 </div>
               </Link>
             </Reveal>
@@ -326,7 +326,7 @@ export default async function Home() {
                 </div>
                 <div className="mt-6 flex items-center gap-1.5 text-sm font-semibold text-pine dark:text-mint">
                   <span>{t.viewCollection}</span>
-                  <span aria-hidden="true" className="transition-transform motion-reduce:transition-none motion-reduce:translate-none group-hover:translate-x-1">→</span>
+                  <span aria-hidden="true" className="transition-transform motion-reduce:transition-none motion-reduce:group-hover:translate-none group-hover:translate-x-1">→</span>
                 </div>
               </Link>
             </Reveal>
@@ -356,7 +356,7 @@ export default async function Home() {
                 </div>
                 <div className="mt-6 flex items-center gap-1.5 text-sm font-semibold text-pine dark:text-mint">
                   <span>{t.readMore}</span>
-                  <span aria-hidden="true" className="transition-transform motion-reduce:transition-none motion-reduce:translate-none group-hover:translate-x-1">→</span>
+                  <span aria-hidden="true" className="transition-transform motion-reduce:transition-none motion-reduce:group-hover:translate-none group-hover:translate-x-1">→</span>
                 </div>
               </Link>
             </Reveal>
@@ -388,7 +388,7 @@ export default async function Home() {
               <div className="mt-6">
                 <Link
                   href="/pub"
-                  className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-pine px-6 py-3 text-sm font-semibold text-white transition motion-reduce:transition-none hover:bg-pine-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine active:translate-y-px motion-reduce:transition-none dark:bg-mint dark:text-choc dark:hover:bg-mint/85 dark:focus-visible:outline-mint"
+                  className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-pine px-6 py-3 text-sm font-semibold text-white transition motion-reduce:transition-none hover:bg-pine-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine active:translate-y-px motion-reduce:active:translate-none motion-reduce:transition-none dark:bg-mint dark:text-choc dark:hover:bg-mint/85 dark:focus-visible:outline-mint"
                 >
                   <span>{t.explorePub}</span>
                   <span aria-hidden="true">→</span>
@@ -452,7 +452,7 @@ export default async function Home() {
                   href={SCHOOL_URL}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-brass px-6 py-3 text-sm font-semibold text-choc transition motion-reduce:transition-none hover:bg-brass-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint active:translate-y-px motion-reduce:transition-none"
+                  className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-brass px-6 py-3 text-sm font-semibold text-choc transition motion-reduce:transition-none hover:bg-brass-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint active:translate-y-px motion-reduce:active:translate-none motion-reduce:transition-none"
                 >
                   <span>{t.visitSchoolBtn}</span>
                   <span aria-hidden="true">↗</span>
@@ -462,7 +462,7 @@ export default async function Home() {
                   href={LOOMA_URL}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-cream/30 bg-transparent px-6 py-3 text-sm font-semibold text-cream transition motion-reduce:transition-none hover:border-mint hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint active:translate-y-px motion-reduce:transition-none"
+                  className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-cream/30 bg-transparent px-6 py-3 text-sm font-semibold text-cream transition motion-reduce:transition-none hover:border-mint hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint active:translate-y-px motion-reduce:active:translate-none motion-reduce:transition-none"
                 >
                   <span>{t.visitLoomaBtn}</span>
                   <span aria-hidden="true">↗</span>

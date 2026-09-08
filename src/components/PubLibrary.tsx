@@ -146,7 +146,7 @@ function PubLibraryInner() {
           <button
             type="button"
             onClick={reset}
-            className="mt-4 inline-flex min-h-[44px] items-center rounded-full bg-pine px-5 py-2 text-sm font-semibold text-white transition motion-reduce:transition-none hover:bg-pine-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine active:translate-y-px motion-reduce:transition-none dark:bg-mint dark:text-choc dark:focus-visible:outline-mint"
+            className="mt-4 inline-flex min-h-[44px] items-center rounded-full bg-pine px-5 py-2 text-sm font-semibold text-white transition motion-reduce:transition-none hover:bg-pine-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine active:translate-y-px motion-reduce:active:translate-none motion-reduce:transition-none dark:bg-mint dark:text-choc dark:focus-visible:outline-mint"
           >
             {t.libReset}
           </button>
