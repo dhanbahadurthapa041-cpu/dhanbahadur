@@ -56,7 +56,7 @@ export default function DocView({
     <div className="mx-auto max-w-4xl px-4 py-16 sm:py-24 lg:py-32">
       <Link
         href={`/${section}`}
-        className="inline-flex items-center gap-1 text-sm font-medium text-pine transition hover:text-pine-deep dark:text-mint dark:hover:text-cream"
+        className="inline-flex items-center gap-1 text-sm font-medium text-pine transition motion-reduce:transition-none hover:text-pine-deep dark:text-mint dark:hover:text-cream"
       >
         {t.backSection}
       </Link>

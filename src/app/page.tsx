@@ -54,7 +54,7 @@ export default async function Home() {
               <div className="intro-beat-4 mt-8 flex flex-wrap items-center gap-4">
                 <Link
                   href="/pub"
-                  className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-pine px-7 py-3.5 text-sm font-semibold text-white shadow-[0_8px_20px_-8px_rgba(15,106,75,0.45)] transition hover:bg-pine-deep hover:shadow-[0_12px_24px_-8px_rgba(15,106,75,0.55)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine active:translate-y-px motion-reduce:transition-none motion-reduce:transform-none dark:bg-mint dark:text-choc dark:hover:bg-mint/85 dark:focus-visible:outline-mint"
+                  className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-pine px-7 py-3.5 text-sm font-semibold text-white shadow-[0_8px_20px_-8px_rgba(15,106,75,0.45)] transition motion-reduce:transition-none hover:bg-pine-deep hover:shadow-[0_12px_24px_-8px_rgba(15,106,75,0.55)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine active:translate-y-px motion-reduce:transition-none motion-reduce:translate-none dark:bg-mint dark:text-choc dark:hover:bg-mint/85 dark:focus-visible:outline-mint"
                 >
                   <span>{t.explorePub}</span>
                   <span aria-hidden="true">→</span>
@@ -62,7 +62,7 @@ export default async function Home() {
 
                 <Link
                   href="/grammar"
-                  className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-brass/70 bg-surface-subtle px-6 py-3.5 text-sm font-semibold text-ink shadow-none transition hover:border-pine hover:text-pine focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine active:translate-y-px motion-reduce:transition-none motion-reduce:transform-none dark:border-cream/25 dark:bg-choc-elevated dark:text-cream dark:hover:border-mint dark:hover:text-mint dark:focus-visible:outline-mint"
+                  className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-brass/70 bg-surface-subtle px-6 py-3.5 text-sm font-semibold text-ink shadow-none transition motion-reduce:transition-none hover:border-pine hover:text-pine focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine active:translate-y-px motion-reduce:transition-none motion-reduce:translate-none dark:border-cream/25 dark:bg-choc-elevated dark:text-cream dark:hover:border-mint dark:hover:text-mint dark:focus-visible:outline-mint"
                 >
                   <span>{t.browseGrammar}</span>
                 </Link>
@@ -173,7 +173,7 @@ export default async function Home() {
             </div>
             <Link
               href="/pub"
-              className="inline-flex min-h-[44px] items-center gap-1.5 text-sm font-semibold text-pine transition hover:text-pine-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine dark:text-mint dark:hover:text-cream dark:focus-visible:outline-mint"
+              className="inline-flex min-h-[44px] items-center gap-1.5 text-sm font-semibold text-pine transition motion-reduce:transition-none hover:text-pine-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine dark:text-mint dark:hover:text-cream dark:focus-visible:outline-mint"
             >
               <span>{t.browseAllSubjects}</span>
               <span aria-hidden="true">→</span>
@@ -185,7 +185,7 @@ export default async function Home() {
             <Reveal index={0} className="sm:col-span-2 lg:col-span-2">
               <Link
                 href="/class-10"
-                className="group flex flex-col justify-between h-full rounded-2xl border border-brass/30 bg-parchment p-6 sm:p-8 shadow-[0_1px_2px_rgba(47,42,37,0.06),0_2px_8px_-4px_rgba(47,42,37,0.08)] ring-1 ring-inset ring-white/40 transition duration-200 hover:-translate-y-1 hover:border-pine/70 hover:shadow-[0_2px_4px_rgba(47,42,37,0.04),0_14px_28px_-16px_rgba(47,42,37,0.18)] focus-visible:border-pine/70 dark:focus-visible:border-mint/60 motion-reduce:transition-none motion-reduce:hover:transform-none dark:border-cream/15 dark:bg-brass/[0.06] dark:ring-white/5 dark:shadow-none dark:hover:shadow-none dark:hover:border-mint/60"
+                className="group flex flex-col justify-between h-full rounded-2xl border border-brass/30 bg-parchment p-6 sm:p-8 shadow-[0_1px_2px_rgba(47,42,37,0.06),0_2px_8px_-4px_rgba(47,42,37,0.08)] ring-1 ring-inset ring-white/40 transition duration-200 hover:-translate-y-1 hover:border-pine/70 hover:shadow-[0_2px_4px_rgba(47,42,37,0.04),0_14px_28px_-16px_rgba(47,42,37,0.18)] focus-visible:border-pine/70 dark:focus-visible:border-mint/60 motion-reduce:transition-none motion-reduce:hover:translate-none dark:border-cream/15 dark:bg-brass/[0.06] dark:ring-white/5 dark:shadow-none dark:hover:shadow-none dark:hover:border-mint/60"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2">
@@ -197,7 +197,7 @@ export default async function Home() {
                     </span>
                   </div>
                   <span aria-hidden="true" className="mt-4 mb-4 block h-[3px] w-10 rounded-full bg-brass/70 dark:bg-brass-dark/60" />
-                  <h3 className="font-display text-2xl font-semibold text-maroon group-hover:text-pine transition-colors dark:text-clay dark:group-hover:text-mint">
+                  <h3 className="font-display text-2xl font-semibold text-maroon group-hover:text-pine transition-colors motion-reduce:transition-none dark:text-clay dark:group-hover:text-mint">
                     {t.class10Title}
                   </h3>
                   <p className="mt-2.5 text-sm leading-relaxed text-ink/70 dark:text-cream/70">
@@ -206,7 +206,7 @@ export default async function Home() {
                 </div>
                 <div className="mt-6 flex items-center gap-1.5 text-sm font-semibold text-pine dark:text-mint">
                   <span>{t.readMore}</span>
-                  <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">→</span>
+                  <span aria-hidden="true" className="transition-transform motion-reduce:transition-none motion-reduce:translate-none group-hover:translate-x-1">→</span>
                 </div>
               </Link>
             </Reveal>
@@ -215,7 +215,7 @@ export default async function Home() {
             <Reveal index={1}>
               <Link
                 href="/class-12"
-                className="group flex flex-col justify-between h-full rounded-2xl border border-brass/30 bg-surface-subtle p-6 sm:p-8 shadow-[0_1px_2px_rgba(47,42,37,0.06),0_2px_8px_-4px_rgba(47,42,37,0.08)] ring-1 ring-inset ring-white/40 transition duration-200 hover:-translate-y-1 hover:border-pine/70 hover:shadow-[0_2px_4px_rgba(47,42,37,0.04),0_14px_28px_-16px_rgba(47,42,37,0.18)] focus-visible:border-pine/70 dark:focus-visible:border-mint/60 motion-reduce:transition-none motion-reduce:hover:transform-none dark:border-cream/15 dark:bg-choc-elevated dark:ring-white/5 dark:shadow-none dark:hover:shadow-none dark:hover:border-mint/60"
+                className="group flex flex-col justify-between h-full rounded-2xl border border-brass/30 bg-surface-subtle p-6 sm:p-8 shadow-[0_1px_2px_rgba(47,42,37,0.06),0_2px_8px_-4px_rgba(47,42,37,0.08)] ring-1 ring-inset ring-white/40 transition duration-200 hover:-translate-y-1 hover:border-pine/70 hover:shadow-[0_2px_4px_rgba(47,42,37,0.04),0_14px_28px_-16px_rgba(47,42,37,0.18)] focus-visible:border-pine/70 dark:focus-visible:border-mint/60 motion-reduce:transition-none motion-reduce:hover:translate-none dark:border-cream/15 dark:bg-choc-elevated dark:ring-white/5 dark:shadow-none dark:hover:shadow-none dark:hover:border-mint/60"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2">
@@ -227,7 +227,7 @@ export default async function Home() {
                     </span>
                   </div>
                   <span aria-hidden="true" className="mt-4 mb-4 block h-[3px] w-10 rounded-full bg-brass/70 dark:bg-brass-dark/60" />
-                  <h3 className="font-display text-2xl font-semibold text-maroon group-hover:text-pine transition-colors dark:text-clay dark:group-hover:text-mint">
+                  <h3 className="font-display text-2xl font-semibold text-maroon group-hover:text-pine transition-colors motion-reduce:transition-none dark:text-clay dark:group-hover:text-mint">
                     {t.class12Title}
                   </h3>
                   <p className="mt-2.5 text-sm leading-relaxed text-ink/70 dark:text-cream/70">
@@ -236,7 +236,7 @@ export default async function Home() {
                 </div>
                 <div className="mt-6 flex items-center gap-1.5 text-sm font-semibold text-pine dark:text-mint">
                   <span>{t.readMore}</span>
-                  <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">→</span>
+                  <span aria-hidden="true" className="transition-transform motion-reduce:transition-none motion-reduce:translate-none group-hover:translate-x-1">→</span>
                 </div>
               </Link>
             </Reveal>
@@ -245,7 +245,7 @@ export default async function Home() {
             <Reveal index={2}>
               <Link
                 href="/grammar"
-                className="group flex flex-col justify-between h-full rounded-2xl border border-brass/30 bg-surface-subtle p-6 sm:p-8 shadow-[0_1px_2px_rgba(47,42,37,0.06),0_2px_8px_-4px_rgba(47,42,37,0.08)] ring-1 ring-inset ring-white/40 transition duration-200 hover:-translate-y-1 hover:border-pine/70 hover:shadow-[0_2px_4px_rgba(47,42,37,0.04),0_14px_28px_-16px_rgba(47,42,37,0.18)] focus-visible:border-pine/70 dark:focus-visible:border-mint/60 motion-reduce:transition-none motion-reduce:hover:transform-none dark:border-cream/15 dark:bg-choc-elevated dark:ring-white/5 dark:shadow-none dark:hover:shadow-none dark:hover:border-mint/60"
+                className="group flex flex-col justify-between h-full rounded-2xl border border-brass/30 bg-surface-subtle p-6 sm:p-8 shadow-[0_1px_2px_rgba(47,42,37,0.06),0_2px_8px_-4px_rgba(47,42,37,0.08)] ring-1 ring-inset ring-white/40 transition duration-200 hover:-translate-y-1 hover:border-pine/70 hover:shadow-[0_2px_4px_rgba(47,42,37,0.04),0_14px_28px_-16px_rgba(47,42,37,0.18)] focus-visible:border-pine/70 dark:focus-visible:border-mint/60 motion-reduce:transition-none motion-reduce:hover:translate-none dark:border-cream/15 dark:bg-choc-elevated dark:ring-white/5 dark:shadow-none dark:hover:shadow-none dark:hover:border-mint/60"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2">
@@ -257,7 +257,7 @@ export default async function Home() {
                     </span>
                   </div>
                   <span aria-hidden="true" className="mt-4 mb-4 block h-[3px] w-10 rounded-full bg-brass/70 dark:bg-brass-dark/60" />
-                  <h3 className="font-display text-2xl font-semibold text-maroon group-hover:text-pine transition-colors dark:text-clay dark:group-hover:text-mint">
+                  <h3 className="font-display text-2xl font-semibold text-maroon group-hover:text-pine transition-colors motion-reduce:transition-none dark:text-clay dark:group-hover:text-mint">
                     {t.grammarTitle}
                   </h3>
                   <p className="mt-2.5 text-sm leading-relaxed text-ink/70 dark:text-cream/70">
@@ -266,7 +266,7 @@ export default async function Home() {
                 </div>
                 <div className="mt-6 flex items-center gap-1.5 text-sm font-semibold text-pine dark:text-mint">
                   <span>{t.browseGrammar}</span>
-                  <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">→</span>
+                  <span aria-hidden="true" className="transition-transform motion-reduce:transition-none motion-reduce:translate-none group-hover:translate-x-1">→</span>
                 </div>
               </Link>
             </Reveal>
@@ -275,7 +275,7 @@ export default async function Home() {
             <Reveal index={3}>
               <Link
                 href="/writing"
-                className="group flex flex-col justify-between h-full rounded-2xl border border-brass/30 bg-surface-subtle p-6 sm:p-8 shadow-[0_1px_2px_rgba(47,42,37,0.06),0_2px_8px_-4px_rgba(47,42,37,0.08)] ring-1 ring-inset ring-white/40 transition duration-200 hover:-translate-y-1 hover:border-pine/70 hover:shadow-[0_2px_4px_rgba(47,42,37,0.04),0_14px_28px_-16px_rgba(47,42,37,0.18)] focus-visible:border-pine/70 dark:focus-visible:border-mint/60 motion-reduce:transition-none motion-reduce:hover:transform-none dark:border-cream/15 dark:bg-choc-elevated dark:ring-white/5 dark:shadow-none dark:hover:shadow-none dark:hover:border-mint/60"
+                className="group flex flex-col justify-between h-full rounded-2xl border border-brass/30 bg-surface-subtle p-6 sm:p-8 shadow-[0_1px_2px_rgba(47,42,37,0.06),0_2px_8px_-4px_rgba(47,42,37,0.08)] ring-1 ring-inset ring-white/40 transition duration-200 hover:-translate-y-1 hover:border-pine/70 hover:shadow-[0_2px_4px_rgba(47,42,37,0.04),0_14px_28px_-16px_rgba(47,42,37,0.18)] focus-visible:border-pine/70 dark:focus-visible:border-mint/60 motion-reduce:transition-none motion-reduce:hover:translate-none dark:border-cream/15 dark:bg-choc-elevated dark:ring-white/5 dark:shadow-none dark:hover:shadow-none dark:hover:border-mint/60"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2">
@@ -287,7 +287,7 @@ export default async function Home() {
                     </span>
                   </div>
                   <span aria-hidden="true" className="mt-4 mb-4 block h-[3px] w-10 rounded-full bg-brass/70 dark:bg-brass-dark/60" />
-                  <h3 className="font-display text-2xl font-semibold text-maroon group-hover:text-pine transition-colors dark:text-clay dark:group-hover:text-mint">
+                  <h3 className="font-display text-2xl font-semibold text-maroon group-hover:text-pine transition-colors motion-reduce:transition-none dark:text-clay dark:group-hover:text-mint">
                     {t.writingTitle}
                   </h3>
                   <p className="mt-2.5 text-sm leading-relaxed text-ink/70 dark:text-cream/70">
@@ -296,7 +296,7 @@ export default async function Home() {
                 </div>
                 <div className="mt-6 flex items-center gap-1.5 text-sm font-semibold text-pine dark:text-mint">
                   <span>{t.readMore}</span>
-                  <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">→</span>
+                  <span aria-hidden="true" className="transition-transform motion-reduce:transition-none motion-reduce:translate-none group-hover:translate-x-1">→</span>
                 </div>
               </Link>
             </Reveal>
@@ -305,7 +305,7 @@ export default async function Home() {
             <Reveal index={4}>
               <Link
                 href="/pub"
-                className="group flex flex-col justify-between h-full rounded-2xl border border-brass/30 bg-surface-subtle p-6 sm:p-8 shadow-[0_1px_2px_rgba(47,42,37,0.06),0_2px_8px_-4px_rgba(47,42,37,0.08)] ring-1 ring-inset ring-white/40 transition duration-200 hover:-translate-y-1 hover:border-pine/70 hover:shadow-[0_2px_4px_rgba(47,42,37,0.04),0_14px_28px_-16px_rgba(47,42,37,0.18)] focus-visible:border-pine/70 dark:focus-visible:border-mint/60 motion-reduce:transition-none motion-reduce:hover:transform-none dark:border-cream/15 dark:bg-choc-elevated dark:ring-white/5 dark:shadow-none dark:hover:shadow-none dark:hover:border-mint/60"
+                className="group flex flex-col justify-between h-full rounded-2xl border border-brass/30 bg-surface-subtle p-6 sm:p-8 shadow-[0_1px_2px_rgba(47,42,37,0.06),0_2px_8px_-4px_rgba(47,42,37,0.08)] ring-1 ring-inset ring-white/40 transition duration-200 hover:-translate-y-1 hover:border-pine/70 hover:shadow-[0_2px_4px_rgba(47,42,37,0.04),0_14px_28px_-16px_rgba(47,42,37,0.18)] focus-visible:border-pine/70 dark:focus-visible:border-mint/60 motion-reduce:transition-none motion-reduce:hover:translate-none dark:border-cream/15 dark:bg-choc-elevated dark:ring-white/5 dark:shadow-none dark:hover:shadow-none dark:hover:border-mint/60"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2">
@@ -317,7 +317,7 @@ export default async function Home() {
                     </span>
                   </div>
                   <span aria-hidden="true" className="mt-4 mb-4 block h-[3px] w-10 rounded-full bg-brass/70 dark:bg-brass-dark/60" />
-                  <h3 className="font-display text-2xl font-semibold text-maroon group-hover:text-pine transition-colors dark:text-clay dark:group-hover:text-mint">
+                  <h3 className="font-display text-2xl font-semibold text-maroon group-hover:text-pine transition-colors motion-reduce:transition-none dark:text-clay dark:group-hover:text-mint">
                     {t.pubTitle}
                   </h3>
                   <p className="mt-2.5 text-sm leading-relaxed text-ink/70 dark:text-cream/70">
@@ -326,7 +326,7 @@ export default async function Home() {
                 </div>
                 <div className="mt-6 flex items-center gap-1.5 text-sm font-semibold text-pine dark:text-mint">
                   <span>{t.viewCollection}</span>
-                  <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">→</span>
+                  <span aria-hidden="true" className="transition-transform motion-reduce:transition-none motion-reduce:translate-none group-hover:translate-x-1">→</span>
                 </div>
               </Link>
             </Reveal>
@@ -335,7 +335,7 @@ export default async function Home() {
             <Reveal index={5} className="sm:col-span-2 lg:col-span-3">
               <Link
                 href="/about"
-                className="group flex flex-col justify-between h-full rounded-2xl border border-brass/30 bg-surface-subtle p-6 sm:p-8 shadow-[0_1px_2px_rgba(47,42,37,0.06),0_2px_8px_-4px_rgba(47,42,37,0.08)] ring-1 ring-inset ring-white/40 transition duration-200 hover:-translate-y-1 hover:border-pine/70 hover:shadow-[0_2px_4px_rgba(47,42,37,0.04),0_14px_28px_-16px_rgba(47,42,37,0.18)] focus-visible:border-pine/70 dark:focus-visible:border-mint/60 motion-reduce:transition-none motion-reduce:hover:transform-none dark:border-cream/15 dark:bg-choc-elevated dark:ring-white/5 dark:shadow-none dark:hover:shadow-none dark:hover:border-mint/60"
+                className="group flex flex-col justify-between h-full rounded-2xl border border-brass/30 bg-surface-subtle p-6 sm:p-8 shadow-[0_1px_2px_rgba(47,42,37,0.06),0_2px_8px_-4px_rgba(47,42,37,0.08)] ring-1 ring-inset ring-white/40 transition duration-200 hover:-translate-y-1 hover:border-pine/70 hover:shadow-[0_2px_4px_rgba(47,42,37,0.04),0_14px_28px_-16px_rgba(47,42,37,0.18)] focus-visible:border-pine/70 dark:focus-visible:border-mint/60 motion-reduce:transition-none motion-reduce:hover:translate-none dark:border-cream/15 dark:bg-choc-elevated dark:ring-white/5 dark:shadow-none dark:hover:shadow-none dark:hover:border-mint/60"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2">
@@ -347,7 +347,7 @@ export default async function Home() {
                     </span>
                   </div>
                   <span aria-hidden="true" className="mt-4 mb-4 block h-[3px] w-10 rounded-full bg-brass/70 dark:bg-brass-dark/60" />
-                  <h3 className="font-display text-2xl font-semibold text-maroon group-hover:text-pine transition-colors dark:text-clay dark:group-hover:text-mint">
+                  <h3 className="font-display text-2xl font-semibold text-maroon group-hover:text-pine transition-colors motion-reduce:transition-none dark:text-clay dark:group-hover:text-mint">
                     {t.navAbout}
                   </h3>
                   <p className="mt-2.5 text-sm leading-relaxed text-ink/70 dark:text-cream/70">
@@ -356,7 +356,7 @@ export default async function Home() {
                 </div>
                 <div className="mt-6 flex items-center gap-1.5 text-sm font-semibold text-pine dark:text-mint">
                   <span>{t.readMore}</span>
-                  <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">→</span>
+                  <span aria-hidden="true" className="transition-transform motion-reduce:transition-none motion-reduce:translate-none group-hover:translate-x-1">→</span>
                 </div>
               </Link>
             </Reveal>
@@ -388,7 +388,7 @@ export default async function Home() {
               <div className="mt-6">
                 <Link
                   href="/pub"
-                  className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-pine px-6 py-3 text-sm font-semibold text-white transition hover:bg-pine-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine active:translate-y-px motion-reduce:transition-none dark:bg-mint dark:text-choc dark:hover:bg-mint/85 dark:focus-visible:outline-mint"
+                  className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-pine px-6 py-3 text-sm font-semibold text-white transition motion-reduce:transition-none hover:bg-pine-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine active:translate-y-px motion-reduce:transition-none dark:bg-mint dark:text-choc dark:hover:bg-mint/85 dark:focus-visible:outline-mint"
                 >
                   <span>{t.explorePub}</span>
                   <span aria-hidden="true">→</span>
@@ -406,7 +406,7 @@ export default async function Home() {
               ].map((item, idx) => (
                 <div
                   key={idx}
-                  className="flex items-center justify-between rounded-2xl border border-brass/25 bg-paper p-4 shadow-[0_1px_2px_rgba(47,42,37,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-brass/60 hover:shadow-[0_12px_24px_-12px_rgba(47,42,37,0.18)] motion-reduce:transition-none motion-reduce:hover:transform-none dark:border-cream/10 dark:bg-choc dark:shadow-none dark:hover:shadow-none"
+                  className="flex items-center justify-between rounded-2xl border border-brass/25 bg-paper p-4 shadow-[0_1px_2px_rgba(47,42,37,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-brass/60 hover:shadow-[0_12px_24px_-12px_rgba(47,42,37,0.18)] motion-reduce:transition-none motion-reduce:hover:translate-none dark:border-cream/10 dark:bg-choc dark:shadow-none dark:hover:shadow-none"
                 >
                   <div className="flex items-center gap-3.5">
                     <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-brass/40 bg-brass/20 font-display text-xs font-semibold text-ink shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] dark:bg-brass/15 dark:text-cream dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
@@ -452,7 +452,7 @@ export default async function Home() {
                   href={SCHOOL_URL}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-brass px-6 py-3 text-sm font-semibold text-choc transition hover:bg-brass-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint active:translate-y-px motion-reduce:transition-none"
+                  className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-brass px-6 py-3 text-sm font-semibold text-choc transition motion-reduce:transition-none hover:bg-brass-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint active:translate-y-px motion-reduce:transition-none"
                 >
                   <span>{t.visitSchoolBtn}</span>
                   <span aria-hidden="true">↗</span>
@@ -462,7 +462,7 @@ export default async function Home() {
                   href={LOOMA_URL}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-cream/30 bg-transparent px-6 py-3 text-sm font-semibold text-cream transition hover:border-mint hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint active:translate-y-px motion-reduce:transition-none"
+                  className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-cream/30 bg-transparent px-6 py-3 text-sm font-semibold text-cream transition motion-reduce:transition-none hover:border-mint hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint active:translate-y-px motion-reduce:transition-none"
                 >
                   <span>{t.visitLoomaBtn}</span>
                   <span aria-hidden="true">↗</span>

@@ -17,7 +17,7 @@ export default function Error({
       <div className="mt-6 flex justify-center gap-3">
         <button
           onClick={() => reset()}
-          className="rounded-full bg-pine px-4 py-2 text-sm font-medium text-white transition hover:bg-pine-deep"
+          className="rounded-full bg-pine px-4 py-2 text-sm font-medium text-white transition motion-reduce:transition-none hover:bg-pine-deep"
         >
           {t.errorRetry}
         </button>

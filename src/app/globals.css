@@ -1085,6 +1085,8 @@ body {
     animation-timeline: auto !important;
     clip-path: none !important;
     transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
     will-change: auto !important;
   }
 }

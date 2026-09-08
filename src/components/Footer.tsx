@@ -9,7 +9,7 @@ export default function Footer() {
   const showFacebook = FACEBOOK_URL.startsWith("http");
 
   return (
-    <footer className="mt-0 border-t border-brass/25 bg-choc text-cream transition-colors">
+    <footer className="mt-0 border-t border-brass/25 bg-choc text-cream transition-colors motion-reduce:transition-none">
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:py-16">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {/* Column 1: Identity */}
@@ -35,37 +35,37 @@ export default function Footer() {
             </h3>
             <ul className="mt-4 space-y-2 text-sm text-cream/80">
               <li>
-                <Link href="/" className="transition hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint">
+                <Link href="/" className="transition motion-reduce:transition-none hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint">
                   {t.navHome}
                 </Link>
               </li>
               <li>
-                <Link href="/pub" className="transition hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint">
+                <Link href="/pub" className="transition motion-reduce:transition-none hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint">
                   {t.navPub}
                 </Link>
               </li>
               <li>
-                <Link href="/writing" className="transition hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint">
+                <Link href="/writing" className="transition motion-reduce:transition-none hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint">
                   {t.navWriting}
                 </Link>
               </li>
               <li>
-                <Link href="/grammar" className="transition hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint">
+                <Link href="/grammar" className="transition motion-reduce:transition-none hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint">
                   {t.navGrammar}
                 </Link>
               </li>
               <li>
-                <Link href="/class-10" className="transition hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint">
+                <Link href="/class-10" className="transition motion-reduce:transition-none hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint">
                   {t.navClass10}
                 </Link>
               </li>
               <li>
-                <Link href="/class-12" className="transition hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint">
+                <Link href="/class-12" className="transition motion-reduce:transition-none hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint">
                   {t.navClass12}
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="transition hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint">
+                <Link href="/about" className="transition motion-reduce:transition-none hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint">
                   {t.navAbout}
                 </Link>
               </li>
@@ -83,7 +83,7 @@ export default function Footer() {
                   href={SCHOOL_URL}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex min-h-[44px] items-center gap-1.5 transition hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint"
+                  className="inline-flex min-h-[44px] items-center gap-1.5 transition motion-reduce:transition-none hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint"
                 >
                   <span>{t.navSchool}</span>
                   <span aria-hidden="true" className="text-xs text-brass">↗</span>
@@ -94,7 +94,7 @@ export default function Footer() {
                   href={LOOMA_URL}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex min-h-[44px] items-center gap-1.5 transition hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint"
+                  className="inline-flex min-h-[44px] items-center gap-1.5 transition motion-reduce:transition-none hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint"
                 >
                   <span>{t.navLooma}</span>
                   <span aria-hidden="true" className="text-xs text-brass">↗</span>
@@ -106,7 +106,7 @@ export default function Footer() {
                     href={FACEBOOK_URL}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex min-h-[44px] items-center gap-1.5 transition hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint"
+                    className="inline-flex min-h-[44px] items-center gap-1.5 transition motion-reduce:transition-none hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint"
                   >
                     <span>{t.navFacebook}</span>
                     <span aria-hidden="true" className="text-xs text-brass">↗</span>
@@ -128,7 +128,7 @@ export default function Footer() {
               <div>
                 <a
                   href={OFFICE_PHONE_HREF}
-                  className="inline-flex min-h-[44px] items-center gap-2 text-cream/90 transition hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint"
+                  className="inline-flex min-h-[44px] items-center gap-2 text-cream/90 transition motion-reduce:transition-none hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint"
                   aria-label={t.callOfficeLabel}
                 >
                   <svg
@@ -158,7 +158,7 @@ export default function Footer() {
             <span aria-hidden="true" className="text-cream/30">•</span>
             <Link
               href="/sitemap.xml"
-              className="text-cream/70 underline underline-offset-2 transition hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint"
+              className="text-cream/70 underline underline-offset-2 transition motion-reduce:transition-none hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint"
             >
               {t.sitemapLink}
             </Link>

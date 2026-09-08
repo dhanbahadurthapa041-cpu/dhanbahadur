@@ -61,7 +61,7 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-16 sm:py-24 lg:py-32">
-      <Link href="/" className="inline-flex items-center gap-1 text-sm font-medium text-pine transition hover:text-pine-deep dark:text-mint dark:hover:text-cream">
+      <Link href="/" className="inline-flex items-center gap-1 text-sm font-medium text-pine transition motion-reduce:transition-none hover:text-pine-deep dark:text-mint dark:hover:text-cream">
         {t.backHome}
       </Link>
       <div className="mt-6">
@@ -81,8 +81,9 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                   as="li"
                   key={d.slug}
                   index={i}
-                  className="rounded-xl border border-brass/25 bg-surface-subtle p-4 shadow-[0_1px_2px_rgba(47,42,37,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-brass/60 hover:shadow-[0_12px_24px_-14px_rgba(47,42,37,0.16)] motion-reduce:transition-none motion-reduce:hover:transform-none dark:border-cream/15 dark:bg-choc-elevated dark:shadow-none dark:hover:shadow-none"
+                  className=""
                 >
+                  <div className="rounded-xl border border-brass/25 bg-surface-subtle p-4 shadow-[0_1px_2px_rgba(47,42,37,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-brass/60 hover:shadow-[0_12px_24px_-14px_rgba(47,42,37,0.16)] motion-reduce:transition-none motion-reduce:hover:translate-none dark:border-cream/15 dark:bg-choc-elevated dark:shadow-none dark:hover:shadow-none">
                   <Link
                     href={`/pub/${d.slug}`}
                     className="text-lg font-semibold hover:text-pine dark:hover:text-mint"
@@ -95,6 +96,7 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                     </span>
                   )}
                   {d.date && <p className="text-xs text-ink/60 dark:text-cream/60">{d.date}</p>}
+                  </div>
                 </Reveal>
               ))}
             </ul>
@@ -118,8 +120,9 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                         as="li"
                         key={d.slug}
                         index={i}
-                        className="rounded-xl border border-brass/25 bg-surface-subtle p-4 shadow-[0_1px_2px_rgba(47,42,37,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-brass/60 hover:shadow-[0_12px_24px_-14px_rgba(47,42,37,0.16)] motion-reduce:transition-none motion-reduce:hover:transform-none dark:border-cream/15 dark:bg-choc-elevated dark:shadow-none dark:hover:shadow-none"
+                        className=""
                       >
+                        <div className="rounded-xl border border-brass/25 bg-surface-subtle p-4 shadow-[0_1px_2px_rgba(47,42,37,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-brass/60 hover:shadow-[0_12px_24px_-14px_rgba(47,42,37,0.16)] motion-reduce:transition-none motion-reduce:hover:translate-none dark:border-cream/15 dark:bg-choc-elevated dark:shadow-none dark:hover:shadow-none">
                         <Link
                           href={`/${section}/${d.slug}`}
                           className="text-lg font-semibold hover:text-pine dark:hover:text-mint"
@@ -132,6 +135,7 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                           </span>
                         )}
                         {d.date && <p className="text-xs text-ink/60 dark:text-cream/60">{d.date}</p>}
+                        </div>
                       </Reveal>
                     ))}
                   </ul>
@@ -145,7 +149,7 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                     </p>
                     <Link
                       href="/pub"
-                      className="mt-3 inline-flex min-h-[44px] items-center gap-1.5 text-sm font-semibold text-pine transition hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine dark:text-mint dark:focus-visible:outline-mint"
+                      className="mt-3 inline-flex min-h-[44px] items-center gap-1.5 text-sm font-semibold text-pine transition motion-reduce:transition-none hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine dark:text-mint dark:focus-visible:outline-mint"
                     >
                       {t.viewCollection} →
                     </Link>
@@ -184,8 +188,9 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                       as="li"
                       key={d.slug}
                       index={i}
-                      className="rounded-xl border border-brass/25 bg-surface-subtle p-4 shadow-[0_1px_2px_rgba(47,42,37,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-brass/60 hover:shadow-[0_12px_24px_-14px_rgba(47,42,37,0.16)] motion-reduce:transition-none motion-reduce:hover:transform-none dark:border-cream/15 dark:bg-choc-elevated dark:shadow-none dark:hover:shadow-none"
+                      className=""
                     >
+                      <div className="rounded-xl border border-brass/25 bg-surface-subtle p-4 shadow-[0_1px_2px_rgba(47,42,37,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-brass/60 hover:shadow-[0_12px_24px_-14px_rgba(47,42,37,0.16)] motion-reduce:transition-none motion-reduce:hover:translate-none dark:border-cream/15 dark:bg-choc-elevated dark:shadow-none dark:hover:shadow-none">
                       <Link
                         href={`/${section}/${d.slug}`}
                         className="text-lg font-semibold hover:text-pine dark:hover:text-mint"
@@ -193,6 +198,7 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                         {d.title}
                       </Link>
                       {d.date && <p className="text-xs text-ink/60 dark:text-cream/60">{d.date}</p>}
+                      </div>
                     </Reveal>
                   ))}
               </ul>

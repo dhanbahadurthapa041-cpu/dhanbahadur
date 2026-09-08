@@ -14,7 +14,7 @@ export default async function NotFound() {
       <p className="mt-2 text-ink/70 dark:text-cream/70">{t.notFoundBody}</p>
       <Link
         href="/"
-        className="mt-6 inline-block rounded-full bg-pine px-4 py-2 text-sm font-medium text-white transition hover:bg-pine-deep"
+        className="mt-6 inline-block rounded-full bg-pine px-4 py-2 text-sm font-medium text-white transition motion-reduce:transition-none hover:bg-pine-deep"
       >
         {t.backHome}
       </Link>
