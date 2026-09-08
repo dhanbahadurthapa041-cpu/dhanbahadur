@@ -197,11 +197,11 @@ export default async function Home() {
               >
                 <span aria-hidden="true" className="mb-5 block h-1 w-16 rounded-full bg-gradient-to-r from-brass/80 to-pine/60 dark:from-brass-dark/70 dark:to-mint/40" />
                 <div>
-                  <div className="flex items-center justify-between gap-2">
-                    <span className={`badge-leak-guard rounded-full bg-brass/20 px-2.5 py-0.5 text-[11px] font-semibold text-ink dark:bg-brass/15 dark:text-cream ${lang === "en" ? "uppercase tracking-[0.10em]" : "tracking-normal"}`}>
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <span lang="en" className={`badge-leak-guard rounded-full bg-brass/20 px-2.5 py-0.5 text-[11px] font-semibold text-ink dark:bg-brass/15 dark:text-cream ${lang === "en" ? "uppercase tracking-[0.10em]" : "tracking-normal"}`}>
                       SEE Prep
                     </span>
-                    <span className="rounded-full border border-ink/15 px-2.5 py-0.5 text-[11px] font-medium text-ink/60 dark:border-cream/20 dark:text-cream/60">
+                    <span lang="en" className="rounded-full border border-ink/15 px-2.5 py-0.5 text-[11px] font-medium text-ink/60 dark:border-cream/20 dark:text-cream/60">
                       Unit 1–7
                     </span>
                   </div>
@@ -227,8 +227,8 @@ export default async function Home() {
                 className="group flex flex-col justify-between h-full rounded-2xl border border-brass/30 bg-surface-subtle p-6 sm:p-8 shadow-[0_1px_2px_rgba(47,42,37,0.06),0_2px_8px_-4px_rgba(47,42,37,0.08)] ring-1 ring-inset ring-white/40 transition-[transform,translate,scale,box-shadow,border-color] duration-200 ease-out hover:-translate-y-1 hover:border-pine/70 hover:shadow-[0_2px_4px_rgba(47,42,37,0.04),0_14px_28px_-16px_rgba(47,42,37,0.18)] active:scale-[0.97] active:duration-100 motion-reduce:active:scale-none focus-visible:border-pine/70 dark:focus-visible:border-mint/60 motion-reduce:transition-none motion-reduce:hover:translate-none dark:border-cream/15 dark:bg-choc-elevated dark:ring-white/5 dark:shadow-none dark:hover:shadow-[0_0_0_1px_rgba(201,178,124,.25),0_14px_30px_-14px_rgba(0,0,0,.7)] dark:hover:border-mint/60"
               >
                 <div>
-                  <div className="flex items-center justify-between gap-2">
-                    <span className={`badge-leak-guard rounded-full bg-brass/20 px-2.5 py-0.5 text-[11px] font-semibold text-ink dark:bg-brass/15 dark:text-cream ${lang === "en" ? "uppercase tracking-[0.10em]" : "tracking-normal"}`}>
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <span lang="en" className={`badge-leak-guard rounded-full bg-brass/20 px-2.5 py-0.5 text-[11px] font-semibold text-ink dark:bg-brass/15 dark:text-cream ${lang === "en" ? "uppercase tracking-[0.10em]" : "tracking-normal"}`}>
                       NEB +2
                     </span>
                     <span className="rounded-full border border-ink/15 px-2.5 py-0.5 text-[11px] font-medium text-ink/60 dark:border-cream/20 dark:text-cream/60">
@@ -258,11 +258,11 @@ export default async function Home() {
                 className="group flex flex-col justify-between h-full rounded-2xl border border-brass/30 bg-surface-subtle p-6 sm:p-8 shadow-[0_1px_2px_rgba(47,42,37,0.06),0_2px_8px_-4px_rgba(47,42,37,0.08)] ring-1 ring-inset ring-white/40 transition-[transform,translate,scale,box-shadow,border-color] duration-200 ease-out hover:-translate-y-1 hover:border-pine/70 hover:shadow-[0_2px_4px_rgba(47,42,37,0.04),0_14px_28px_-16px_rgba(47,42,37,0.18)] active:scale-[0.97] active:duration-100 motion-reduce:active:scale-none focus-visible:border-pine/70 dark:focus-visible:border-mint/60 motion-reduce:transition-none motion-reduce:hover:translate-none dark:border-cream/15 dark:bg-choc-elevated dark:ring-white/5 dark:shadow-none dark:hover:shadow-[0_0_0_1px_rgba(201,178,124,.25),0_14px_30px_-14px_rgba(0,0,0,.7)] dark:hover:border-mint/60"
               >
                 <div>
-                  <div className="flex items-center justify-between gap-2">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
                     <span className={`badge-leak-guard rounded-full bg-brass/20 px-2.5 py-0.5 text-[11px] font-semibold text-ink dark:bg-brass/15 dark:text-cream ${lang === "en" ? "uppercase tracking-[0.10em]" : "tracking-normal"}`}>
                       {t.badgeRules}
                     </span>
-                    <span className="rounded-full border border-ink/15 px-2.5 py-0.5 text-[11px] font-medium text-ink/60 dark:border-cream/20 dark:text-cream/60">
+                    <span lang="en" className="rounded-full border border-ink/15 px-2.5 py-0.5 text-[11px] font-medium text-ink/60 dark:border-cream/20 dark:text-cream/60">
                       9 Topics
                     </span>
                   </div>
@@ -289,11 +289,11 @@ export default async function Home() {
                 className="group flex flex-col justify-between h-full rounded-2xl border border-brass/30 bg-surface-subtle p-6 sm:p-8 shadow-[0_1px_2px_rgba(47,42,37,0.06),0_2px_8px_-4px_rgba(47,42,37,0.08)] ring-1 ring-inset ring-white/40 transition-[transform,translate,scale,box-shadow,border-color] duration-200 ease-out hover:-translate-y-1 hover:border-pine/70 hover:shadow-[0_2px_4px_rgba(47,42,37,0.04),0_14px_28px_-16px_rgba(47,42,37,0.18)] active:scale-[0.97] active:duration-100 motion-reduce:active:scale-none focus-visible:border-pine/70 dark:focus-visible:border-mint/60 motion-reduce:transition-none motion-reduce:hover:translate-none dark:border-cream/15 dark:bg-choc-elevated dark:ring-white/5 dark:shadow-none dark:hover:shadow-[0_0_0_1px_rgba(201,178,124,.25),0_14px_30px_-14px_rgba(0,0,0,.7)] dark:hover:border-mint/60"
               >
                 <div>
-                  <div className="flex items-center justify-between gap-2">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
                     <span className={`badge-leak-guard rounded-full bg-brass/20 px-2.5 py-0.5 text-[11px] font-semibold text-ink dark:bg-brass/15 dark:text-cream ${lang === "en" ? "uppercase tracking-[0.10em]" : "tracking-normal"}`}>
                       {t.badgeComposition}
                     </span>
-                    <span className="rounded-full border border-ink/15 px-2.5 py-0.5 text-[11px] font-medium text-ink/60 dark:border-cream/20 dark:text-cream/60">
+                    <span lang="en" className="rounded-full border border-ink/15 px-2.5 py-0.5 text-[11px] font-medium text-ink/60 dark:border-cream/20 dark:text-cream/60">
                       3 Styles
                     </span>
                   </div>
@@ -320,7 +320,7 @@ export default async function Home() {
                 className="group flex flex-col justify-between h-full rounded-2xl border border-brass/30 bg-surface-subtle p-6 sm:p-8 shadow-[0_1px_2px_rgba(47,42,37,0.06),0_2px_8px_-4px_rgba(47,42,37,0.08)] ring-1 ring-inset ring-white/40 transition-[transform,translate,scale,box-shadow,border-color] duration-200 ease-out hover:-translate-y-1 hover:border-pine/70 hover:shadow-[0_2px_4px_rgba(47,42,37,0.04),0_14px_28px_-16px_rgba(47,42,37,0.18)] active:scale-[0.97] active:duration-100 motion-reduce:active:scale-none focus-visible:border-pine/70 dark:focus-visible:border-mint/60 motion-reduce:transition-none motion-reduce:hover:translate-none dark:border-cream/15 dark:bg-choc-elevated dark:ring-white/5 dark:shadow-none dark:hover:shadow-[0_0_0_1px_rgba(201,178,124,.25),0_14px_30px_-14px_rgba(0,0,0,.7)] dark:hover:border-mint/60"
               >
                 <div>
-                  <div className="flex items-center justify-between gap-2">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
                     <span className={`badge-leak-guard rounded-full bg-brass/20 px-2.5 py-0.5 text-[11px] font-semibold text-ink dark:bg-brass/15 dark:text-cream ${lang === "en" ? "uppercase tracking-[0.10em]" : "tracking-normal"}`}>
                       {t.badgeLibrary}
                     </span>
@@ -344,14 +344,14 @@ export default async function Home() {
               </Link>
             </Reveal>
 
-            {/* Card 6: About the Educator (Anchoring Card) */}
+            {/* Card 6: About the Educator (deliberately planted anchor: border-only hover, no lift) */}
             <Reveal index={0} className="sm:col-span-2 lg:col-span-3">
               <Link
                 href="/about"
                 className="group flex flex-col justify-between h-full rounded-2xl border border-brass/30 bg-surface-subtle p-6 sm:p-8 shadow-[0_1px_2px_rgba(47,42,37,0.06),0_2px_8px_-4px_rgba(47,42,37,0.08)] ring-1 ring-inset ring-white/40 transition-[transform,translate,scale,box-shadow,border-color] duration-200 ease-out hover:border-pine/70 active:scale-[0.97] active:duration-100 motion-reduce:active:scale-none focus-visible:border-pine/70 dark:focus-visible:border-mint/60 motion-reduce:transition-none motion-reduce:hover:translate-none dark:border-cream/15 dark:bg-choc-elevated dark:ring-white/5 dark:shadow-none dark:hover:shadow-[0_0_0_1px_rgba(201,178,124,.25),0_14px_30px_-14px_rgba(0,0,0,.7)] dark:hover:border-mint/60"
               >
                 <div>
-                  <div className="flex items-center justify-between gap-2">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
                     <span className={`badge-leak-guard rounded-full bg-brass/20 px-2.5 py-0.5 text-[11px] font-semibold text-ink dark:bg-brass/15 dark:text-cream ${lang === "en" ? "uppercase tracking-[0.10em]" : "tracking-normal"}`}>
                       {t.badgeBiography}
                     </span>
@@ -410,7 +410,7 @@ export default async function Home() {
               </div>
             </div>
 
-            {/* Document preview rows with shadow, hover pickup, and outlined tag pills */}
+            {/* Document preview rows (static previews, not links) with outlined tag pills */}
             <div className="space-y-3">
               {[
                 { title: t.catTextbooks, desc: t.libDescTextbooks, tag: t.libTagTextbook },
@@ -430,7 +430,7 @@ export default async function Home() {
                       <h4 className="font-display text-base font-medium dark:font-normal text-ink dark:text-cream">
                         {item.title}
                       </h4>
-                      <p className="text-[13px] leading-[1.45] text-ink/70 dark:text-cream/70">{item.desc}</p>
+                      <p className={`text-[13px] dark:text-cream/70 ${lang === "en" ? "leading-[1.45] text-ink/70" : "leading-[1.6] text-ink/70"}`}>{item.desc}</p>
                     </div>
                   </div>
                   <span className="shrink-0 self-start rounded-full border border-brass/40 px-2.5 py-1 text-[11px] font-medium text-ink/75 sm:self-auto dark:border-cream/20 dark:text-cream/70">
