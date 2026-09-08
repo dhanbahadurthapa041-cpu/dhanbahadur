@@ -648,14 +648,14 @@ h4.font-display,
    70ms steps, capped at 6 slots (Reveal clamps the index to 0..5). */
 .reveal {
   transition:
-    opacity 340ms cubic-bezier(0.16, 1, 0.3, 1),
-    transform 340ms cubic-bezier(0.16, 1, 0.3, 1);
+    opacity 550ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 550ms cubic-bezier(0.16, 1, 0.3, 1);
   transition-delay: calc(var(--i, 0) * 70ms);
 }
 @media (prefers-reduced-motion: no-preference) {
   .js .reveal:not(.is-visible) {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(22px);
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -667,7 +667,7 @@ h4.font-display,
 /* Dense phone stacks: match reveal travel to the gutter scale. */
 @media (max-width: 639px) and (prefers-reduced-motion: no-preference) {
   .js .reveal:not(.is-visible) {
-    transform: translateY(10px);
+    transform: translateY(12px);
   }
 }
 
@@ -700,10 +700,10 @@ h4.font-display,
   }
   @keyframes plate-drift {
     from {
-      transform: translate3d(0, -20px, 0);
+      transform: translate3d(0, -28px, 0);
     }
     to {
-      transform: translate3d(0, 40px, 0);
+      transform: translate3d(0, 55px, 0);
     }
   }
 
@@ -719,10 +719,10 @@ h4.font-display,
   }
   @keyframes photo-drift {
     from {
-      transform: translate3d(0, 14px, 0) scale(1.15);
+      transform: translate3d(0, 18px, 0) scale(1.15);
     }
     to {
-      transform: translate3d(0, -16px, 0) scale(1.15);
+      transform: translate3d(0, -22px, 0) scale(1.15);
     }
   }
 
@@ -765,18 +765,18 @@ h4.font-display,
   @supports (animation-timeline: view()) {
     @keyframes plate-drift {
       from {
-        transform: translate3d(0, -10px, 0);
+        transform: translate3d(0, -14px, 0);
       }
       to {
-        transform: translate3d(0, 20px, 0);
+        transform: translate3d(0, 28px, 0);
       }
     }
     @keyframes photo-drift {
       from {
-        transform: translate3d(0, 7px, 0) scale(1.15);
+        transform: translate3d(0, 9px, 0) scale(1.15);
       }
       to {
-        transform: translate3d(0, -8px, 0) scale(1.15);
+        transform: translate3d(0, -11px, 0) scale(1.15);
       }
     }
     @keyframes frame-a-drift {
@@ -918,8 +918,8 @@ body {
         transform: none;
       }
       50% {
-        opacity: 0.74;
-        transform: translate3d(0, 10px, 0);
+        opacity: 0.62;
+        transform: translate3d(0, 14px, 0);
       }
       to {
         opacity: 1;
@@ -931,7 +931,7 @@ body {
         opacity: 1;
       }
       50% {
-        opacity: 0.8;
+        opacity: 0.68;
       }
       to {
         opacity: 1;
