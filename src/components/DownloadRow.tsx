@@ -32,7 +32,7 @@ export default function DownloadRow({ item, index }: { item: DownloadRowItem; in
         {(item.format || item.size) && (
           <p className="mt-1.5 flex flex-wrap items-center gap-2 text-xs">
             {item.format && (
-              <span className="relative inline-flex">
+              <span className="dl-tip-wrap relative inline-flex">
                 <span
                   className={`dl-pill badge-leak-guard rounded-full bg-brass/20 px-2 py-0.5 text-[11px] font-semibold ${lang === "ne" ? "tracking-normal" : "uppercase tracking-[0.08em]"} text-ink dark:bg-brass/15 dark:text-cream`}
                   tabIndex={0}

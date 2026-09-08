@@ -1504,7 +1504,7 @@ body {
       align-items: stretch;
     }
     .row-tag,
-    .dl-pill {
+    .dl-tip-wrap {
       align-self: flex-start;
     }
   }
