@@ -113,9 +113,6 @@ export default function Header() {
             <button
               ref={menuBtnRef}
               onClick={() => setOpen((v) => !v)}
-              onKeyDown={(e) => {
-                if (e.key === "Escape" && open) closeMenu();
-              }}
               className="flex min-h-[44px] items-center gap-1.5 rounded-full border border-brass/40 bg-surface-subtle px-3.5 text-xs font-medium transition motion-reduce:transition-none hover:border-pine focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine md:hidden dark:border-cream/20 dark:bg-choc-elevated dark:hover:border-mint dark:focus-visible:outline-mint"
               aria-expanded={open}
               aria-controls="primary-nav"
@@ -152,6 +149,9 @@ export default function Header() {
 
         <nav
           id="primary-nav"
+          onKeyDown={(e) => {
+            if (e.key === "Escape" && open) closeMenu();
+          }}
           className={`${
             open ? "flex" : "hidden"
           } flex-col gap-2.5 pt-4 text-sm md:flex md:flex-row md:flex-wrap md:items-center md:gap-5 md:pt-3`}

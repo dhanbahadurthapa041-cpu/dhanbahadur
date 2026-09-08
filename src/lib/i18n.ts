@@ -232,7 +232,7 @@ export const STRINGS = {
     loadingLabel: "लोड हुँदैछ…",
     libFilterLabel: "श्रेणी अनुसार छान्नुहोस्",
     todoEyebrow: "उद्धरण · तय हुन बाँकी",
-    todoNoteDefault: "यस निबन्धबाट ≤25 शब्द चयन गर्न बाँकी।",
+    todoNoteDefault: "यस निबन्धबाट ≤२५ शब्द चयन गर्न बाँकी।",
     dlFormatTip: "PDF — छाप्न मिल्ने फाइल, पृष्ठ सङ्ख्या जस्ताको तस्तै।",
     comingSoonTip: "स्रोत फाइल तयार हुँदैछ — पछि फेरि हेर्नुहोस्।",
     statProofTip: "तथ्याङ्क विद्यालय अभिलेखसँग रुजु गरिएको।",
