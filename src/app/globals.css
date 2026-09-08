@@ -993,10 +993,15 @@ body {
    from .parallax-*, .intro-beat-*, .reveal nodes (one animation owner/node).
    Recorded deviations from the briefs: ranges cover 0→8% (not 18%/15%) so the
    wipe completes BEFORE B6 H2 (~13%) / B3 quote (~19%) enters — the briefs'
-   own text-never-clipped rule forces this; no paper-layer echo pseudos and no
-   separate thread element (resting pixel-identical; B6 border-t rides the
-   slant during motion); tablet static instead of halved (paint budget, same
-   gate as the B6 pin). S1/S3/S4/S6 stay straight per restraint list. */
+   own text-never-clipped rule forces this. Travel 48px ≈ 6vh@800px per
+   application brief H2; exceeds technique-brief §2C 24px cap by accepted
+   override (lg+hover+no-preference only, settles in cover 0→8% before text).
+   No paper-layer echo pseudos and no separate thread element: the H1 thread
+   is formally WAIVED — a border on the clipped band is clipped, not riding,
+   and both dark bands already carry brass rules inside (B3 pull-quote rules,
+   B6 border-t at rest); resting stays pixel-identical. Tablet static instead
+   of halved (paint budget, same gate as the B6 pin). S1/S3/S4/S6 stay
+   straight per restraint list. */
 .band-wipe-s2,
 .band-wipe-s5 {
   clip-path: none;
@@ -1065,7 +1070,22 @@ body {
     clip-path: none !important;
     transform: none !important;
     opacity: 1 !important;
+    filter: none !important;
+    will-change: auto !important;
     break-inside: avoid;
+  }
+}
+
+/* Explicit static kill mirroring the B5/B6 idiom (defense-in-depth; the
+   min-width + hover:hover gate already excludes these inputs). */
+@media (max-width: 1023px), (hover: none) {
+  .band-wipe-s2,
+  .band-wipe-s5 {
+    animation: none !important;
+    animation-timeline: auto !important;
+    clip-path: none !important;
+    transform: none !important;
+    will-change: auto !important;
   }
 }
 
