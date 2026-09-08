@@ -469,7 +469,6 @@ export default async function Home() {
                   className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-brass px-6 py-3 text-sm font-semibold text-choc transition motion-reduce:transition-none hover:bg-brass-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint active:translate-y-px motion-reduce:active:translate-none motion-reduce:transition-none"
                 >
                   <span>{t.visitSchoolBtn}</span>
-                  <span aria-hidden="true">↗</span>
                 </a>
 
                 <a
@@ -479,7 +478,6 @@ export default async function Home() {
                   className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-cream/30 bg-transparent px-6 py-3 text-sm font-semibold text-cream transition motion-reduce:transition-none hover:border-mint hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint active:translate-y-px motion-reduce:active:translate-none motion-reduce:transition-none"
                 >
                   <span>{t.visitLoomaBtn}</span>
-                  <span aria-hidden="true">↗</span>
                 </a>
               </div>
             </div>

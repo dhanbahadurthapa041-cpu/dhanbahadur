@@ -86,7 +86,6 @@ export default function Footer() {
                   className="inline-flex min-h-[44px] items-center gap-1.5 transition motion-reduce:transition-none hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint"
                 >
                   <span>{t.navSchool}</span>
-                  <span aria-hidden="true" className="text-xs text-brass">↗</span>
                 </a>
               </li>
               <li>
@@ -97,7 +96,6 @@ export default function Footer() {
                   className="inline-flex min-h-[44px] items-center gap-1.5 transition motion-reduce:transition-none hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint"
                 >
                   <span>{t.navLooma}</span>
-                  <span aria-hidden="true" className="text-xs text-brass">↗</span>
                 </a>
               </li>
               {showFacebook && (
@@ -109,7 +107,6 @@ export default function Footer() {
                     className="inline-flex min-h-[44px] items-center gap-1.5 transition motion-reduce:transition-none hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint"
                   >
                     <span>{t.navFacebook}</span>
-                    <span aria-hidden="true" className="text-xs text-brass">↗</span>
                   </a>
                 </li>
               )}
