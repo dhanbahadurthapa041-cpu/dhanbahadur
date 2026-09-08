@@ -9,8 +9,8 @@ export default function Footer() {
   const showFacebook = FACEBOOK_URL.startsWith("http");
 
   return (
-    <footer className="mt-0 border-t border-brass/25 bg-choc text-cream transition-colors motion-reduce:transition-none">
-      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:py-16">
+    <footer className="mt-0 border-t-0 bg-choc text-cream transition-colors motion-reduce:transition-none">
+      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-24">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {/* Column 1: Identity */}
           <div className="sm:col-span-2 lg:col-span-1">

@@ -61,7 +61,7 @@ export default function DocView({
         {t.backSection}
       </Link>
       <div className="mt-4">
-        <FolioMarker label={sectionTitle(t, section)} className="mb-2.5" />
+        <FolioMarker lang={doc.lang} label={sectionTitle(t, section)} className="mb-2.5" />
         <h1
           className={`font-display text-3xl font-medium text-maroon [text-wrap:balance] [font-optical-sizing:auto] sm:text-4xl dark:text-clay ${
             doc.lang === "en" ? "tracking-tight" : "tracking-normal"
@@ -69,7 +69,7 @@ export default function DocView({
         >
           {doc.title}
         </h1>
-        {doc.date && <p className="mt-1 text-xs text-ink/60 dark:text-cream/60">{doc.date}</p>}
+        {doc.date && <p className="mt-1 text-[13px] leading-[1.45] text-ink/70 dark:text-cream/70">{doc.date}</p>}
         {/* Every slug has an English file, so a language mismatch always means
             English fallback — one shared "English only" badge covers it. */}
         {doc.lang !== lang && (
@@ -91,7 +91,7 @@ export default function DocView({
               : undefined
           }
         >
-          <div className={showToc ? "prose dark:prose-invert max-w-none" : "prose mt-6 dark:prose-invert max-w-none"} dangerouslySetInnerHTML={{ __html: doc.html }} />
+          <div className={showToc ? "prose dark:prose-invert max-w-none" : "prose mt-6 dark:prose-invert max-w-prose"} dangerouslySetInnerHTML={{ __html: doc.html }} />
         </article>
         {showToc && <TocRail toc={doc.toc} />}
       </div>

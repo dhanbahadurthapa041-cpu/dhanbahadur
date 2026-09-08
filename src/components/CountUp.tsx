@@ -17,12 +17,15 @@ interface CountUpProps {
   isNepali?: boolean;
   /** Duration in milliseconds (default: 1100ms per Implementationplan.md). */
   duration?: number;
+  /** Start delay in milliseconds for staggering sibling counters. */
+  delayMs?: number;
 }
 
 const DEV_DIGITS = ["०", "१", "२", "३", "४", "५", "६", "७", "८", "९"];
 
 function formatNum(n: number, isNepali: boolean): string {
-  const formatted = n.toLocaleString("en-US");
+  // en-IN gives South-Asian grouping (1,00,000); identical to en-US below 100k.
+  const formatted = n.toLocaleString(isNepali ? "en-IN" : "en-US");
   if (!isNepali) return formatted;
   return formatted.replace(/\d/g, (d) => DEV_DIGITS[Number(d)] ?? d);
 }
@@ -44,6 +47,7 @@ export default function CountUp({
   accessibleLabel,
   isNepali = false,
   duration = 1100,
+  delayMs = 0,
 }: CountUpProps) {
   const [displayValue, setDisplayValue] = useState<string>(fallbackText);
   const containerRef = useRef<HTMLSpanElement>(null);
@@ -70,7 +74,12 @@ export default function CountUp({
 
           const step = (timestamp: number) => {
             if (!startTimestamp) startTimestamp = timestamp;
-            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            const elapsed = timestamp - startTimestamp - delayMs;
+            if (elapsed < 0) {
+              requestAnimationFrame(step);
+              return;
+            }
+            const progress = Math.min(elapsed / duration, 1);
             // easeOutCubic: 1 - (1 - t)^3
             const ease = 1 - Math.pow(1 - progress, 3);
             const current = Math.round(startVal + (end - startVal) * ease);
@@ -95,7 +104,7 @@ export default function CountUp({
     return () => {
       observer.disconnect();
     };
-  }, [end, duration, prefix, suffix, fallbackText, isNepali]);
+  }, [end, duration, delayMs, prefix, suffix, fallbackText, isNepali]);
 
   return (
     <span ref={containerRef} className="tabular-nums">

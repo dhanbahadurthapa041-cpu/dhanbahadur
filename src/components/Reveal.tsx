@@ -77,7 +77,7 @@ function useRevealState() {
   return { ref, visible };
 }
 
-/** Stagger slot for card grids: 90ms steps, capped at 6 slots (see globals.css). */
+/** Stagger slot for card grids: 70ms steps, capped at 6 slots (see globals.css). */
 function staggerStyle(index?: number): CSSProperties | undefined {
   if (index === undefined) return undefined;
   return { "--i": Math.min(Math.max(index, 0), 5) } as CSSProperties;

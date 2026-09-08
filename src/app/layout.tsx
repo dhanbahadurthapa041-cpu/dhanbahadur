@@ -16,7 +16,7 @@ const nepali = Noto_Sans_Devanagari({
 
 // Display serif for headings — latin only to keep it light; Nepali glyphs
 // fall back to Noto Sans Devanagari.
-const display = Fraunces({ subsets: ["latin"], display: "swap", variable: "--font-fraunces" });
+const display = Fraunces({ subsets: ["latin"], display: "swap", variable: "--font-fraunces", axes: ["SOFT", "WONK", "opsz"] });
 
 const SITE_TITLE = "Dhan Bahadur Thapa | धन बहादुर थापा";
 const SITE_DESC =

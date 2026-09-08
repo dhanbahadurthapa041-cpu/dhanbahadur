@@ -53,6 +53,14 @@ function docGroup(section: Section, doc: { slug: string; subsection: string | nu
   return null;
 }
 
+/** Reading-time label with locale digits (NE uses Devanagari numerals). */
+function minReadLabel(minutes: number, lang: Lang): string {
+  const digits = lang === 'ne'
+    ? String(minutes).replace(/\d/g, (d) => '०१२३४५६७८९'[Number(d)] ?? d)
+    : String(minutes);
+  return STRINGS[lang].minRead.replace('{n}', digits);
+}
+
 export default function SectionIndex({ section, lang }: { section: Section; lang: Lang }) {
   const t = STRINGS[lang];
   const docs = getAllDocs(section, lang);
@@ -65,7 +73,7 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
         {t.backHome}
       </Link>
       <div className="mt-6">
-        <FolioMarker label={section === "pub" ? t.folioLibrary : t.folioCurriculum} className="mb-3" />
+        <FolioMarker lang={lang} label={section === "pub" ? t.folioLibrary : t.folioCurriculum} className="mb-3" />
         <h1 className={`font-display text-3xl font-medium text-maroon [text-wrap:balance] [font-optical-sizing:auto] sm:text-4xl dark:text-clay ${lang === "en" ? "tracking-tight" : "tracking-normal"}`}>
           {sectionTitle(t, section)}
         </h1>
@@ -83,10 +91,10 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                   index={i}
                   className=""
                 >
-                  <div className="rounded-xl border border-brass/25 bg-surface-subtle p-4 shadow-[0_1px_2px_rgba(47,42,37,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-brass/60 hover:shadow-[0_12px_24px_-14px_rgba(47,42,37,0.16)] motion-reduce:transition-none motion-reduce:hover:translate-none dark:border-cream/15 dark:bg-choc-elevated dark:shadow-none dark:hover:shadow-none">
+                  <div className="relative rounded-xl border border-brass/25 bg-surface-subtle p-4 shadow-[0_1px_2px_rgba(47,42,37,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-brass/60 hover:shadow-[0_12px_24px_-14px_rgba(47,42,37,0.16)] motion-reduce:transition-none motion-reduce:hover:translate-none dark:border-cream/15 dark:bg-choc-elevated dark:shadow-none dark:hover:shadow-none">
                   <Link
                     href={`/pub/${d.slug}`}
-                    className="text-lg font-semibold hover:text-pine dark:hover:text-mint"
+                    className="text-lg font-semibold after:absolute after:inset-0 hover:text-pine dark:hover:text-mint"
                   >
                     {d.title}
                   </Link>
@@ -95,7 +103,7 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                       {t.englishOnly}
                     </span>
                   )}
-                  {d.date && <p className="text-xs text-ink/60 dark:text-cream/60">{d.date}</p>}
+                  {<p className="mt-1 text-[13px] leading-[1.45] text-ink/70 tabular-nums dark:text-cream/70">{[d.date, minReadLabel(d.readingMinutes, lang)].filter(Boolean).join(" · ")}</p>}
                   </div>
                 </Reveal>
               ))}
@@ -112,7 +120,7 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
             const inGroup = docs.filter((d) => docGroup(section, d) === sub);
             return (
               <div key={sub}>
-                <h2 className={`flex items-center gap-3 font-display text-xl font-semibold text-maroon after:h-px after:flex-1 after:bg-brass/30 dark:text-clay dark:after:bg-brass/20 ${lang === "en" ? "tracking-tight" : "tracking-normal"}`}>{subsectionLabel(sub, t)}</h2>
+                <h2 className={`flex items-center gap-3 font-display text-xl font-medium dark:font-normal text-maroon after:h-px after:flex-1 after:bg-brass/30 dark:text-clay dark:after:bg-brass/20 ${lang === "en" ? "tracking-tight" : "tracking-normal"}`}>{subsectionLabel(sub, t)}</h2>
                 {inGroup.length > 0 ? (
                   <ul className="mt-3 space-y-3">
                     {inGroup.map((d, i) => (
@@ -122,10 +130,10 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                         index={i}
                         className=""
                       >
-                        <div className="rounded-xl border border-brass/25 bg-surface-subtle p-4 shadow-[0_1px_2px_rgba(47,42,37,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-brass/60 hover:shadow-[0_12px_24px_-14px_rgba(47,42,37,0.16)] motion-reduce:transition-none motion-reduce:hover:translate-none dark:border-cream/15 dark:bg-choc-elevated dark:shadow-none dark:hover:shadow-none">
+                        <div className="relative rounded-xl border border-brass/25 bg-surface-subtle p-4 shadow-[0_1px_2px_rgba(47,42,37,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-brass/60 hover:shadow-[0_12px_24px_-14px_rgba(47,42,37,0.16)] motion-reduce:transition-none motion-reduce:hover:translate-none dark:border-cream/15 dark:bg-choc-elevated dark:shadow-none dark:hover:shadow-none">
                         <Link
                           href={`/${section}/${d.slug}`}
-                          className="text-lg font-semibold hover:text-pine dark:hover:text-mint"
+                          className="text-lg font-semibold after:absolute after:inset-0 hover:text-pine dark:hover:text-mint"
                         >
                           {d.title}
                         </Link>
@@ -134,14 +142,17 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                             {t.englishOnly}
                           </span>
                         )}
-                        {d.date && <p className="text-xs text-ink/60 dark:text-cream/60">{d.date}</p>}
+                        {<p className="mt-1 text-[13px] leading-[1.45] text-ink/70 tabular-nums dark:text-cream/70">{[d.date, minReadLabel(d.readingMinutes, lang)].filter(Boolean).join(" · ")}</p>}
                         </div>
                       </Reveal>
                     ))}
                   </ul>
                 ) : (
                   <div className="mt-3 rounded-xl border border-dashed border-brass/40 bg-surface-subtle p-5 dark:border-cream/15 dark:bg-choc-elevated">
-                    <p className="font-display text-base font-semibold text-maroon dark:text-clay">
+                    <span aria-hidden="true" className="flex h-10 w-10 items-center justify-center rounded-full bg-brass/15 text-lg text-brass dark:bg-brass/10 dark:text-brass-dark">
+                      ◆
+                    </span>
+                    <p className="mt-3 font-display text-base font-semibold text-maroon dark:text-clay">
                       {subsectionLabel(sub, t)}
                     </p>
                     <p className="mt-1 text-sm text-ink/60 dark:text-cream/60">
@@ -179,7 +190,7 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
           )}
           {docs.filter((d) => docGroup(section, d) === null).length > 0 && (
             <div>
-              <h2 className={`flex items-center gap-3 font-display text-xl font-semibold text-maroon after:h-px after:flex-1 after:bg-brass/30 dark:text-clay dark:after:bg-brass/20 ${lang === "en" ? "tracking-tight" : "tracking-normal"}`}>{t.comingSoon}</h2>
+              <h2 className={`flex items-center gap-3 font-display text-xl font-medium dark:font-normal text-maroon after:h-px after:flex-1 after:bg-brass/30 dark:text-clay dark:after:bg-brass/20 ${lang === "en" ? "tracking-tight" : "tracking-normal"}`}>{t.comingSoon}</h2>
               <ul className="mt-3 space-y-3">
                 {docs
                   .filter((d) => docGroup(section, d) === null)
@@ -190,14 +201,14 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                       index={i}
                       className=""
                     >
-                      <div className="rounded-xl border border-brass/25 bg-surface-subtle p-4 shadow-[0_1px_2px_rgba(47,42,37,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-brass/60 hover:shadow-[0_12px_24px_-14px_rgba(47,42,37,0.16)] motion-reduce:transition-none motion-reduce:hover:translate-none dark:border-cream/15 dark:bg-choc-elevated dark:shadow-none dark:hover:shadow-none">
+                      <div className="relative rounded-xl border border-brass/25 bg-surface-subtle p-4 shadow-[0_1px_2px_rgba(47,42,37,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-brass/60 hover:shadow-[0_12px_24px_-14px_rgba(47,42,37,0.16)] motion-reduce:transition-none motion-reduce:hover:translate-none dark:border-cream/15 dark:bg-choc-elevated dark:shadow-none dark:hover:shadow-none">
                       <Link
                         href={`/${section}/${d.slug}`}
-                        className="text-lg font-semibold hover:text-pine dark:hover:text-mint"
+                        className="text-lg font-semibold after:absolute after:inset-0 hover:text-pine dark:hover:text-mint"
                       >
                         {d.title}
                       </Link>
-                      {d.date && <p className="text-xs text-ink/60 dark:text-cream/60">{d.date}</p>}
+                      {<p className="mt-1 text-[13px] leading-[1.45] text-ink/70 tabular-nums dark:text-cream/70">{[d.date, minReadLabel(d.readingMinutes, lang)].filter(Boolean).join(" · ")}</p>}
                       </div>
                     </Reveal>
                   ))}

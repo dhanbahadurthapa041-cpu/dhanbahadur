@@ -29,7 +29,7 @@ export default async function About() {
       </Link>
 
       <article className="mt-6">
-        <FolioMarker label={t.folioOverview} className="mb-4" />
+        <FolioMarker lang={lang} label={t.folioOverview} className="mb-4" />
 
         <h1
           className={`font-display text-4xl font-semibold text-maroon sm:text-5xl dark:text-clay ${
@@ -50,7 +50,7 @@ export default async function About() {
               alt={t.profileAlt}
               width={220}
               height={275}
-              className="relative aspect-[4/5] w-48 sm:w-56 rounded-2xl object-cover shadow-[0_8px_24px_-12px_rgba(47,42,37,0.35)]"
+              className="relative aspect-[4/5] w-48 sm:w-56 rounded-2xl object-cover shadow-[0_8px_24px_-12px_rgba(47,42,37,0.35)] dark:brightness-90 dark:saturate-[.92] dark:shadow-none"
               priority
             />
           </figure>

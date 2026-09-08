@@ -131,7 +131,7 @@ function PubLibraryInner() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder={t.libSearchPlaceholder}
-          className="w-full min-h-[44px] rounded-xl border border-ink/20 bg-surface-subtle px-4 py-2 text-sm placeholder:text-ink/40 focus:border-pine focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine dark:border-cream/20 dark:bg-choc-elevated dark:placeholder:text-cream/40 dark:focus:border-mint dark:focus-visible:outline-mint"
+          className="w-full min-h-[44px] rounded-xl border border-ink/20 bg-surface-subtle px-4 py-2 text-base placeholder:text-ink/40 focus:border-pine focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine dark:border-cream/20 dark:bg-choc-elevated dark:ring-1 dark:ring-white/10 dark:placeholder:text-cream/40 dark:focus:border-mint dark:focus-visible:outline-mint"
         />
       </div>
 
@@ -140,8 +140,14 @@ function PubLibraryInner() {
       </p>
 
       {filtered.length === 0 ? (
-        <div className="mt-3 rounded-xl border border-brass/25 bg-surface-subtle p-6 text-center dark:border-cream/15 dark:bg-choc-elevated">
-          <p className="font-semibold">{t.libEmptyTitle}</p>
+        <div className="mt-3 rounded-xl border border-brass/40 bg-brass/[0.07] p-8 text-center dark:border-cream/15 dark:bg-choc-elevated dark:ring-1 dark:ring-white/10">
+          <span aria-hidden="true" className="mx-auto flex h-11 w-11 items-center justify-center rounded-full bg-brass/20 text-lg text-brass dark:bg-brass/15 dark:text-brass-dark">
+            ⊘
+          </span>
+          {query.trim() !== "" && (
+            <p className="mt-3 text-sm font-medium text-ink/80 dark:text-cream/80">“{query.trim()}”</p>
+          )}
+          <p className="mt-1 font-semibold">{t.libEmptyTitle}</p>
           <p className="mt-1 text-sm text-ink/60 dark:text-cream/60">{t.libEmptyBody}</p>
           <button
             type="button"

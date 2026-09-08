@@ -77,7 +77,7 @@ export default function PullQuote({
       {(author || role) && (
         <figcaption>
           — {author && <span className="author">{author}</span>}
-          {role && <span className="role">{author ? `, ${role}` : role}</span>}
+          {role && <span className="role">{author ? ` · ${role}` : role}</span>}
         </figcaption>
       )}
     </figure>

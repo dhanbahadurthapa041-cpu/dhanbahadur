@@ -22,6 +22,8 @@ export interface Doc {
   dropcap: boolean;
   /** True only when frontmatter explicitly set `dropcap: true` (NE vetting). */
   dropcapExplicit: boolean;
+  /** Whole-minute reading estimate from the markdown body (≈200 wpm, min 1). */
+  readingMinutes: number;
 }
 
 /**
@@ -160,7 +162,9 @@ export function getDoc(section: Section, slug: string, lang: Lang): Doc | null {
       const dropcapExplicit = dropcapRaw === "true";
       const dropcap =
         dropcapRaw === "true" ? true : dropcapRaw === "false" ? false : l === "en";
-      return { slug, section, lang: l, title, date, subsection, html, toc, dropcap, dropcapExplicit };
+      const words = body.split(/\s+/).filter(Boolean).length;
+      const readingMinutes = Math.max(1, Math.round(words / 200));
+      return { slug, section, lang: l, title, date, subsection, html, toc, dropcap, dropcapExplicit, readingMinutes };
     }
   }
   return null;

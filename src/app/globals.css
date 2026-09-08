@@ -212,8 +212,8 @@ html {
   background: linear-gradient(
     to right,
     transparent,
-    rgba(201, 178, 124, 0.5) 20%,
-    rgba(201, 178, 124, 0.5) 80%,
+    rgba(201, 178, 124, 0.65) 15%,
+    rgba(201, 178, 124, 0.65) 85%,
     transparent
   );
 }
@@ -264,10 +264,11 @@ html[lang="ne"] footer h3 {
 .has-drop-cap > p:first-of-type::first-letter,
 p.has-drop-cap::first-letter {
   font-size: 3.4rem;
-  font-weight: 700;
+  font-weight: 600;
   float: left;
-  line-height: 0.85;
-  margin: 0.15rem 0.5rem 0 0;
+  line-height: 0.9;
+  margin: 0.1rem 0.5rem 0 0;
+  padding-right: 0.08em; /* curve clearance for Fraunces bowls */
   color: var(--color-maroon);
   font-family: var(--font-fraunces), Georgia, serif;
   font-optical-sizing: auto;
@@ -452,8 +453,19 @@ h4.font-display,
 }
 
 .prose a {
-  text-underline-offset: 3px;
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 0.06em;
   text-decoration-color: rgba(15, 106, 75, 0.55);
+  text-underline-position: auto;
+  text-decoration-skip-ink: auto;
+}
+.prose a:hover {
+  text-underline-offset: 0.22em;
+  text-decoration-thickness: 0.09em;
+}
+/* Devanagari below-base matras need extra clearance from the rule. */
+:lang(ne) .prose a {
+  text-underline-offset: 0.24em;
 }
 
 .dark .prose a {
@@ -549,7 +561,8 @@ h4.font-display,
 
 .pullquote figcaption .role {
   font-weight: 400;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
+  opacity: 0.85;
 }
 
 /* NE: kill uppercase + letterspacing — Devanagari has no case */
@@ -623,12 +636,12 @@ h4.font-display,
    The hidden pre-entrance state applies only when JS is present (.js is set
    by the inline bootstrap in layout.tsx) AND motion is allowed, so no-JS
    and reduced-motion readers always see full content. Stagger via --i:
-   90ms steps, capped at 6 slots (Reveal clamps the index to 0..5). */
+   70ms steps, capped at 6 slots (Reveal clamps the index to 0..5). */
 .reveal {
   transition:
-    opacity 220ms ease-out,
-    transform 220ms ease-out;
-  transition-delay: calc(var(--i, 0) * 90ms);
+    opacity 340ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 340ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--i, 0) * 70ms);
 }
 @media (prefers-reduced-motion: no-preference) {
   .js .reveal:not(.is-visible) {
@@ -646,7 +659,7 @@ h4.font-display,
    Fallback-first: resting composition is the designed state (visible, static).
    Motion lives ONLY inside @supports (animation-timeline: view()), so older
    browsers render today's static layout. Text column, caption, overlay grade
-   and grain never move. Total travel ~90px plate / ~45px photo « 50vh.
+   and grain never move. Total travel ~60px plate / ~30px photo « 50vh.
    No overflow:clip on the figure: decor offsets extend beyond its bounds and
    transforms never affect layout; the photo/overlay carry oversize bleed. */
 /* Travel is authored in px per the application brief §2-4 budgets (90/45/12/8px);
@@ -671,10 +684,10 @@ h4.font-display,
   }
   @keyframes plate-drift {
     from {
-      transform: translate3d(0, -30px, 0);
+      transform: translate3d(0, -20px, 0);
     }
     to {
-      transform: translate3d(0, 60px, 0);
+      transform: translate3d(0, 40px, 0);
     }
   }
 
@@ -690,10 +703,10 @@ h4.font-display,
   }
   @keyframes photo-drift {
     from {
-      transform: translate3d(0, 20px, 0) scale(1.15);
+      transform: translate3d(0, 14px, 0) scale(1.15);
     }
     to {
-      transform: translate3d(0, -25px, 0) scale(1.15);
+      transform: translate3d(0, -16px, 0) scale(1.15);
     }
   }
 
@@ -736,18 +749,18 @@ h4.font-display,
   @supports (animation-timeline: view()) {
     @keyframes plate-drift {
       from {
-        transform: translate3d(0, -15px, 0);
+        transform: translate3d(0, -10px, 0);
       }
       to {
-        transform: translate3d(0, 30px, 0);
+        transform: translate3d(0, 20px, 0);
       }
     }
     @keyframes photo-drift {
       from {
-        transform: translate3d(0, 10px, 0) scale(1.15);
+        transform: translate3d(0, 7px, 0) scale(1.15);
       }
       to {
-        transform: translate3d(0, -12px, 0) scale(1.15);
+        transform: translate3d(0, -8px, 0) scale(1.15);
       }
     }
     @keyframes frame-a-drift {
@@ -860,13 +873,15 @@ body {
       animation-timeline: --intro;
     }
     /* Beat 1 = identity (kicker + H1 share one window, one idea). */
+    /* Kicker leads H1 by a half-step; each dip resolves before the next
+       begins (4 ideas, staggered windows). */
     .intro-beat-1 {
       animation-name: intro-rise;
-      animation-range: cover 8% cover 35%;
+      animation-range: cover 8% cover 30%;
     }
     .intro-beat-2 {
       animation-name: intro-rise;
-      animation-range: cover 8% cover 35%;
+      animation-range: cover 12% cover 38%;
     }
     .intro-beat-3 {
       animation-name: intro-rise;
@@ -875,11 +890,11 @@ body {
     /* Focus targets never translate under Tab: opacity-only. */
     .intro-beat-4 {
       animation-name: intro-fade;
-      animation-range: cover 58% cover 78%;
+      animation-range: cover 64% cover 82%;
     }
     .intro-beat-5 {
       animation-name: intro-fade;
-      animation-range: cover 74% cover 95%;
+      animation-range: cover 80% cover 98%;
     }
     @keyframes intro-rise {
       from {
@@ -900,7 +915,7 @@ body {
         opacity: 1;
       }
       50% {
-        opacity: 0.6;
+        opacity: 0.8;
       }
       to {
         opacity: 1;
@@ -993,9 +1008,10 @@ body {
    from .parallax-*, .intro-beat-*, .reveal nodes (one animation owner/node).
    Recorded deviations from the briefs: ranges cover 0→8% (not 18%/15%) so the
    wipe completes BEFORE B6 H2 (~13%) / B3 quote (~19%) enters — the briefs'
-   own text-never-clipped rule forces this. Travel 48px ≈ 6vh@800px per
-   application brief H2; exceeds technique-brief §2C 24px cap by accepted
-   override (lg+hover+no-preference only, settles in cover 0→8% before text).
+   own text-never-clipped rule forces this. Travel 32px ≈ 4vh@800px per
+   application brief H2 (calmed from 48px in visual review); exceeds
+   technique-brief §2C 24px cap by accepted override (lg+hover+no-preference
+   only, settles in cover 0→8% before text).
    No paper-layer echo pseudos and no separate thread element: the H1 thread
    is formally WAIVED — a border on the clipped band is clipped, not riding,
    and both dark bands already carry brass rules inside (B3 pull-quote rules,
@@ -1020,7 +1036,7 @@ body {
       }
       @keyframes wipe-s2 {
         from {
-          clip-path: inset(48px 0 0 0);
+          clip-path: inset(32px 0 0 0);
         }
         to {
           clip-path: inset(0 0 0 0);
@@ -1133,11 +1149,14 @@ body {
     size: A4;
   }
 
-  /* Hide site chrome, interactive toggles, grain, and decorative furniture */
+  /* Hide site chrome, interactive toggles, tooling (search inputs), grain,
+     and decorative furniture — paper gets the collection, not the tools */
   header,
   footer,
   nav,
   button,
+  input,
+  [type="search"],
   .toc-drawer,
   .toc-rail,
   .reading-progress,
@@ -1268,8 +1287,9 @@ body {
     text-decoration: underline !important;
   }
 
-  /* Expand external hrefs so URLs survive on paper */
-  a[href^="http"]::after {
+  /* Expand external + download hrefs so URLs survive on paper */
+  a[href^="http"]::after,
+  a[href^="/downloads/"]::after {
     content: " (" attr(href) ")";
     font-size: 0.85em;
     word-break: break-all;

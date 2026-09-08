@@ -67,7 +67,7 @@ export default function StatsRow() {
               key={i}
               className={`flex flex-col justify-between p-6 text-center sm:p-7 md:p-8 print:p-4 print:bg-white print:text-black print:break-inside-avoid ${
                 stat.featured
-                  ? "bg-parchment border-t-2 border-t-brass/70 dark:bg-brass/[0.06] dark:border-t-brass-dark/50"
+                  ? "bg-parchment border-t-4 border-t-brass/70 ring-1 ring-inset ring-brass/30 dark:bg-brass/[0.10] dark:border-t-brass-dark/50 dark:ring-brass-dark/20"
                   : "bg-surface-subtle dark:bg-choc-elevated"
               }`}
             >
@@ -96,11 +96,13 @@ export default function StatsRow() {
                     </p>
                   )}
                   <p
-                    className={`font-display font-semibold ${
-                      isNe ? "tracking-normal" : "tracking-tight"
+                    className={`font-display ${
+                      stat.featured ? "font-semibold" : "font-medium dark:font-normal"
+                    } ${
+                      isNe ? "tracking-normal" : "tracking-tight [font-variant-numeric:lining-nums_tabular-nums]"
                     } ${
                       stat.featured
-                        ? "text-4xl sm:text-5xl text-pine dark:text-mint print:text-black"
+                        ? "text-5xl sm:text-6xl text-pine dark:text-mint print:text-black"
                         : "text-3xl sm:text-4xl text-maroon dark:text-clay print:text-black"
                     }`}
                   >
@@ -110,13 +112,15 @@ export default function StatsRow() {
                       fallbackText={stat.fallbackText}
                       accessibleLabel={stat.accessible}
                       isNepali={isNe}
+                      duration={stat.num <= 100 ? 700 : stat.num <= 1000 ? 900 : 1100}
+                      delayMs={i * 120}
                     />
                   </p>
                   <h3 className="mt-2.5 font-display text-base font-medium text-ink dark:text-cream print:text-black">
                     {stat.label}
                   </h3>
                   {stat.featured && (
-                    <span aria-hidden="true" className="mx-auto mt-3 block h-px w-8 bg-brass/60 dark:bg-brass-dark/40" />
+                    <span aria-hidden="true" className="mx-auto mt-3 block h-px w-10 bg-brass/60 dark:bg-brass-dark/40" />
                   )}
                 </div>
               )}
@@ -133,7 +137,7 @@ export default function StatsRow() {
       </div>
 
       {/* Proof-chain caption line under the row (Innocence Project / Sopact standard) */}
-      <p className={`mt-3 text-center text-xs text-ink/60 dark:text-cream/70 print:text-black/60 ${isNe ? "tracking-normal" : "tracking-wide"}`}>
+      <p className={`mt-3 text-center text-xs leading-relaxed text-ink/60 dark:text-cream/70 print:text-black/60 ${isNe ? "tracking-normal" : "tracking-wide"}`}>
         {t.statProofCaption}
       </p>
     </div>
