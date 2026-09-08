@@ -100,7 +100,7 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                     {d.title}
                   </Link>
                   {d.lang !== lang && (
-                    <span className={`badge-leak-guard ml-2 inline-block max-w-full whitespace-nowrap rounded-full bg-brass/20 px-2.5 py-0.5 align-middle text-[11px] font-semibold text-ink dark:bg-brass/15 dark:text-cream ${lang === "en" ? "uppercase tracking-[0.08em]" : "tracking-normal"}`}>
+                    <span className={`badge-leak-guard ml-2 inline-block max-w-full overflow-hidden text-ellipsis whitespace-nowrap rounded-full bg-brass/20 px-2.5 py-0.5 align-middle text-[11px] font-semibold text-ink dark:bg-brass/15 dark:text-cream ${lang === "en" ? "uppercase tracking-[0.08em]" : "tracking-normal"}`}>
                       {t.englishOnly}
                     </span>
                   )}
@@ -140,7 +140,7 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                           {d.title}
                         </Link>
                         {d.lang !== lang && (
-                          <span className={`badge-leak-guard ml-2 inline-block max-w-full whitespace-nowrap rounded-full bg-brass/20 px-2.5 py-0.5 align-middle text-[11px] font-semibold text-ink dark:bg-brass/15 dark:text-cream ${lang === "en" ? "uppercase tracking-[0.08em]" : "tracking-normal"}`}>
+                          <span className={`badge-leak-guard ml-2 inline-block max-w-full overflow-hidden text-ellipsis whitespace-nowrap rounded-full bg-brass/20 px-2.5 py-0.5 align-middle text-[11px] font-semibold text-ink dark:bg-brass/15 dark:text-cream ${lang === "en" ? "uppercase tracking-[0.08em]" : "tracking-normal"}`}>
                             {t.englishOnly}
                           </span>
                         )}
@@ -186,7 +186,7 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                       {d.title}
                     </Link>
                     {d.lang !== lang && (
-                      <span className={`badge-leak-guard ml-2 inline-block max-w-full whitespace-nowrap rounded-full bg-brass/20 px-2.5 py-0.5 align-middle text-[11px] font-semibold text-ink dark:bg-brass/15 dark:text-cream ${lang === "en" ? "uppercase tracking-[0.08em]" : "tracking-normal"}`}>
+                      <span className={`badge-leak-guard ml-2 inline-block max-w-full overflow-hidden text-ellipsis whitespace-nowrap rounded-full bg-brass/20 px-2.5 py-0.5 align-middle text-[11px] font-semibold text-ink dark:bg-brass/15 dark:text-cream ${lang === "en" ? "uppercase tracking-[0.08em]" : "tracking-normal"}`}>
                         {t.englishOnly}
                       </span>
                     )}

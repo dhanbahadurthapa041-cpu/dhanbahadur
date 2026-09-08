@@ -113,12 +113,13 @@ function TocLinks({
   onNavigate?: () => void;
   listId?: string;
 }) {
+  const hasH2 = toc.some((e) => e.level === 2);
   return (
     <ul id={listId} className="space-y-1 text-sm">
       {toc.map((entry) => {
         const isActive = active === entry.id;
         return (
-          <li key={entry.id} className={entry.level === 3 ? "ml-4" : undefined}>
+          <li key={entry.id} className={entry.level === 3 && hasH2 ? "ml-4" : undefined}>
             <a
               href={`#${entry.id}`}
               aria-current={isActive ? ("location" as const) : undefined}

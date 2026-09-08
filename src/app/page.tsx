@@ -142,7 +142,7 @@ export default async function Home() {
       {/* ===================================================================
           BAND 3: Chapter-Break Pull Quote (Full-Bleed Deep Pine)
           =================================================================== */}
-      <section className="band-wipe-s2 full-bleed relative overflow-hidden bg-pine on-pine py-24 sm:py-32 lg:py-40 text-cream dark:bg-pine-dark">
+      <section data-band="pine" className="band-wipe-s2 full-bleed relative overflow-hidden bg-pine on-pine py-24 sm:py-32 lg:py-40 text-cream dark:bg-pine-dark">
         <div className="relative mx-auto max-w-4xl px-4 sm:px-6">
           <div
             aria-hidden="true"

@@ -146,6 +146,7 @@ export default function StatsRow() {
           className="proof-i inline-flex h-5 w-5 items-center justify-center rounded-full border border-brass/50 align-middle text-[11px] font-semibold text-pine transition motion-reduce:transition-none hover:border-pine focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine dark:border-cream/30 dark:text-mint dark:focus-visible:outline-mint"
           aria-label={t.statProofAbout}
           aria-describedby={proofTipId}
+          onKeyDown={(e) => { if (e.key === "Escape") (e.target as HTMLElement).blur(); }}
         >
           <span aria-hidden="true">i</span>
         </button>

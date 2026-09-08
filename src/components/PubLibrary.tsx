@@ -98,7 +98,7 @@ function PubLibraryInner() {
 
   return (
     <section aria-label={t.libSearchLabel} className="mt-8">
-      <div className="flex flex-wrap gap-2" role="group" aria-label={t.libSearchLabel}>
+      <div className="flex flex-wrap gap-2" role="group" aria-label={t.libFilterLabel}>
         {chips.map((chip) => {
           const pressed = cat === chip.value;
           return (
@@ -135,7 +135,7 @@ function PubLibraryInner() {
         />
       </div>
 
-      <p aria-live="polite" className="mt-2 text-xs text-ink/60 dark:text-cream/60">
+      <p aria-live="polite" aria-atomic="true" className="mt-2 text-xs text-ink/60 dark:text-cream/60">
         {filtered.length} {filtered.length === 1 ? t.libCountSingular : t.libCountPlural}
       </p>
 
@@ -147,7 +147,7 @@ function PubLibraryInner() {
           {query.trim() !== "" && (
             <p className="mt-3 text-sm font-medium text-ink/80 dark:text-cream/80">“{query.trim()}”</p>
           )}
-          <p className="mt-1 font-semibold">{t.libEmptyTitle}</p>
+          <h2 className="mt-1 text-base font-semibold">{t.libEmptyTitle}</h2>
           <p className="mt-1 text-sm text-ink/60 dark:text-cream/60">{t.libEmptyBody}</p>
           <button
             type="button"

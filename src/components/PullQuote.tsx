@@ -1,5 +1,5 @@
 import React from "react";
-import type { Lang } from "@/lib/i18n";
+import { STRINGS, type Lang } from "@/lib/i18n";
 
 export interface PullQuoteProps {
   quote?: string;
@@ -39,6 +39,7 @@ export default function PullQuote({
 }: PullQuoteProps) {
   const isNe = lang === "ne";
   const isTodo = todo || !quote || quote.trim().length === 0;
+  const t = STRINGS[lang];
 
   if (isTodo) {
     return (
@@ -48,15 +49,8 @@ export default function PullQuote({
         lang={lang}
         aria-hidden="true"
       >
-        <span className="todo-eyebrow">
-          {isNe ? "उद्धरण · तय हुन बाँकी" : "Pull-quote · TBD"}
-        </span>
-        <p className="todo-note">
-          {todoNote ??
-            (isNe
-              ? "यस निबन्धबाट ≤२५ शब्द चयन गर्न बाँकी।"
-              : "Father to select ≤25 words from this essay.")}
-        </p>
+        <span className="todo-eyebrow">{t.todoEyebrow}</span>
+        <p className="todo-note">{todoNote ?? t.todoNoteDefault}</p>
       </figure>
     );
   }

@@ -523,13 +523,14 @@ h4.font-display,
   overflow-x: auto;
 }
 .prose table {
-  display: block;
   overflow-x: auto;
-  width: max-content;
   max-width: 100%;
 }
-.prose :is(p, li, td, th, code) {
+.prose :is(p, li, code) {
   overflow-wrap: anywhere;
+}
+.prose :is(td, th) {
+  overflow-wrap: break-word;
 }
 
 .prose a {
@@ -694,14 +695,12 @@ h4.font-display,
 /* ---- Round 2: CSS-first motion (zero JS animation libs) ---- */
 
 /* Route crossfade target: 180ms. These pseudo-element rules are inert until
-   a transition is triggered. Triggering needs React's experimental
-   <ViewTransition> plus Next's experimental.viewTransition flag — both are
-   absent from the installed toolchain (Next 16.3.4 has no such config key;
-   <ViewTransition> exists only in react-dom-experimental, while this repo
-   pins stable React 19.2.8), so no wrapper/flag is wired up and the theme
-   toggle stays a plain class swap (no clip-path heroics). When the
-   toolchain gains the stable API, wrap {children} in <ViewTransition> in
-   layout.tsx and this crossfade starts applying with no other changes.
+   a transition is triggered. Triggering needs React's <ViewTransition>,
+   which is unavailable in the installed toolchain (stable React 19.2.8),
+   so no wrapper is wired up and the theme toggle stays a plain class swap
+   (no clip-path heroics). When the stable API is confirmed available,
+   wrap {children} in <ViewTransition> in layout.tsx and this crossfade
+   starts applying with no other changes.
    Shared-element morph (portrait hero -> about) deliberately skipped for the
    same reason: without the API, cross-route view-transition-name matching
    is not trivial — revisit with the experimental channel. */
@@ -1384,6 +1383,14 @@ body {
   a {
     color: #000 !important;
     text-decoration: underline !important;
+  }
+
+  /* Dark-band copy prints black (direct utilities beat inherited body ink) */
+  [data-band="choc"] p,
+  [data-band="pine"] p,
+  .on-pine p,
+  .folio-marker.folio-on-dark {
+    color: #000 !important;
   }
 
   /* Expand external + download hrefs so URLs survive on paper */

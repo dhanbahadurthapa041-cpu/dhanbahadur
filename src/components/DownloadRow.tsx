@@ -36,8 +36,8 @@ export default function DownloadRow({ item, index }: { item: DownloadRowItem; in
                 <span
                   className={`dl-pill badge-leak-guard rounded-full bg-brass/20 px-2 py-0.5 text-[11px] font-semibold ${lang === "ne" ? "tracking-normal" : "uppercase tracking-[0.08em]"} text-ink dark:bg-brass/15 dark:text-cream`}
                   tabIndex={0}
-                  title={t.dlFormatTip}
                   aria-describedby={fmtTipId}
+                  onKeyDown={(e) => { if (e.key === "Escape") (e.target as HTMLElement).blur(); }}
                 >
                   {item.format}
                 </span>
@@ -66,8 +66,8 @@ export default function DownloadRow({ item, index }: { item: DownloadRowItem; in
             aria-disabled="true"
             className="dl-pill inline-flex min-h-[44px] items-center rounded-full border border-dashed border-brass/40 bg-ink/5 px-4 py-2 text-sm text-ink/60 select-none dark:border-cream/20 dark:bg-cream/5 dark:text-cream/60"
             tabIndex={0}
-            title={t.comingSoonTip}
             aria-describedby={soonTipId}
+            onKeyDown={(e) => { if (e.key === "Escape") (e.target as HTMLElement).blur(); }}
           >
             {t.comingSoon}
           </span>
