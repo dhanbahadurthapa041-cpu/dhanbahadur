@@ -211,7 +211,9 @@ html {
       opacity 260ms ease-out;
   }
   .group:hover .bento-glow,
-  .stats-featured:hover .bento-glow {
+  .group:focus-within .bento-glow,
+  .stats-featured:hover .bento-glow,
+  .stats-featured:focus-within .bento-glow {
     --glow-o: 0.55;
   }
   .grain-overlay {
@@ -1501,7 +1503,8 @@ body {
       flex-direction: column;
       align-items: stretch;
     }
-    .row-tag {
+    .row-tag,
+    .dl-pill {
       align-self: flex-start;
     }
   }
@@ -1566,7 +1569,6 @@ body {
   anchor-scope: --tip;
 }
 .dl-pill,
-.icon-tip-btn,
 .proof-i {
   anchor-name: --tip;
 }

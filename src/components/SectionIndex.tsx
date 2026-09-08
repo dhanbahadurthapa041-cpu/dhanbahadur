@@ -177,7 +177,7 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                   return g !== null && !subs.includes(g);
                 })
                 .map((d) => (
-                  <div key={d.slug} className="row-inner section-card relative rounded-xl border border-brass/25 bg-surface-subtle p-4 shadow-[0_1px_2px_rgba(47,42,37,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-brass/60 hover:shadow-[0_12px_24px_-14px_rgba(47,42,37,0.16)] motion-reduce:transition-none motion-reduce:hover:translate-none dark:border-cream/15 dark:bg-choc-elevated dark:shadow-none dark:hover:shadow-none focus-within:border-pine/60 dark:focus-within:border-mint/60">
+                  <div key={d.slug} className="cq-row row-inner section-card relative rounded-xl border border-brass/25 bg-surface-subtle p-4 shadow-[0_1px_2px_rgba(47,42,37,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-brass/60 hover:shadow-[0_12px_24px_-14px_rgba(47,42,37,0.16)] motion-reduce:transition-none motion-reduce:hover:translate-none dark:border-cream/15 dark:bg-choc-elevated dark:shadow-none dark:hover:shadow-none focus-within:border-pine/60 dark:focus-within:border-mint/60">
                     <Link
                       lang={d.lang}
                       href={`/${section}/${d.slug}`}
