@@ -67,7 +67,7 @@ export default function StatsRow() {
               key={i}
               className={`flex flex-col justify-between p-6 text-center sm:p-7 md:p-8 print:p-4 print:bg-white print:text-black print:break-inside-avoid ${
                 stat.featured
-                  ? "bg-parchment border-t-4 border-t-brass/70 ring-1 ring-inset ring-brass/30 dark:bg-brass/[0.10] dark:border-t-brass-dark/50 dark:ring-brass-dark/20"
+                  ? "bg-parchment ring-1 ring-inset ring-brass/30 shadow-[inset_0_4px_0_0_rgba(201,178,124,0.7)] dark:bg-brass/[0.10] dark:ring-brass-dark/20 dark:shadow-[inset_0_4px_0_0_rgba(232,213,160,0.5)]"
                   : "bg-surface-subtle dark:bg-choc-elevated"
               }`}
             >
@@ -113,7 +113,7 @@ export default function StatsRow() {
                       accessibleLabel={stat.accessible}
                       isNepali={isNe}
                       duration={stat.num <= 100 ? 700 : stat.num <= 1000 ? 900 : 1100}
-                      delayMs={i * 120}
+                      delayMs={(i % 4) * 90}
                     />
                   </p>
                   <h3 className="mt-2.5 font-display text-base font-medium text-ink dark:text-cream print:text-black">

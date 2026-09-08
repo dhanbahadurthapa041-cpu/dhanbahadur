@@ -35,37 +35,37 @@ export default function Footer() {
             </h3>
             <ul className="mt-4 space-y-2 text-sm text-cream/80">
               <li>
-                <Link href="/" className="transition motion-reduce:transition-none hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint">
+                <Link href="/" className="inline-flex min-h-[44px] items-center transition motion-reduce:transition-none hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint">
                   {t.navHome}
                 </Link>
               </li>
               <li>
-                <Link href="/pub" className="transition motion-reduce:transition-none hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint">
+                <Link href="/pub" className="inline-flex min-h-[44px] items-center transition motion-reduce:transition-none hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint">
                   {t.navPub}
                 </Link>
               </li>
               <li>
-                <Link href="/writing" className="transition motion-reduce:transition-none hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint">
+                <Link href="/writing" className="inline-flex min-h-[44px] items-center transition motion-reduce:transition-none hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint">
                   {t.navWriting}
                 </Link>
               </li>
               <li>
-                <Link href="/grammar" className="transition motion-reduce:transition-none hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint">
+                <Link href="/grammar" className="inline-flex min-h-[44px] items-center transition motion-reduce:transition-none hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint">
                   {t.navGrammar}
                 </Link>
               </li>
               <li>
-                <Link href="/class-10" className="transition motion-reduce:transition-none hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint">
+                <Link href="/class-10" className="inline-flex min-h-[44px] items-center transition motion-reduce:transition-none hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint">
                   {t.navClass10}
                 </Link>
               </li>
               <li>
-                <Link href="/class-12" className="transition motion-reduce:transition-none hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint">
+                <Link href="/class-12" className="inline-flex min-h-[44px] items-center transition motion-reduce:transition-none hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint">
                   {t.navClass12}
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="transition motion-reduce:transition-none hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint">
+                <Link href="/about" className="inline-flex min-h-[44px] items-center transition motion-reduce:transition-none hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint">
                   {t.navAbout}
                 </Link>
               </li>

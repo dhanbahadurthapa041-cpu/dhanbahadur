@@ -9,26 +9,94 @@ import type { TocEntry } from "@/lib/content";
  * primitive dep so the observer is only rebuilt when the TOC changes.
  * No animation here, so nothing to disable for reduced-motion readers.
  */
-function useScrollSpy(idsKey: string): string | null {
+export interface SpyShared {
+  ids: string[];
+  cbs: Set<(active: string | null) => void>;
+  observer: IntersectionObserver | null;
+  raf: number;
+  onScroll: () => void;
+}
+
+/**
+ * One shared observer + scroll listener per TOC (rail + drawer subscribe to
+ * the same entry instead of doubling observation). Module scope is safe:
+ * entries are only created inside effects, never during SSR.
+ */
+const sharedSpies = new Map<string, SpyShared>();
+
+function pickSpyActive(ids: string[]): string | null {
+  if (typeof window === "undefined") return null;
+  if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 10) {
+    const last = ids[ids.length - 1];
+    if (last) return last;
+  }
+  let best: string | null = null;
+  let bestTop = Infinity;
+  for (const id of ids) {
+    const el = document.getElementById(id);
+    if (!el) continue;
+    const top = el.getBoundingClientRect().top;
+    if (top < window.innerHeight * 0.85 && top > -window.innerHeight * 0.7 && top < bestTop) {
+      bestTop = top;
+      best = id;
+    }
+  }
+  return best;
+}
+
+export function useScrollSpy(idsKey: string): string | null {
   const [active, setActive] = useState<string | null>(null);
 
   useEffect(() => {
     const ids = idsKey.split("\n").filter(Boolean);
     if (ids.length === 0) return;
     if (typeof window === "undefined" || !("IntersectionObserver" in window)) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) setActive(entry.target.id);
-        }
-      },
-      { rootMargin: "-15% 0px -70% 0px", threshold: 0 },
-    );
-    for (const id of ids) {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
+    // Shared entry: rail + drawer observe the same ids, so one observer +
+    // one scroll listener serves both instead of doubling observation.
+    let entry = sharedSpies.get(idsKey);
+    if (!entry) {
+      const fresh: SpyShared = {
+        ids,
+        cbs: new Set(),
+        observer: null,
+        raf: 0,
+        onScroll: () => {},
+      };
+      const notify = () => {
+        fresh.raf = 0;
+        const next = pickSpyActive(fresh.ids);
+        fresh.cbs.forEach((cb) => cb(next));
+      };
+      fresh.onScroll = () => {
+        if (!fresh.raf) fresh.raf = requestAnimationFrame(notify);
+      };
+      fresh.observer = new IntersectionObserver(
+        () => {
+          notify();
+        },
+        { rootMargin: "-15% 0px -70% 0px", threshold: 0 },
+      );
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (el) fresh.observer.observe(el);
+      }
+      window.addEventListener("scroll", fresh.onScroll, { passive: true });
+      sharedSpies.set(idsKey, fresh);
+      entry = fresh;
     }
-    return () => observer.disconnect();
+    const cb = (next: string | null) => {
+      if (next) setActive(next);
+    };
+    entry.cbs.add(cb);
+    return () => {
+      entry!.cbs.delete(cb);
+      if (entry!.cbs.size === 0) {
+        entry!.observer?.disconnect();
+        window.removeEventListener("scroll", entry!.onScroll);
+        if (entry!.raf) cancelAnimationFrame(entry!.raf);
+        sharedSpies.delete(idsKey);
+      }
+    };
   }, [idsKey]);
 
   return active;
@@ -53,7 +121,7 @@ function TocLinks({
           <li key={entry.id} className={entry.level === 3 ? "ml-4" : undefined}>
             <a
               href={`#${entry.id}`}
-              aria-current={isActive ? "true" : undefined}
+              aria-current={isActive ? ("location" as const) : undefined}
               onClick={onNavigate}
               className={`block rounded border-l-2 py-1 pl-[6px] pr-2 transition motion-reduce:transition-none ${
                 isActive
@@ -73,6 +141,7 @@ function TocLinks({
 /** Sticky desktop rail. Rendered only when the lesson has 3+ headings. */
 export function TocRail({ toc }: { toc: TocEntry[] }) {
   const { t, lang } = useLang();
+  // Shared registry inside useScrollSpy dedups rail + drawer observation.
   const active = useScrollSpy(toc.map((e) => e.id).join("\n"));
   return (
     <nav aria-label={t.onThisPage} className="toc-rail hidden lg:block">

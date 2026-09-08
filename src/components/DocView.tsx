@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getDoc, sectionTitle, type Section } from "@/lib/content";
+import { getDoc, sectionTitle, localDigits, type Section } from "@/lib/content";
 import { STRINGS, type Lang } from "@/lib/i18n";
 import ReadingProgress from "./ReadingProgress";
 import { TocDrawer, TocRail } from "./Toc";
@@ -56,7 +56,7 @@ export default function DocView({
     <div className="mx-auto max-w-4xl px-4 py-16 sm:py-24 lg:py-32">
       <Link
         href={`/${section}`}
-        className="inline-flex items-center gap-1 text-sm font-medium text-pine transition motion-reduce:transition-none hover:text-pine-deep dark:text-mint dark:hover:text-cream"
+        className="no-print inline-flex items-center gap-1 text-sm font-medium text-pine transition motion-reduce:transition-none hover:text-pine-deep dark:text-mint dark:hover:text-cream"
       >
         {t.backSection}
       </Link>
@@ -69,7 +69,7 @@ export default function DocView({
         >
           {doc.title}
         </h1>
-        {doc.date && <p className="mt-1 text-[13px] leading-[1.45] text-ink/70 dark:text-cream/70">{doc.date}</p>}
+        {doc.date && <p className="mt-1 text-[13px] leading-[1.45] text-ink/70 tabular-nums dark:text-cream/70">{localDigits(doc.date, lang)}</p>}
         {/* Every slug has an English file, so a language mismatch always means
             English fallback — one shared "English only" badge covers it. */}
         {doc.lang !== lang && (
@@ -84,6 +84,7 @@ export default function DocView({
       {showToc && <TocDrawer toc={doc.toc} />}
       <div className={showToc ? "mt-8 lg:grid lg:grid-cols-[minmax(0,1fr)_13rem] lg:items-start lg:gap-8" : undefined}>
         <article
+          lang={doc.lang}
           id={showToc ? ARTICLE_ID : undefined}
           className={
             doc.dropcap && openerAllowsDropCap(doc.html, doc.lang, doc.dropcapExplicit)

@@ -35,7 +35,7 @@
   --color-border: #e5dccb;
 
   --font-sans: var(--font-noto), ui-sans-serif, system-ui, "Noto Sans Devanagari", sans-serif;
-  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-display: var(--font-fraunces), "Noto Sans Devanagari", Georgia, "Times New Roman", serif;
 
   /* Intentional deviation from the A2 28px floor: 1.5rem (24px) keeps long
      NE quotes readable at 360px (Task E audit). */
@@ -245,6 +245,15 @@ html {
 html[lang="ne"] .folio-text {
   text-transform: none;
   letter-spacing: 0;
+}
+
+/* Explicit band tone for folio kickers on dark bands. Unlayered, so it beats
+   the layered text-pine/mint utilities regardless of source order. */
+.folio-marker.folio-on-dark {
+  color: var(--color-brass-dark);
+}
+.dark .folio-marker.folio-on-dark {
+  color: var(--color-mint);
 }
 
 /* Devanagari uppercase / letter-spacing leak guards (no case distinction / avoid conjunct splitting) */
@@ -655,6 +664,13 @@ h4.font-display,
   }
 }
 
+/* Dense phone stacks: match reveal travel to the gutter scale. */
+@media (max-width: 639px) and (prefers-reduced-motion: no-preference) {
+  .js .reveal:not(.is-visible) {
+    transform: translateY(10px);
+  }
+}
+
 /* ---- Phase B5: hero portrait parallax (CSS scroll-driven, view() timeline)
    Fallback-first: resting composition is the designed state (visible, static).
    Motion lives ONLY inside @supports (animation-timeline: view()), so older
@@ -877,11 +893,11 @@ body {
        begins (4 ideas, staggered windows). */
     .intro-beat-1 {
       animation-name: intro-rise;
-      animation-range: cover 8% cover 30%;
+      animation-range: cover 6% cover 22%;
     }
     .intro-beat-2 {
       animation-name: intro-rise;
-      animation-range: cover 12% cover 38%;
+      animation-range: cover 24% cover 40%;
     }
     .intro-beat-3 {
       animation-name: intro-rise;
@@ -921,6 +937,17 @@ body {
         opacity: 1;
       }
     }
+  }
+}
+
+/* Touch: hover lifts would stick after first tap — press-only feedback.
+   Buttons keep :active press states (desired on touch). */
+@media (hover: none) {
+  a:hover,
+  div:hover,
+  li:hover,
+  .group:hover [class*="translate"] {
+    translate: none !important;
   }
 }
 
@@ -1289,7 +1316,8 @@ body {
 
   /* Expand external + download hrefs so URLs survive on paper */
   a[href^="http"]::after,
-  a[href^="/downloads/"]::after {
+  a[href^="/downloads/"]::after,
+  .prose a[href^="/"]::after {
     content: " (" attr(href) ")";
     font-size: 0.85em;
     word-break: break-all;

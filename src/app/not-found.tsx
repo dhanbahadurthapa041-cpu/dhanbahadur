@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { STRINGS } from "@/lib/i18n";
 import { getServerLang } from "@/lib/lang-server";
-import FolioMarker from "@/components/FolioMarker";
 
 // Language comes from the `dbt-lang` cookie per request — never statically cache.
 export const dynamic = "force-dynamic";
@@ -11,7 +10,6 @@ export default async function NotFound() {
   const t = STRINGS[lang];
   return (
     <div className="mx-auto max-w-4xl px-4 py-16 text-center sm:py-24">
-      <FolioMarker lang={lang} label={t.folioOverview} className="mb-4 justify-center" />
       <h1 className={`font-display text-3xl font-semibold ${lang === "en" ? "tracking-tight" : "tracking-normal"}`}>{t.notFoundTitle}</h1>
       <p className="mt-2 text-ink/70 dark:text-cream/70">{t.notFoundBody}</p>
       <Link

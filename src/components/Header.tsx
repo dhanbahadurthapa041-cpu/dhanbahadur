@@ -29,7 +29,7 @@ export default function Header() {
   const close = () => setOpen(false);
 
   return (
-    <header className={`sticky top-0 z-40 border-b bg-paper/92 backdrop-blur-md transition-colors motion-reduce:transition-none dark:bg-choc/92 ${scrolled ? "border-brass/50 shadow-[0_2px_12px_rgba(47,42,37,0.08)] dark:border-cream/20" : "border-brass/30 dark:border-cream/10"}`}>
+    <header className={`sticky top-0 z-40 border-b bg-paper/92 backdrop-blur-md transition-colors motion-reduce:transition-none dark:bg-choc/92 ${scrolled ? "border-brass/50 shadow-[0_2px_12px_rgba(47,42,37,0.08)] dark:border-cream/20 dark:shadow-none" : "border-brass/30 dark:border-cream/10"}`}>
       <div className="mx-auto max-w-6xl px-4 py-3.5 sm:px-6">
         <div className="flex items-center justify-between gap-4">
           <Link

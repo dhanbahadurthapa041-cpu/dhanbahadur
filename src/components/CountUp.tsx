@@ -62,6 +62,7 @@ export default function CountUp({
     const node = containerRef.current;
     if (!node || hasAnimated.current) return;
 
+    let delayTimer = 0;
     const observer = new IntersectionObserver(
       (entries) => {
         const entry = entries[0];
@@ -69,17 +70,13 @@ export default function CountUp({
           hasAnimated.current = true;
           observer.disconnect();
 
-          let startTimestamp: number | null = null;
-          const startVal = 0;
+          const run = () => {
+            let startTimestamp: number | null = null;
+            const startVal = 0;
 
-          const step = (timestamp: number) => {
-            if (!startTimestamp) startTimestamp = timestamp;
-            const elapsed = timestamp - startTimestamp - delayMs;
-            if (elapsed < 0) {
-              requestAnimationFrame(step);
-              return;
-            }
-            const progress = Math.min(elapsed / duration, 1);
+            const step = (timestamp: number) => {
+              if (!startTimestamp) startTimestamp = timestamp;
+              const progress = Math.min((timestamp - startTimestamp) / duration, 1);
             // easeOutCubic: 1 - (1 - t)^3
             const ease = 1 - Math.pow(1 - progress, 3);
             const current = Math.round(startVal + (end - startVal) * ease);
@@ -94,6 +91,10 @@ export default function CountUp({
           };
 
           requestAnimationFrame(step);
+        };
+
+          // Stagger via timer so no rAF frames burn during the wait.
+          delayTimer = window.setTimeout(run, delayMs);
         }
       },
       { threshold: 0.35 }
@@ -103,6 +104,7 @@ export default function CountUp({
 
     return () => {
       observer.disconnect();
+      window.clearTimeout(delayTimer);
     };
   }, [end, duration, delayMs, prefix, suffix, fallbackText, isNepali]);
 

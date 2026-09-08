@@ -32,6 +32,11 @@ export interface Doc {
  */
 export const DROP_CAP_CANARY = ["स्थिति", "क्ष", "त्र", "ज्ञ", "श्र", "हिन्दी", "र्य"];
 
+/** Render digits in Devanagari for NE (dates/years stay Latin in EN). */
+export function localDigits(s: string, lang: Lang): string {
+  return lang === "ne" ? s.replace(/\d/g, (d) => "०१२३४५६७८९"[Number(d)] ?? d) : s;
+}
+
 export interface TocEntry {
   /** Slug matching the rendered heading's id. */
   id: string;
@@ -163,7 +168,7 @@ export function getDoc(section: Section, slug: string, lang: Lang): Doc | null {
       const dropcap =
         dropcapRaw === "true" ? true : dropcapRaw === "false" ? false : l === "en";
       const words = body.split(/\s+/).filter(Boolean).length;
-      const readingMinutes = Math.max(1, Math.round(words / 200));
+      const readingMinutes = Math.max(1, Math.round(words / (l === "ne" ? 135 : 200)));
       return { slug, section, lang: l, title, date, subsection, html, toc, dropcap, dropcapExplicit, readingMinutes };
     }
   }

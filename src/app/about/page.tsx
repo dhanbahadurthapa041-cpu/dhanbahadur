@@ -23,7 +23,7 @@ export default async function About() {
     <div className="mx-auto max-w-4xl px-4 py-16 sm:py-24 lg:py-32">
       <Link
         href="/"
-        className="inline-flex items-center gap-1 text-sm font-medium text-pine transition motion-reduce:transition-none hover:text-pine-deep dark:text-mint dark:hover:text-cream"
+        className="no-print inline-flex items-center gap-1 text-sm font-medium text-pine transition motion-reduce:transition-none hover:text-pine-deep dark:text-mint dark:hover:text-cream"
       >
         {t.backHome}
       </Link>
