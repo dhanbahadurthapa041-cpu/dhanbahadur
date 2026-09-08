@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLang, useTheme } from "@/lib/lang";
 import { SCHOOL_URL, FACEBOOK_URL, LOOMA_URL } from "@/lib/site";
 
@@ -11,6 +11,15 @@ export default function Header() {
   const { theme, toggleTheme } = useTheme();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  // Scrolled cue: subtle shadow + stronger border once the page moves.
+  // Visual only (no motion); safe under reduced motion.
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const link =
     "transition-colors motion-reduce:transition-none text-ink/80 hover:text-pine aria-[current=page]:font-semibold aria-[current=page]:text-pine aria-[current=page]:underline aria-[current=page]:decoration-brass aria-[current=page]:decoration-2 aria-[current=page]:underline-offset-4 dark:text-cream/80 dark:hover:text-mint dark:aria-[current=page]:text-mint dark:aria-[current=page]:decoration-brass-dark";
@@ -20,7 +29,7 @@ export default function Header() {
   const close = () => setOpen(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-brass/30 bg-paper/92 backdrop-blur-md transition-colors motion-reduce:transition-none dark:border-cream/10 dark:bg-choc/92">
+    <header className={`sticky top-0 z-40 border-b bg-paper/92 backdrop-blur-md transition-colors motion-reduce:transition-none dark:bg-choc/92 ${scrolled ? "border-brass/50 shadow-[0_2px_12px_rgba(47,42,37,0.08)] dark:border-cream/20" : "border-brass/30 dark:border-cream/10"}`}>
       <div className="mx-auto max-w-6xl px-4 py-3.5 sm:px-6">
         <div className="flex items-center justify-between gap-4">
           <Link
@@ -29,7 +38,7 @@ export default function Header() {
             onClick={close}
             {...current("/")}
           >
-            <span aria-hidden="true" className="h-2 w-2 rounded-full bg-brass" />
+            <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-brass ring-1 ring-brass/50 ring-offset-1 ring-offset-paper dark:ring-offset-choc" />
             {t.brandName}
           </Link>
 

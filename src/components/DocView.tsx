@@ -61,7 +61,7 @@ export default function DocView({
         {t.backSection}
       </Link>
       <div className="mt-4">
-        <FolioMarker lang={doc.lang} label={sectionTitle(t, section)} className="mb-2.5" />
+        <FolioMarker lang={lang} label={sectionTitle(t, section)} className="mb-2.5" />
         <h1
           className={`font-display text-3xl font-medium text-maroon [text-wrap:balance] [font-optical-sizing:auto] sm:text-4xl dark:text-clay ${
             doc.lang === "en" ? "tracking-tight" : "tracking-normal"

@@ -114,11 +114,11 @@ export default async function Home() {
                 />
                 <div
                   aria-hidden="true"
-                  className="pointer-events-none absolute inset-0 rounded-3xl bg-brass/15 mix-blend-screen"
+                  className="pointer-events-none absolute inset-0 rounded-3xl bg-brass/15 mix-blend-screen dark:bg-brass/10"
                 />
               </div>
               {/* Duplicates the hero FolioMarker tagline above: decorative, hidden from AT */}
-              <figcaption aria-hidden="true" className="folio-text mt-4 inline-block border-t border-brass/30 px-4 pt-2 text-center text-xs leading-relaxed text-ink/70 dark:text-cream/70">
+              <figcaption aria-hidden="true" className="folio-text mx-auto mt-4 hidden w-fit border-t border-brass/30 px-4 pt-2 text-center text-xs leading-relaxed text-ink/70 dark:text-cream/70 sm:block">
                 {t.tagline}
               </figcaption>
             </figure>
@@ -142,8 +142,12 @@ export default async function Home() {
       {/* ===================================================================
           BAND 3: Chapter-Break Pull Quote (Full-Bleed Deep Pine)
           =================================================================== */}
-      <section className="band-wipe-s2 full-bleed bg-pine on-pine py-24 sm:py-32 lg:py-40 text-cream dark:bg-pine-dark">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6">
+      <section className="band-wipe-s2 full-bleed relative overflow-hidden bg-pine on-pine py-24 sm:py-32 lg:py-40 text-cream dark:bg-pine-dark">
+        <div
+          aria-hidden="true"
+          className="absolute -top-32 left-1/2 h-72 w-[44rem] max-w-none -translate-x-1/2 rounded-full bg-brass-dark/15 blur-3xl dark:bg-brass-dark/10"
+        />
+        <div className="relative mx-auto max-w-4xl px-4 sm:px-6">
           <FolioMarker lang={lang} label={t.folioQuote} className="justify-center mb-6 text-brass-dark" />
           {/* Unique epigraphs, not verbatim body repeats → isDuplicate false (exposed to AT) */}
           <PullQuote
@@ -344,7 +348,7 @@ export default async function Home() {
             <Reveal index={5} className="sm:col-span-2 lg:col-span-3">
               <Link
                 href="/about"
-                className="group flex flex-col justify-between h-full rounded-2xl border border-brass/30 bg-surface-subtle p-6 sm:p-8 shadow-[0_1px_2px_rgba(47,42,37,0.06),0_2px_8px_-4px_rgba(47,42,37,0.08)] ring-1 ring-inset ring-white/40 transition-[transform,box-shadow,border-color] duration-200 ease-out hover:border-pine/70  focus-visible:border-pine/70 dark:focus-visible:border-mint/60 motion-reduce:transition-none motion-reduce:hover:translate-none dark:border-cream/15 dark:bg-choc-elevated dark:ring-white/5 dark:shadow-none dark:hover:shadow-[0_0_0_1px_rgba(201,178,124,.25),0_14px_30px_-14px_rgba(0,0,0,.7)] dark:hover:border-mint/60"
+                className="group flex flex-col justify-between h-full rounded-2xl border border-brass/30 bg-surface-subtle p-6 sm:p-8 shadow-[0_1px_2px_rgba(47,42,37,0.06),0_2px_8px_-4px_rgba(47,42,37,0.08)] ring-1 ring-inset ring-white/40 transition-[transform,box-shadow,border-color] duration-200 ease-out hover:border-pine/70 active:scale-[0.99] motion-reduce:active:scale-none focus-visible:border-pine/70 dark:focus-visible:border-mint/60 motion-reduce:transition-none motion-reduce:hover:translate-none dark:border-cream/15 dark:bg-choc-elevated dark:ring-white/5 dark:shadow-none dark:hover:shadow-[0_0_0_1px_rgba(201,178,124,.25),0_14px_30px_-14px_rgba(0,0,0,.7)] dark:hover:border-mint/60"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2">
@@ -356,6 +360,7 @@ export default async function Home() {
                     </span>
                   </div>
                   <span aria-hidden="true" className="mt-4 mb-4 block h-[3px] w-10 rounded-full bg-brass/70 dark:bg-brass-dark/60" />
+                  <span aria-hidden="true" className="mt-3 block font-display text-lg leading-none text-brass/80 dark:text-brass-dark/60">✦</span>
                   <h3 className="font-display text-2xl font-medium dark:font-normal text-maroon group-hover:text-pine transition-colors motion-reduce:transition-none dark:text-clay dark:group-hover:text-mint">
                     {t.navAbout}
                   </h3>
@@ -391,7 +396,7 @@ export default async function Home() {
               >
                 {t.featuredPubsEyebrow}
               </h2>
-              <p className="mt-3.5 text-lg leading-[1.5] text-ink/75 sm:text-xl dark:text-cream/75">
+              <p className="mt-3.5 text-lg leading-[1.5] [text-wrap:pretty] text-ink/75 sm:text-xl dark:text-cream/75">
                 {t.featuredPubsSubtitle}
               </p>
               <div className="mt-6">
@@ -415,10 +420,10 @@ export default async function Home() {
               ].map((item, idx) => (
                 <div
                   key={idx}
-                  className="flex items-center justify-between rounded-2xl border border-brass/25 bg-paper p-4 shadow-[0_1px_2px_rgba(47,42,37,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-brass/60 hover:shadow-[0_12px_24px_-12px_rgba(47,42,37,0.18)] motion-reduce:transition-none motion-reduce:hover:translate-none dark:border-cream/10 dark:bg-choc dark:shadow-none dark:hover:shadow-[0_0_0_1px_rgba(201,178,124,.25),0_14px_30px_-14px_rgba(0,0,0,.7)]"
+                  className="flex flex-col gap-3 rounded-2xl border border-brass/25 bg-paper p-5 shadow-[0_1px_2px_rgba(47,42,37,0.05)] transition-[transform,box-shadow,border-color] duration-200 ease-out hover:-translate-y-0.5 hover:border-brass/60 hover:shadow-[0_12px_24px_-12px_rgba(47,42,37,0.18)] motion-reduce:transition-none motion-reduce:hover:translate-none sm:flex-row sm:items-center sm:justify-between dark:border-cream/10 dark:bg-choc dark:shadow-none dark:hover:shadow-[0_0_0_1px_rgba(201,178,124,.25),0_14px_30px_-14px_rgba(0,0,0,.7)]"
                 >
-                  <div className="flex items-center gap-3.5">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-brass/40 bg-brass/20 font-display text-xs font-semibold text-ink shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] dark:bg-brass/15 dark:text-cream dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
+                  <div className="flex min-w-0 flex-1 items-center gap-3.5">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-lg border border-brass/40 bg-brass/20 font-display text-[13px] font-semibold tabular-nums text-ink shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] ring-1 ring-inset ring-white/60 dark:bg-brass/20 dark:text-cream dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] dark:ring-white/10">
                       PDF
                     </span>
                     <div>
@@ -428,7 +433,7 @@ export default async function Home() {
                       <p className="text-[13px] leading-[1.45] text-ink/70 dark:text-cream/70">{item.desc}</p>
                     </div>
                   </div>
-                  <span className="rounded-full border border-ink/15 px-2.5 py-1 text-[11px] font-medium text-ink/65 dark:border-cream/20 dark:text-cream/70">
+                  <span className="shrink-0 self-start rounded-full border border-brass/40 px-2.5 py-1 text-[11px] font-medium text-ink/75 sm:self-auto dark:border-cream/20 dark:text-cream/70">
                     {item.tag}
                   </span>
                 </div>

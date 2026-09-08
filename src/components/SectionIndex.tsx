@@ -77,7 +77,7 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
         <h1 className={`font-display text-3xl font-medium text-maroon [text-wrap:balance] [font-optical-sizing:auto] sm:text-4xl dark:text-clay ${lang === "en" ? "tracking-tight" : "tracking-normal"}`}>
           {sectionTitle(t, section)}
         </h1>
-        <p className="mt-2 text-lg leading-[1.5] text-ink/75 sm:text-xl dark:text-cream/75">{sectionDesc(t, section)}</p>
+        <p className="mt-2 text-lg leading-[1.5] [text-wrap:pretty] text-ink/75 sm:text-xl dark:text-cream/75">{sectionDesc(t, section)}</p>
       </div>
 
       {section === "pub" && (
@@ -148,11 +148,11 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                     ))}
                   </ul>
                 ) : (
-                  <div className="mt-3 rounded-xl border border-dashed border-brass/40 bg-surface-subtle p-5 dark:border-cream/15 dark:bg-choc-elevated">
+                  <div className="mt-3 rounded-xl border border-dashed border-brass/40 bg-brass/[0.07] p-5 dark:border-cream/15 dark:bg-choc-elevated">
                     <span aria-hidden="true" className="flex h-10 w-10 items-center justify-center rounded-full bg-brass/15 text-lg text-brass dark:bg-brass/10 dark:text-brass-dark">
                       ◆
                     </span>
-                    <p className="mt-3 font-display text-base font-semibold text-maroon dark:text-clay">
+                    <p className="mt-3 font-display text-base font-medium dark:font-normal text-maroon dark:text-clay">
                       {subsectionLabel(sub, t)}
                     </p>
                     <p className="mt-1 text-sm text-ink/60 dark:text-cream/60">

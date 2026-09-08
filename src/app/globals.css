@@ -646,7 +646,7 @@ h4.font-display,
 @media (prefers-reduced-motion: no-preference) {
   .js .reveal:not(.is-visible) {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(16px);
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -894,7 +894,7 @@ body {
     }
     .intro-beat-5 {
       animation-name: intro-fade;
-      animation-range: cover 80% cover 98%;
+      animation-range: cover 83% cover 98%;
     }
     @keyframes intro-rise {
       from {
