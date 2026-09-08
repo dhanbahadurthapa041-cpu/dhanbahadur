@@ -151,9 +151,7 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                   </ul>
                 ) : (
                   <div className="mt-3 rounded-xl border border-dashed border-brass/40 bg-brass/[0.07] p-5 dark:border-cream/15 dark:bg-choc-elevated">
-                    <span aria-hidden="true" className="flex h-10 w-10 items-center justify-center rounded-full bg-brass/15 text-lg text-brass dark:bg-brass/10 dark:text-brass-dark">
-                      ◆
-                    </span>
+                    <span aria-hidden="true" className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-brass/15 dark:bg-brass/10"><span className="block h-2.5 w-2.5 rotate-45 bg-brass/80 dark:bg-brass-dark/60" /></span>
                     <p className="mt-3 font-display text-base font-medium dark:font-normal text-maroon dark:text-clay">
                       {subsectionLabel(sub, t)}
                     </p>

@@ -131,7 +131,7 @@ function PubLibraryInner() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder={t.libSearchPlaceholder}
-          className="w-full min-h-[44px] rounded-xl border border-ink/20 bg-surface-subtle px-4 py-2 text-base text-ink shadow-[0_1px_2px_rgba(47,42,37,0.05)] placeholder:text-ink/60 focus:border-pine focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine dark:border-cream/20 dark:bg-choc-elevated dark:ring-1 dark:ring-white/10 dark:text-cream dark:placeholder:text-cream/60 dark:shadow-none dark:focus:border-mint dark:focus-visible:outline-mint"
+          className="w-full min-h-[44px] rounded-xl border border-ink/20 bg-surface-subtle px-4 py-2 text-base text-ink shadow-[0_1px_2px_rgba(47,42,37,0.05)] placeholder:text-ink/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine dark:border-cream/20 dark:bg-choc-elevated dark:ring-1 dark:ring-white/10 dark:text-cream dark:placeholder:text-cream/60 dark:shadow-none dark:focus-visible:outline-mint"
         />
       </div>
 

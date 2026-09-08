@@ -943,9 +943,9 @@ body {
 /* Touch: hover lifts would stick after first tap — press-only feedback.
    Buttons keep :active press states (desired on touch). */
 @media (hover: none) {
-  a:hover,
-  div:hover,
-  li:hover,
+  a:hover:not(:active),
+  div:hover:not(:active),
+  li:hover:not(:active),
   .group:hover [class*="translate"] {
     translate: none !important;
   }

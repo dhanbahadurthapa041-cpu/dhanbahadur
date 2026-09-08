@@ -137,7 +137,7 @@ export default function StatsRow() {
       </div>
 
       {/* Proof-chain caption line under the row (Innocence Project / Sopact standard) */}
-      <p className={`mt-3 text-center text-xs leading-relaxed text-ink/60 dark:text-cream/70 print:text-black/60 ${isNe ? "tracking-normal" : "tracking-wide"}`}>
+      <p className={`mt-3 text-center text-xs leading-relaxed text-ink/70 dark:text-cream/70 print:text-black/60 ${isNe ? "tracking-normal" : "tracking-wide"}`}>
         {t.statProofCaption}
       </p>
     </div>
