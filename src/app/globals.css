@@ -138,6 +138,11 @@ html {
   scroll-padding-top: 84px;
 }
 
+/* Skip-link target: explicit margin mirrors scroll-padding for keyboard focus. */
+#band-stats {
+  scroll-margin-top: 84px;
+}
+
 /* Josh Comeau 3-column grid bleed system (Implementationplan.md §1A) */
 .bleed-wrapper {
   --viewport-padding: 1rem;
@@ -854,13 +859,14 @@ body {
       animation-fill-mode: both;
       animation-timeline: --intro;
     }
+    /* Beat 1 = identity (kicker + H1 share one window, one idea). */
     .intro-beat-1 {
       animation-name: intro-rise;
-      animation-range: cover 8% cover 30%;
+      animation-range: cover 8% cover 35%;
     }
     .intro-beat-2 {
       animation-name: intro-rise;
-      animation-range: cover 24% cover 46%;
+      animation-range: cover 8% cover 35%;
     }
     .intro-beat-3 {
       animation-name: intro-rise;
@@ -920,8 +926,10 @@ body {
   .intro-beat-4,
   .intro-beat-5 {
     animation: none !important;
+    animation-timeline: auto !important;
     transform: none !important;
     opacity: 1 !important;
+    will-change: auto !important;
   }
 }
 
