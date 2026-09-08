@@ -44,6 +44,25 @@
   --text-pullquote--font-weight: 400;
 }
 
+/* ---- Phase C9: @property animation proxies (typed interpolation only).
+   @theme stays canonical: initial-values mirror today's static values.
+   --wipe-p is registered but PARKED (B7 direct keyframes stay; see brief). */
+@property --glow-o {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 1;
+}
+@property --grain-o {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0.038;
+}
+@property --wipe-p {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
 :root {
   color-scheme: light;
   --color-bg: #fbf6ee;
@@ -174,14 +193,45 @@ html {
   height: 100lvh;
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.038;
+  opacity: var(--grain-o, 0.038);
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
   background-repeat: repeat;
   background-size: 180px 180px;
 }
 
-@media (prefers-reduced-motion: reduce) {
+/* Brass glow cross-fade proxy (bento hero accents + stats hero rule):
+   base = today's look everywhere; smooth only where typed. */
+.bento-glow {
+  opacity: var(--glow-o, 1);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .bento-glow {
+    transition:
+      --glow-o 260ms ease-out,
+      opacity 260ms ease-out;
+  }
+  .group:hover .bento-glow,
+  .stats-featured:hover .bento-glow {
+    --glow-o: 0.55;
+  }
   .grain-overlay {
+    transition:
+      --grain-o 400ms ease-out,
+      opacity 400ms ease-out;
+  }
+  .dark .grain-overlay {
+    --grain-o: 0.05;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bento-glow {
+    transition: none;
+    --glow-o: 1;
+    opacity: 1;
+  }
+  .grain-overlay {
+    transition: none;
+    --grain-o: 0.02;
     opacity: 0.02;
   }
   .divider-hairline,
@@ -1424,5 +1474,210 @@ body {
   .pullquote blockquote,
   .pullquote figure {
     break-inside: avoid !important;
+  }
+}
+
+/* ---- Phase C9: container queries (size only, inline-size only) ----
+   Base = today's viewport layout (outside @supports = full fallback).
+   Thresholds preserve current behavior in container terms (56rem ≈ lg,
+   28rem ≈ sm); Type B skipped (would regress tuned padding), Type E
+   unneeded (chips wrap). Never on sticky/clipped/intrinsic ancestors. */
+@supports (container-type: inline-size) {
+  .cq-bento {
+    container-type: inline-size;
+    container-name: bento;
+  }
+  @container bento (min-width: 34rem) {
+    .bento-hero-inner {
+      padding: 2.5rem;
+    }
+  }
+  .cq-row {
+    container-type: inline-size;
+    container-name: row;
+  }
+  @container row (max-width: 29.99rem) {
+    .row-inner {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .row-tag {
+      align-self: flex-start;
+    }
+  }
+  .cq-lib-list {
+    container-type: inline-size;
+    container-name: lib;
+  }
+  @container lib (max-width: 29.99rem) {
+    .lib-row {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .lib-row .row-tag {
+      align-self: flex-start;
+    }
+  }
+  .cq-stats {
+    container-type: inline-size;
+    container-name: stats;
+  }
+  @container stats (min-width: 56rem) {
+    .stats-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+  @container stats (min-width: 28rem) and (max-width: 55.99rem) {
+    .stats-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+}
+
+/* ---- Phase C9: :has() parent states (decorative-first fallbacks kept) ----
+   P1 keyboard-only parent ring (complements focus-within, which also fires
+   on mouse-click focus). P2-P5 intentionally absent: no img/badge plumbing,
+   no validated forms, no empty-list CSS states, no sibling-dim nav. */
+.dl-row:has(a:focus-visible),
+.section-card:has(a:focus-visible) {
+  border-color: var(--color-pine);
+  box-shadow:
+    0 14px 28px -16px rgba(47, 42, 37, 0.22),
+    0 0 0 3px rgba(15, 106, 75, 0.18);
+}
+.dark .dl-row:has(a:focus-visible),
+.dark .section-card:has(a:focus-visible) {
+  border-color: var(--color-mint);
+  box-shadow: 0 0 0 3px rgba(143, 208, 178, 0.22);
+}
+@media (prefers-reduced-motion: reduce) {
+  .dl-row:has(a:focus-visible),
+  .section-card:has(a:focus-visible) {
+    box-shadow: 0 0 0 3px rgba(15, 106, 75, 0.18);
+  }
+}
+
+/* ---- Phase C9: anchor-positioned tooltips (fallback-first) ----
+   Base: hidden bubble, static fallback placement; title attr covers
+   no-anchor browsers. Enhancement only inside @supports (position-area).
+   Print hides bubbles; reduce kills the fade; NE gets matra air. */
+.dl-row-scope,
+.stat-proof-wrap {
+  anchor-scope: --tip;
+}
+.dl-pill,
+.icon-tip-btn,
+.proof-i {
+  anchor-name: --tip;
+}
+.icon-tip-btn {
+  anchor-name: --tip-icon;
+}
+.dl-tip,
+.icon-tip,
+.proof-tip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  translate: -50% 0;
+  max-width: 20ch;
+  white-space: normal;
+  background: var(--color-ink);
+  color: #fffdf8;
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.375rem;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  z-index: 50;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+.dark .dl-tip,
+.dark .icon-tip,
+.dark .proof-tip {
+  background: var(--color-choc-overlay);
+  color: var(--color-cream);
+}
+.dl-pill:hover + .dl-tip,
+.dl-pill:focus-visible + .dl-tip,
+.icon-tip-btn:hover .icon-tip,
+.icon-tip-btn:focus-visible .icon-tip,
+.proof-i:hover + .proof-tip,
+.proof-i:focus-visible + .proof-tip,
+.dl-tip:hover,
+.proof-tip:hover {
+  opacity: 1;
+  visibility: visible;
+}
+.dl-row-scope:has(.dl-tip:hover) .dl-tip {
+  opacity: 1;
+  visibility: visible;
+}
+@supports (position-area: top) {
+  .dl-tip,
+  .icon-tip,
+  .proof-tip {
+    position: fixed;
+    position-anchor: --tip;
+    position-area: top center;
+    margin-bottom: 8px;
+    inset: auto;
+    bottom: auto;
+    left: auto;
+    translate: 0 0;
+    position-try-fallbacks: flip-block, flip-inline, flip-block flip-inline;
+  }
+  .icon-tip {
+    position-anchor: --tip-icon;
+  }
+  @position-try --below {
+    position-area: bottom center;
+    margin-top: 8px;
+    margin-bottom: 0;
+  }
+  .dl-tip,
+  .proof-tip {
+    position-try-fallbacks: flip-block, --below;
+  }
+}
+@supports (position-visibility: anchors-visible) {
+  .dl-tip,
+  .icon-tip,
+  .proof-tip {
+    position-visibility: anchors-visible;
+  }
+}
+:lang(ne) .dl-tip,
+:lang(ne) .icon-tip,
+:lang(ne) .proof-tip,
+html[lang="ne"] .dl-tip,
+html[lang="ne"] .icon-tip,
+html[lang="ne"] .proof-tip {
+  text-transform: none;
+  letter-spacing: 0;
+  line-height: 1.75;
+  font-synthesis: none;
+  max-width: 24ch;
+}
+@media print {
+  .dl-tip,
+  .icon-tip,
+  .proof-tip {
+    display: none !important;
+  }
+  .cq-bento,
+  .cq-row,
+  .cq-lib-list,
+  .cq-stats {
+    container-type: normal !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dl-tip,
+  .icon-tip,
+  .proof-tip {
+    transition: none;
   }
 }

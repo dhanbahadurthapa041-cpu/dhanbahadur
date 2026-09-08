@@ -45,12 +45,16 @@ export default function Header() {
           <div className="flex items-center gap-2.5">
             <button
               onClick={toggleTheme}
-              className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-brass/40 bg-surface-subtle text-xs transition motion-reduce:transition-none hover:border-pine hover:text-pine focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine dark:border-cream/20 dark:bg-choc-elevated dark:hover:border-mint dark:hover:text-mint dark:focus-visible:outline-mint"
+              className="icon-tip-btn relative flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-brass/40 bg-surface-subtle text-xs transition motion-reduce:transition-none hover:border-pine hover:text-pine focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine dark:border-cream/20 dark:bg-choc-elevated dark:hover:border-mint dark:hover:text-mint dark:focus-visible:outline-mint"
               aria-label={t.toggleTheme}
               aria-pressed={theme === "dark"}
+              aria-describedby="tip-theme"
               title={t.toggleTheme}
               suppressHydrationWarning
             >
+              <span className="icon-tip" role="tooltip" id="tip-theme">
+                {t.toggleTheme}
+              </span>
               {theme === "dark" ? (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

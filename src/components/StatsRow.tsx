@@ -1,5 +1,6 @@
 "use client";
 
+import { useId } from "react";
 import { useLang } from "@/lib/lang";
 import CountUp from "./CountUp";
 
@@ -17,6 +18,7 @@ interface StatItem {
 export default function StatsRow() {
   const { lang, t } = useLang();
   const isNe = lang === "ne";
+  const proofTipId = `tip-proof-${useId().replace(/:/g, "")}`;
 
   const stats: StatItem[] = [
     {
@@ -58,7 +60,7 @@ export default function StatsRow() {
   ];
 
   return (
-    <div className="w-full">
+    <div className="cq-stats w-full">
       {/* Background-Gap-Trick card container */}
       <div className="w-full overflow-hidden rounded-2xl border border-border bg-surface-subtle shadow-[0_4px_20px_-8px_rgba(47,42,37,0.06)] dark:border-white/10 dark:bg-choc-elevated dark:shadow-none print:shadow-none print:border-gray-300">
         <div className="stats-grid grid grid-cols-1 gap-px bg-border sm:grid-cols-2 lg:grid-cols-4 dark:bg-white/10 print:grid-cols-2 print:bg-gray-300">
@@ -67,7 +69,7 @@ export default function StatsRow() {
               key={i}
               className={`flex flex-col justify-between p-6 text-center sm:p-7 md:p-8 print:p-4 print:bg-white print:text-black print:break-inside-avoid ${
                 stat.featured
-                  ? "bg-parchment ring-1 ring-inset ring-brass/30 shadow-[inset_0_4px_0_0_rgba(201,178,124,0.7)] dark:bg-brass/[0.10] dark:ring-brass-dark/20 dark:shadow-[inset_0_4px_0_0_rgba(232,213,160,0.5)]"
+                  ? "stats-featured group bg-parchment ring-1 ring-inset ring-brass/30 shadow-[inset_0_4px_0_0_rgba(201,178,124,0.7)] dark:bg-brass/[0.10] dark:ring-brass-dark/20 dark:shadow-[inset_0_4px_0_0_rgba(232,213,160,0.5)]"
                   : "bg-surface-subtle dark:bg-choc-elevated"
               }`}
             >
@@ -120,7 +122,7 @@ export default function StatsRow() {
                     {stat.label}
                   </h3>
                   {stat.featured && (
-                    <span aria-hidden="true" className="mx-auto mt-3 block h-px w-10 bg-brass/60 dark:bg-brass-dark/40" />
+                    <span aria-hidden="true" className="bento-glow mx-auto mt-3 block h-px w-10 bg-brass/60 dark:bg-brass-dark/40" />
                   )}
                 </div>
               )}
@@ -137,8 +139,19 @@ export default function StatsRow() {
       </div>
 
       {/* Proof-chain caption line under the row (Innocence Project / Sopact standard) */}
-      <p className={`mt-3 text-center text-xs leading-relaxed text-ink/70 dark:text-cream/70 print:text-black/60 ${isNe ? "tracking-normal" : "tracking-wide"}`}>
-        {t.statProofCaption}
+      <p className={`stat-proof-wrap relative mt-3 text-center text-xs leading-relaxed text-ink/70 dark:text-cream/70 print:text-black/60 ${isNe ? "tracking-normal" : "tracking-wide"}`}>
+        {t.statProofCaption}{" "}
+        <button
+          type="button"
+          className="proof-i inline-flex h-5 w-5 items-center justify-center rounded-full border border-brass/50 align-middle text-[11px] font-semibold text-pine transition motion-reduce:transition-none hover:border-pine focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine dark:border-cream/30 dark:text-mint dark:focus-visible:outline-mint"
+          aria-label={t.statProofAbout}
+          aria-describedby={proofTipId}
+        >
+          <span aria-hidden="true">i</span>
+        </button>
+        <span className="proof-tip" role="tooltip" id={proofTipId}>
+          {t.statProofTip}
+        </span>
       </p>
     </div>
   );

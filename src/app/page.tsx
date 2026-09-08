@@ -190,12 +190,12 @@ export default async function Home() {
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {/* Card 1: Class 10 Social Studies (Hero Bento Card) */}
-            <Reveal index={0} className="sm:col-span-2 lg:col-span-2">
+            <Reveal index={0} className="cq-bento sm:col-span-2 lg:col-span-2">
               <Link
                 href="/class-10"
-                className="group flex flex-col justify-between h-full rounded-2xl border border-brass/50 bg-parchment p-8 sm:p-10 shadow-[0_2px_4px_rgba(47,42,37,0.06),0_20px_36px_-20px_rgba(47,42,37,0.22)] ring-1 ring-inset ring-white/40 transition-[transform,translate,scale,box-shadow,border-color] duration-200 ease-out hover:-translate-y-1.5 hover:border-pine/70 hover:shadow-[0_4px_8px_rgba(47,42,37,0.05),0_24px_44px_-20px_rgba(47,42,37,0.28)] active:scale-[0.97] active:duration-100 motion-reduce:active:scale-none focus-visible:border-pine/70 dark:focus-visible:border-mint/60 motion-reduce:transition-none motion-reduce:hover:translate-none dark:border-cream/15 dark:bg-brass/[0.10] dark:ring-white/5 dark:shadow-none dark:hover:shadow-[0_0_0_1px_rgba(201,178,124,.25),0_14px_30px_-14px_rgba(0,0,0,.7)] dark:hover:border-mint/60"
+                className="group bento-hero-inner flex flex-col justify-between h-full rounded-2xl border border-brass/50 bg-parchment p-8 sm:p-10 shadow-[0_2px_4px_rgba(47,42,37,0.06),0_20px_36px_-20px_rgba(47,42,37,0.22)] ring-1 ring-inset ring-white/40 transition-[transform,translate,scale,box-shadow,border-color] duration-200 ease-out hover:-translate-y-1.5 hover:border-pine/70 hover:shadow-[0_4px_8px_rgba(47,42,37,0.05),0_24px_44px_-20px_rgba(47,42,37,0.28)] active:scale-[0.97] active:duration-100 motion-reduce:active:scale-none focus-visible:border-pine/70 dark:focus-visible:border-mint/60 motion-reduce:transition-none motion-reduce:hover:translate-none dark:border-cream/15 dark:bg-brass/[0.10] dark:ring-white/5 dark:shadow-none dark:hover:shadow-[0_0_0_1px_rgba(201,178,124,.25),0_14px_30px_-14px_rgba(0,0,0,.7)] dark:hover:border-mint/60"
               >
-                <span aria-hidden="true" className="mb-5 block h-1 w-16 rounded-full bg-gradient-to-r from-brass/80 to-pine/60 dark:from-brass-dark/70 dark:to-mint/40" />
+                <span aria-hidden="true" className="bento-glow mb-5 block h-1 w-16 rounded-full bg-gradient-to-r from-brass/80 to-pine/60 dark:from-brass-dark/70 dark:to-mint/40" />
                 <div>
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <span lang="en" className={`badge-leak-guard rounded-full bg-brass/20 px-2.5 py-0.5 text-[11px] font-semibold text-ink dark:bg-brass/15 dark:text-cream ${lang === "en" ? "uppercase tracking-[0.10em]" : "tracking-normal"}`}>
@@ -205,7 +205,7 @@ export default async function Home() {
                       Unit 1–7
                     </span>
                   </div>
-                  <span aria-hidden="true" className="mt-4 mb-3 block h-[3px] w-14 rounded-full bg-brass/70 dark:bg-brass-dark/60" />
+                  <span aria-hidden="true" className="bento-glow mt-4 mb-3 block h-[3px] w-14 rounded-full bg-brass/70 dark:bg-brass-dark/60" />
                   <h3 className={`font-display text-2xl font-medium dark:font-normal text-maroon ${lang === "en" ? "" : "leading-[1.35]"} group-hover:text-pine transition-colors motion-reduce:transition-none dark:text-clay dark:group-hover:text-mint`}>
                     {t.class10Title}
                   </h3>
@@ -411,7 +411,7 @@ export default async function Home() {
             </div>
 
             {/* Document preview rows (static previews, not links) with outlined tag pills */}
-            <div className="space-y-3">
+            <div className="cq-lib-list space-y-3">
               {[
                 { title: t.catTextbooks, desc: t.libDescTextbooks, tag: t.libTagTextbook },
                 { title: t.catSyllabus, desc: t.libDescSyllabus, tag: t.libTagSyllabus },
@@ -420,7 +420,7 @@ export default async function Home() {
               ].map((item, idx) => (
                 <div
                   key={idx}
-                  className="flex flex-col gap-3 rounded-2xl border border-brass/25 bg-paper p-5 shadow-[0_1px_2px_rgba(47,42,37,0.05)] sm:flex-row sm:items-center sm:justify-between dark:border-cream/10 dark:bg-choc dark:shadow-none"
+                  className="lib-row flex flex-col gap-3 rounded-2xl border border-brass/25 bg-paper p-5 shadow-[0_1px_2px_rgba(47,42,37,0.05)] sm:flex-row sm:items-center sm:justify-between dark:border-cream/10 dark:bg-choc dark:shadow-none"
                 >
                   <div className="flex min-w-0 flex-1 items-center gap-3.5">
                     <span lang="en" className="flex h-11 w-11 items-center justify-center rounded-lg border border-brass/40 bg-brass/20 font-display text-[13px] font-semibold tabular-nums text-ink shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] dark:bg-brass/20 dark:text-cream dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
@@ -433,7 +433,7 @@ export default async function Home() {
                       <p className={`text-[13px] dark:text-cream/70 ${lang === "en" ? "leading-[1.45] text-ink/70" : "leading-[1.6] text-ink/70"}`}>{item.desc}</p>
                     </div>
                   </div>
-                  <span className="shrink-0 self-start rounded-full border border-brass/40 px-2.5 py-1 text-[11px] font-medium text-ink/75 sm:self-auto dark:border-cream/20 dark:text-cream/70">
+                  <span className="row-tag shrink-0 self-start rounded-full border border-brass/40 px-2.5 py-1 text-[11px] font-medium text-ink/75 sm:self-auto dark:border-cream/20 dark:text-cream/70">
                     {item.tag}
                   </span>
                 </div>
