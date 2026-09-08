@@ -89,7 +89,7 @@ export default async function Home() {
                 grade counter-translate inside the frame (parallax-photo),
                 brass mount breathes the other way (frame-a/b). Caption and
                 text column stay static. */}
-            <figure className="parallax-plate relative mx-auto w-full max-w-[240px] sm:max-w-xs lg:max-w-sm">
+            <figure className="parallax-plate relative mx-auto w-full max-w-[200px] sm:max-w-[280px] lg:max-w-xs">
               <div
                 aria-hidden="true"
                 className="parallax-frame-a absolute -right-3 -bottom-3 sm:-right-5 sm:-bottom-5 h-full w-full rounded-3xl border-2 border-brass/60 dark:border-brass-dark/40"
