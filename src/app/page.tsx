@@ -27,25 +27,31 @@ export default async function Home() {
       {/* ===================================================================
           BAND 1: Editorial Hero (Warm Paper floor, Maroon Display H1)
           =================================================================== */}
-      <section className="full-bleed py-24 sm:py-32 lg:py-40">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+      <section className="intro-track full-bleed py-24 sm:py-32 lg:py-40">
+        <a
+          href="#band-stats"
+          className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:rounded-full focus:bg-pine focus:px-4 focus:py-2 focus:text-sm focus:text-white"
+        >
+          {t.skipIntro}
+        </a>
+        <div className="intro-stage mx-auto max-w-6xl px-4 sm:px-6">
           <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
             <div>
-              <FolioMarker label={t.tagline} className="mb-5" />
+              <FolioMarker label={t.tagline} className="intro-beat-1 mb-5" />
 
               <h1
-                className={`font-display text-5xl font-medium text-maroon [text-wrap:balance] [font-optical-sizing:auto] sm:text-6xl lg:text-7xl dark:text-clay ${
+                className={`intro-beat-2 font-display text-5xl font-medium text-maroon [text-wrap:balance] [font-optical-sizing:auto] sm:text-6xl lg:text-7xl dark:text-clay ${
                   lang === "en" ? "tracking-tight leading-[1.03]" : "tracking-normal leading-[1.25]"
                 }`}
               >
                 {t.heroTitle}
               </h1>
 
-              <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink/80 sm:text-xl sm:leading-relaxed dark:text-cream/80">
+              <p className="intro-beat-3 mt-6 max-w-xl text-lg leading-relaxed text-ink/80 sm:text-xl sm:leading-relaxed dark:text-cream/80">
                 {t.heroSubtitle}
               </p>
 
-              <div className="mt-8 flex flex-wrap items-center gap-4">
+              <div className="intro-beat-4 mt-8 flex flex-wrap items-center gap-4">
                 <Link
                   href="/pub"
                   className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-pine px-7 py-3.5 text-sm font-semibold text-white shadow-[0_8px_20px_-8px_rgba(15,106,75,0.45)] transition hover:bg-pine-deep hover:shadow-[0_12px_24px_-8px_rgba(15,106,75,0.55)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine active:translate-y-px motion-reduce:transition-none motion-reduce:transform-none dark:bg-mint dark:text-choc dark:hover:bg-mint/85 dark:focus-visible:outline-mint"
@@ -62,7 +68,7 @@ export default async function Home() {
                 </Link>
               </div>
 
-              <div className="mt-8 flex flex-wrap items-center gap-2 text-xs text-ink/65 dark:text-cream/65">
+              <div className="intro-beat-5 mt-8 flex flex-wrap items-center gap-2 text-xs text-ink/65 dark:text-cream/65">
                 <span className="font-semibold uppercase tracking-wider text-pine dark:text-mint">
                   Focus:
                 </span>
@@ -122,7 +128,7 @@ export default async function Home() {
       {/* ===================================================================
           BAND 2: KPI Stats Strip (Warm Linen Tint band with dividers)
           =================================================================== */}
-      <section className="full-bleed border-y border-brass/25 bg-linen py-16 sm:py-24 lg:py-32 dark:border-cream/10 dark:bg-choc">
+      <section id="band-stats" tabIndex={-1} className="full-bleed border-y border-brass/25 bg-linen py-16 sm:py-24 lg:py-32 dark:border-cream/10 dark:bg-choc">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <FolioMarker label={t.folioMetrics} className="justify-center mb-6" />
           <StatsRow />

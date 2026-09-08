@@ -807,6 +807,174 @@ h4.font-display,
   }
 }
 
+/* ---- Phase B6: pinned intro scrollytelling (sticky hold + named timeline)
+   Fallback-first: the resting hero IS the final state. Pin + beats exist ONLY
+   inside (min-width:1024px) + (min-height:700px) + @supports — everywhere else
+   (stacked tablet/phone, short viewports, touch, old browsers) renders today's
+   static hero. Beats are emphasis pulses (full → dip → full): nothing is ever
+   hidden, so first paint, no-JS, and unsupported browsers show the complete
+   hero. Deviation from technique brief §2 recorded: arrival keyframes
+   (from-opacity-0) would leave CTAs dimmed at load progress (~0.25 of the
+   track), so pulses are used instead — same ranges, same story.
+   Transform ownership: intro beats own ONLY .intro-beat-* nodes; B5 owns
+   .parallax-*; .reveal owns its own nodes. Never mix. No aria-label on the
+   track: Band 1 must not become an extra landmark region. */
+body {
+  timeline-scope: --intro;
+}
+
+.intro-track {
+  position: relative;
+}
+
+@media (min-width: 1024px) and (min-height: 700px) {
+  @supports (animation-timeline: view()) {
+    .intro-track {
+      height: 250vh; /* 100vh stage + ~150% scrub runway */
+      view-timeline: --intro block;
+    }
+    .intro-stage {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      height: 100svh;
+      display: grid;
+      align-content: center;
+      overflow: clip;
+    }
+    .intro-beat-1,
+    .intro-beat-2,
+    .intro-beat-3,
+    .intro-beat-4,
+    .intro-beat-5 {
+      will-change: transform, opacity;
+      animation-duration: 1ms; /* Firefox requires a non-zero duration */
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      animation-timeline: --intro;
+    }
+    .intro-beat-1 {
+      animation-name: intro-rise;
+      animation-range: cover 8% cover 30%;
+    }
+    .intro-beat-2 {
+      animation-name: intro-rise;
+      animation-range: cover 24% cover 46%;
+    }
+    .intro-beat-3 {
+      animation-name: intro-rise;
+      animation-range: cover 42% cover 62%;
+    }
+    /* Focus targets never translate under Tab: opacity-only. */
+    .intro-beat-4 {
+      animation-name: intro-fade;
+      animation-range: cover 58% cover 78%;
+    }
+    .intro-beat-5 {
+      animation-name: intro-fade;
+      animation-range: cover 74% cover 95%;
+    }
+    @keyframes intro-rise {
+      from {
+        opacity: 1;
+        transform: none;
+      }
+      50% {
+        opacity: 0.74;
+        transform: translate3d(0, 10px, 0);
+      }
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+    @keyframes intro-fade {
+      from {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.6;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+/* Coarse pointers: static even on large screens (thumb-scroll never misses it). */
+@media (hover: none) {
+  .intro-track {
+    height: auto;
+  }
+  .intro-stage {
+    position: static;
+    height: auto;
+    display: block;
+    overflow: visible;
+  }
+  .intro-beat-1,
+  .intro-beat-2,
+  .intro-beat-3,
+  .intro-beat-4,
+  .intro-beat-5 {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* Reduced motion: unpin + stack (the illustrated-article version, never a
+   frozen mid-beat). animation-timeline:auto is load-bearing: animation:none
+   alone does not detach scroll timelines. */
+@media (prefers-reduced-motion: reduce) {
+  .intro-track {
+    height: auto !important;
+  }
+  .intro-stage {
+    position: static !important;
+    height: auto !important;
+    display: block !important;
+    overflow: visible !important;
+  }
+  .intro-beat-1,
+  .intro-beat-2,
+  .intro-beat-3,
+  .intro-beat-4,
+  .intro-beat-5 {
+    animation: none !important;
+    animation-timeline: auto !important;
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    will-change: auto !important;
+  }
+}
+
+@media print {
+  .intro-track {
+    height: auto !important;
+  }
+  .intro-stage {
+    position: static !important;
+    height: auto !important;
+    display: block !important;
+    overflow: visible !important;
+  }
+  .intro-beat-1,
+  .intro-beat-2,
+  .intro-beat-3,
+  .intro-beat-4,
+  .intro-beat-5 {
+    animation: none !important;
+    animation-timeline: auto !important;
+    transform: none !important;
+    opacity: 1 !important;
+    break-inside: avoid;
+  }
+}
+
 /* ---- Round 3: reading structure (TOC + progress + heading anchors) ---- */
 
 /* Anchor jumps glide only when motion is allowed; reduced-motion readers
