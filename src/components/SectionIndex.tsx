@@ -91,11 +91,11 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                   index={i}
                   className=""
                 >
-                  <div className="relative rounded-xl border border-brass/25 bg-surface-subtle p-4 shadow-[0_1px_2px_rgba(47,42,37,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-brass/60 hover:shadow-[0_12px_24px_-14px_rgba(47,42,37,0.16)] motion-reduce:transition-none motion-reduce:hover:translate-none dark:border-cream/15 dark:bg-choc-elevated dark:shadow-none dark:hover:shadow-none">
+                  <div className="relative rounded-xl border border-brass/25 bg-surface-subtle p-4 shadow-[0_1px_2px_rgba(47,42,37,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-brass/60 hover:shadow-[0_12px_24px_-14px_rgba(47,42,37,0.16)] motion-reduce:transition-none motion-reduce:hover:translate-none dark:border-cream/15 dark:bg-choc-elevated dark:shadow-none dark:hover:shadow-none focus-within:border-pine/60 dark:focus-within:border-mint/60">
                   <Link
                     lang={d.lang}
                     href={`/pub/${d.slug}`}
-                    className="text-lg font-semibold after:absolute after:inset-0 hover:text-pine dark:hover:text-mint"
+                    className="text-lg font-semibold after:absolute after:inset-0 hover:text-pine dark:hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine dark:focus-visible:outline-mint"
                   >
                     {d.title}
                   </Link>
@@ -104,7 +104,7 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                       {t.englishOnly}
                     </span>
                   )}
-                  {<p className="mt-1 text-[13px] leading-[1.45] text-ink/70 tabular-nums dark:text-cream/70">{[localDigits(d.date, lang), minReadLabel(d.readingMinutes, lang)].filter(Boolean).join(" · ")}</p>}
+                  {<p className={`mt-1 text-[13px] tabular-nums dark:text-cream/70 ${lang === "en" ? "leading-[1.45] text-ink/70" : "leading-[1.6] text-ink/70"}`}>{[localDigits(d.date, lang), minReadLabel(d.readingMinutes, lang)].filter(Boolean).join(" · ")}</p>}
                   </div>
                 </Reveal>
               ))}
@@ -121,7 +121,7 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
             const inGroup = docs.filter((d) => docGroup(section, d) === sub);
             return (
               <div key={sub}>
-                <h2 className={`flex items-center gap-3 font-display text-xl font-medium dark:font-normal text-maroon after:h-px after:flex-1 after:bg-brass/30 dark:text-clay dark:after:bg-brass/20 ${lang === "en" ? "tracking-tight" : "tracking-normal"}`}>{subsectionLabel(sub, t)}</h2>
+                <h2 className={`flex items-center gap-3 font-display text-xl font-medium dark:font-normal text-maroon after:h-px after:flex-1 after:bg-brass/30 dark:text-clay dark:after:bg-brass/20 ${lang === "en" ? "tracking-tight" : "tracking-normal leading-[1.5]"}`}>{subsectionLabel(sub, t)}</h2>
                 {inGroup.length > 0 ? (
                   <ul className="mt-3 space-y-3">
                     {inGroup.map((d, i) => (
@@ -131,11 +131,11 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                         index={i}
                         className=""
                       >
-                        <div className="relative rounded-xl border border-brass/25 bg-surface-subtle p-4 shadow-[0_1px_2px_rgba(47,42,37,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-brass/60 hover:shadow-[0_12px_24px_-14px_rgba(47,42,37,0.16)] motion-reduce:transition-none motion-reduce:hover:translate-none dark:border-cream/15 dark:bg-choc-elevated dark:shadow-none dark:hover:shadow-none">
+                        <div className="relative rounded-xl border border-brass/25 bg-surface-subtle p-4 shadow-[0_1px_2px_rgba(47,42,37,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-brass/60 hover:shadow-[0_12px_24px_-14px_rgba(47,42,37,0.16)] motion-reduce:transition-none motion-reduce:hover:translate-none dark:border-cream/15 dark:bg-choc-elevated dark:shadow-none dark:hover:shadow-none focus-within:border-pine/60 dark:focus-within:border-mint/60">
                         <Link
                           lang={d.lang}
                           href={`/${section}/${d.slug}`}
-                          className="text-lg font-semibold after:absolute after:inset-0 hover:text-pine dark:hover:text-mint"
+                          className="text-lg font-semibold after:absolute after:inset-0 hover:text-pine dark:hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine dark:focus-visible:outline-mint"
                         >
                           {d.title}
                         </Link>
@@ -144,7 +144,7 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                             {t.englishOnly}
                           </span>
                         )}
-                        {<p className="mt-1 text-[13px] leading-[1.45] text-ink/70 tabular-nums dark:text-cream/70">{[localDigits(d.date, lang), minReadLabel(d.readingMinutes, lang)].filter(Boolean).join(" · ")}</p>}
+                        {<p className={`mt-1 text-[13px] tabular-nums dark:text-cream/70 ${lang === "en" ? "leading-[1.45] text-ink/70" : "leading-[1.6] text-ink/70"}`}>{[localDigits(d.date, lang), minReadLabel(d.readingMinutes, lang)].filter(Boolean).join(" · ")}</p>}
                         </div>
                       </Reveal>
                     ))}
@@ -162,7 +162,7 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                       href="/pub"
                       className="mt-3 inline-flex min-h-[44px] items-center gap-1.5 text-sm font-semibold text-pine transition motion-reduce:transition-none hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine dark:text-mint dark:focus-visible:outline-mint"
                     >
-                      {t.viewCollection} →
+                      {t.viewCollection} <span aria-hidden="true">→</span>
                     </Link>
                   </div>
                 )}
@@ -177,20 +177,27 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                   return g !== null && !subs.includes(g);
                 })
                 .map((d) => (
-                  <div key={d.slug}>
-                    <Link href={`/${section}/${d.slug}`} className="hover:text-pine dark:hover:text-mint">{d.title}</Link>
+                  <div key={d.slug} className="relative rounded-xl border border-brass/25 bg-surface-subtle p-4 shadow-[0_1px_2px_rgba(47,42,37,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-brass/60 hover:shadow-[0_12px_24px_-14px_rgba(47,42,37,0.16)] motion-reduce:transition-none motion-reduce:hover:translate-none dark:border-cream/15 dark:bg-choc-elevated dark:shadow-none dark:hover:shadow-none focus-within:border-pine/60 dark:focus-within:border-mint/60">
+                    <Link
+                      lang={d.lang}
+                      href={`/${section}/${d.slug}`}
+                      className="text-lg font-semibold after:absolute after:inset-0 hover:text-pine dark:hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine dark:focus-visible:outline-mint"
+                    >
+                      {d.title}
+                    </Link>
                     {d.lang !== lang && (
                       <span className={`badge-leak-guard ml-2 inline-block max-w-full whitespace-nowrap rounded-full bg-brass/20 px-2.5 py-0.5 align-middle text-[11px] font-semibold text-ink dark:bg-brass/15 dark:text-cream ${lang === "en" ? "uppercase tracking-[0.08em]" : "tracking-normal"}`}>
                         {t.englishOnly}
                       </span>
                     )}
+                    {<p className={`mt-1 text-[13px] tabular-nums dark:text-cream/70 ${lang === "en" ? "leading-[1.45] text-ink/70" : "leading-[1.6] text-ink/70"}`}>{[localDigits(d.date, lang), minReadLabel(d.readingMinutes, lang)].filter(Boolean).join(" · ")}</p>}
                   </div>
                 ))}
             </div>
           )}
           {docs.filter((d) => docGroup(section, d) === null).length > 0 && (
             <div>
-              <h2 className={`flex items-center gap-3 font-display text-xl font-medium dark:font-normal text-maroon after:h-px after:flex-1 after:bg-brass/30 dark:text-clay dark:after:bg-brass/20 ${lang === "en" ? "tracking-tight" : "tracking-normal"}`}>{t.comingSoon}</h2>
+              <h2 className={`flex items-center gap-3 font-display text-xl font-medium dark:font-normal text-maroon after:h-px after:flex-1 after:bg-brass/30 dark:text-clay dark:after:bg-brass/20 ${lang === "en" ? "tracking-tight" : "tracking-normal leading-[1.5]"}`}>{t.comingSoon}</h2>
               <ul className="mt-3 space-y-3">
                 {docs
                   .filter((d) => docGroup(section, d) === null)
@@ -201,15 +208,15 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                       index={i}
                       className=""
                     >
-                      <div className="relative rounded-xl border border-brass/25 bg-surface-subtle p-4 shadow-[0_1px_2px_rgba(47,42,37,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-brass/60 hover:shadow-[0_12px_24px_-14px_rgba(47,42,37,0.16)] motion-reduce:transition-none motion-reduce:hover:translate-none dark:border-cream/15 dark:bg-choc-elevated dark:shadow-none dark:hover:shadow-none">
+                      <div className="relative rounded-xl border border-brass/25 bg-surface-subtle p-4 shadow-[0_1px_2px_rgba(47,42,37,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-brass/60 hover:shadow-[0_12px_24px_-14px_rgba(47,42,37,0.16)] motion-reduce:transition-none motion-reduce:hover:translate-none dark:border-cream/15 dark:bg-choc-elevated dark:shadow-none dark:hover:shadow-none focus-within:border-pine/60 dark:focus-within:border-mint/60">
                       <Link
                         lang={d.lang}
                         href={`/${section}/${d.slug}`}
-                        className="text-lg font-semibold after:absolute after:inset-0 hover:text-pine dark:hover:text-mint"
+                        className="text-lg font-semibold after:absolute after:inset-0 hover:text-pine dark:hover:text-mint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine dark:focus-visible:outline-mint"
                       >
                         {d.title}
                       </Link>
-                      {<p className="mt-1 text-[13px] leading-[1.45] text-ink/70 tabular-nums dark:text-cream/70">{[localDigits(d.date, lang), minReadLabel(d.readingMinutes, lang)].filter(Boolean).join(" · ")}</p>}
+                      {<p className={`mt-1 text-[13px] tabular-nums dark:text-cream/70 ${lang === "en" ? "leading-[1.45] text-ink/70" : "leading-[1.6] text-ink/70"}`}>{[localDigits(d.date, lang), minReadLabel(d.readingMinutes, lang)].filter(Boolean).join(" · ")}</p>}
                       </div>
                     </Reveal>
                   ))}

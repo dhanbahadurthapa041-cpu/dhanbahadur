@@ -97,7 +97,7 @@ export default function CountUp({
           delayTimer = window.setTimeout(run, delayMs);
         }
       },
-      { threshold: 0.35 }
+      { threshold: 0.25, rootMargin: "0px 0px 96px 0px" }
     );
 
     observer.observe(node);

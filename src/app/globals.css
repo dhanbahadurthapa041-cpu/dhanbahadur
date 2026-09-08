@@ -461,6 +461,25 @@ h4.font-display,
   font-size: 0.9em;
 }
 
+/* First-table guard: wide tables / code blocks get a local scroller instead
+   of clipping the 360px page (Tailwind Typography explicitly punts this to
+   authors). Wrap-safe tokens may still wrap inside cells. */
+.prose :is(pre, table) {
+  max-width: 100%;
+}
+.prose pre {
+  overflow-x: auto;
+}
+.prose table {
+  display: block;
+  overflow-x: auto;
+  width: max-content;
+  max-width: 100%;
+}
+.prose :is(p, li, td, th, code) {
+  overflow-wrap: anywhere;
+}
+
 .prose a {
   text-underline-offset: 0.18em;
   text-decoration-thickness: 0.06em;
@@ -871,18 +890,19 @@ body {
       position: -webkit-sticky;
       position: sticky;
       top: 0;
-      height: 100vh;
-      height: 100svh;
+      min-height: 100vh;
+      min-height: 100svh;
+      height: auto;
       display: grid;
       align-content: center;
-      overflow: clip;
+      overflow: visible;
     }
     .intro-beat-1,
     .intro-beat-2,
     .intro-beat-3,
     .intro-beat-4,
     .intro-beat-5 {
-      will-change: transform, opacity;
+      will-change: auto;
       animation-duration: 1ms; /* Firefox requires a non-zero duration */
       animation-timing-function: linear;
       animation-fill-mode: both;
@@ -1146,7 +1166,7 @@ body {
 
 /* Fragment targets sit below the sticky progress bar, not under it. */
 .prose :is(h2, h3)[id] {
-  scroll-margin-top: 1rem;
+  scroll-margin-top: 2.5rem;
 }
 
 /* Heading anchor links (injected by src/lib/content.ts): quiet "#" that
@@ -1317,7 +1337,7 @@ body {
   /* Expand external + download hrefs so URLs survive on paper */
   a[href^="http"]::after,
   a[href^="/downloads/"]::after,
-  .prose a[href^="/"]::after {
+  a[href^="/"]:not([href^="#"])::after {
     content: " (" attr(href) ")";
     font-size: 0.85em;
     word-break: break-all;

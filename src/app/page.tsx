@@ -73,13 +73,13 @@ export default async function Home() {
                   {t.focusLabel}
                 </span>
                 <span className="rounded-full bg-pine/10 px-3 py-1 font-medium text-pine dark:bg-mint/10 dark:text-mint">
-                  Class 10 Social Studies
+                  {t.focusChip1}
                 </span>
                 <span className="rounded-full bg-brass/15 px-3 py-1 text-ink/80 dark:bg-brass/10 dark:text-cream/80">
-                  Class 12 English
+                  {t.focusChip2}
                 </span>
                 <span className="rounded-full bg-brass/15 px-3 py-1 text-ink/80 dark:bg-brass/10 dark:text-cream/80">
-                  Grammar & Composition
+                  {t.focusChip3}
                 </span>
               </div>
             </div>
@@ -104,7 +104,7 @@ export default async function Home() {
                   alt={t.profileAlt}
                   width={520}
                   height={650}
-                  sizes="(min-width:1024px) 460px, (min-width:640px) 380px, 90vw"
+                  sizes="(min-width:1024px) 320px, (min-width:640px) 280px, 200px"
                   className="parallax-photo aspect-[4/5] w-full object-cover sepia-[0.28] contrast-[1.04] brightness-[1.01]"
                   priority
                 />
@@ -206,10 +206,10 @@ export default async function Home() {
                     </span>
                   </div>
                   <span aria-hidden="true" className="mt-4 mb-3 block h-[3px] w-14 rounded-full bg-brass/70 dark:bg-brass-dark/60" />
-                  <h3 className="font-display text-2xl font-medium dark:font-normal text-maroon group-hover:text-pine transition-colors motion-reduce:transition-none dark:text-clay dark:group-hover:text-mint">
+                  <h3 className={`font-display text-2xl font-medium dark:font-normal text-maroon ${lang === "en" ? "" : "leading-[1.35]"} group-hover:text-pine transition-colors motion-reduce:transition-none dark:text-clay dark:group-hover:text-mint`}>
                     {t.class10Title}
                   </h3>
-                  <p className="mt-2.5 text-sm leading-relaxed text-ink/70 dark:text-cream/70">
+                  <p className={`mt-2.5 text-sm ${lang === "en" ? "leading-relaxed" : "leading-loose"} text-ink/70 dark:text-cream/70`}>
                     {t.class10Desc}
                   </p>
                 </div>
@@ -232,15 +232,15 @@ export default async function Home() {
                       NEB +2
                     </span>
                     <span className="rounded-full border border-ink/15 px-2.5 py-0.5 text-[11px] font-medium text-ink/60 dark:border-cream/20 dark:text-cream/60">
-                      Literature
+                      {t.badgeLiterature}
                     </span>
                   </div>
                   <span aria-hidden="true" className="mt-4 mb-3 block h-[3px] w-10 rounded-full bg-brass/70 dark:bg-brass-dark/60" />
                   <span aria-hidden="true" className="block h-2 w-2 rotate-45 bg-brass/80 dark:bg-brass-dark/60" />
-                  <h3 className="font-display text-2xl font-medium dark:font-normal text-maroon group-hover:text-pine transition-colors motion-reduce:transition-none dark:text-clay dark:group-hover:text-mint">
+                  <h3 className={`font-display text-2xl font-medium dark:font-normal text-maroon ${lang === "en" ? "" : "leading-[1.35]"} group-hover:text-pine transition-colors motion-reduce:transition-none dark:text-clay dark:group-hover:text-mint`}>
                     {t.class12Title}
                   </h3>
-                  <p className="mt-2.5 text-sm leading-relaxed text-ink/70 dark:text-cream/70">
+                  <p className={`mt-2.5 text-sm ${lang === "en" ? "leading-relaxed" : "leading-loose"} text-ink/70 dark:text-cream/70`}>
                     {t.class12Desc}
                   </p>
                 </div>
@@ -260,7 +260,7 @@ export default async function Home() {
                 <div>
                   <div className="flex items-center justify-between gap-2">
                     <span className={`badge-leak-guard rounded-full bg-brass/20 px-2.5 py-0.5 text-[11px] font-semibold text-ink dark:bg-brass/15 dark:text-cream ${lang === "en" ? "uppercase tracking-[0.10em]" : "tracking-normal"}`}>
-                      Rules & Exercises
+                      {t.badgeRules}
                     </span>
                     <span className="rounded-full border border-ink/15 px-2.5 py-0.5 text-[11px] font-medium text-ink/60 dark:border-cream/20 dark:text-cream/60">
                       9 Topics
@@ -268,10 +268,10 @@ export default async function Home() {
                   </div>
                   <span aria-hidden="true" className="mt-4 mb-3 block h-[3px] w-10 rounded-full bg-brass/70 dark:bg-brass-dark/60" />
                   <span aria-hidden="true" className="block h-2 w-2 rotate-45 bg-brass/80 dark:bg-brass-dark/60" />
-                  <h3 className="font-display text-2xl font-medium dark:font-normal text-maroon group-hover:text-pine transition-colors motion-reduce:transition-none dark:text-clay dark:group-hover:text-mint">
+                  <h3 className={`font-display text-2xl font-medium dark:font-normal text-maroon ${lang === "en" ? "" : "leading-[1.35]"} group-hover:text-pine transition-colors motion-reduce:transition-none dark:text-clay dark:group-hover:text-mint`}>
                     {t.grammarTitle}
                   </h3>
-                  <p className="mt-2.5 text-sm leading-relaxed text-ink/70 dark:text-cream/70">
+                  <p className={`mt-2.5 text-sm ${lang === "en" ? "leading-relaxed" : "leading-loose"} text-ink/70 dark:text-cream/70`}>
                     {t.grammarDesc}
                   </p>
                 </div>
@@ -291,7 +291,7 @@ export default async function Home() {
                 <div>
                   <div className="flex items-center justify-between gap-2">
                     <span className={`badge-leak-guard rounded-full bg-brass/20 px-2.5 py-0.5 text-[11px] font-semibold text-ink dark:bg-brass/15 dark:text-cream ${lang === "en" ? "uppercase tracking-[0.10em]" : "tracking-normal"}`}>
-                      Composition
+                      {t.badgeComposition}
                     </span>
                     <span className="rounded-full border border-ink/15 px-2.5 py-0.5 text-[11px] font-medium text-ink/60 dark:border-cream/20 dark:text-cream/60">
                       3 Styles
@@ -299,10 +299,10 @@ export default async function Home() {
                   </div>
                   <span aria-hidden="true" className="mt-4 mb-3 block h-[3px] w-10 rounded-full bg-brass/70 dark:bg-brass-dark/60" />
                   <span aria-hidden="true" className="block h-2 w-2 rotate-45 bg-brass/80 dark:bg-brass-dark/60" />
-                  <h3 className="font-display text-2xl font-medium dark:font-normal text-maroon group-hover:text-pine transition-colors motion-reduce:transition-none dark:text-clay dark:group-hover:text-mint">
+                  <h3 className={`font-display text-2xl font-medium dark:font-normal text-maroon ${lang === "en" ? "" : "leading-[1.35]"} group-hover:text-pine transition-colors motion-reduce:transition-none dark:text-clay dark:group-hover:text-mint`}>
                     {t.writingTitle}
                   </h3>
-                  <p className="mt-2.5 text-sm leading-relaxed text-ink/70 dark:text-cream/70">
+                  <p className={`mt-2.5 text-sm ${lang === "en" ? "leading-relaxed" : "leading-loose"} text-ink/70 dark:text-cream/70`}>
                     {t.writingDesc}
                   </p>
                 </div>
@@ -322,18 +322,18 @@ export default async function Home() {
                 <div>
                   <div className="flex items-center justify-between gap-2">
                     <span className={`badge-leak-guard rounded-full bg-brass/20 px-2.5 py-0.5 text-[11px] font-semibold text-ink dark:bg-brass/15 dark:text-cream ${lang === "en" ? "uppercase tracking-[0.10em]" : "tracking-normal"}`}>
-                      Library
+                      {t.badgeLibrary}
                     </span>
                     <span className="rounded-full border border-ink/15 px-2.5 py-0.5 text-[11px] font-medium text-ink/60 dark:border-cream/20 dark:text-cream/60">
-                      Downloads
+                      {t.badgeDownloads}
                     </span>
                   </div>
                   <span aria-hidden="true" className="mt-4 mb-3 block h-[3px] w-10 rounded-full bg-brass/70 dark:bg-brass-dark/60" />
                   <span aria-hidden="true" className="block h-2 w-2 rotate-45 bg-brass/80 dark:bg-brass-dark/60" />
-                  <h3 className="font-display text-2xl font-medium dark:font-normal text-maroon group-hover:text-pine transition-colors motion-reduce:transition-none dark:text-clay dark:group-hover:text-mint">
+                  <h3 className={`font-display text-2xl font-medium dark:font-normal text-maroon ${lang === "en" ? "" : "leading-[1.35]"} group-hover:text-pine transition-colors motion-reduce:transition-none dark:text-clay dark:group-hover:text-mint`}>
                     {t.pubTitle}
                   </h3>
-                  <p className="mt-2.5 text-sm leading-relaxed text-ink/70 dark:text-cream/70">
+                  <p className={`mt-2.5 text-sm ${lang === "en" ? "leading-relaxed" : "leading-loose"} text-ink/70 dark:text-cream/70`}>
                     {t.pubDesc}
                   </p>
                 </div>
@@ -353,18 +353,18 @@ export default async function Home() {
                 <div>
                   <div className="flex items-center justify-between gap-2">
                     <span className={`badge-leak-guard rounded-full bg-brass/20 px-2.5 py-0.5 text-[11px] font-semibold text-ink dark:bg-brass/15 dark:text-cream ${lang === "en" ? "uppercase tracking-[0.10em]" : "tracking-normal"}`}>
-                      Biography
+                      {t.badgeBiography}
                     </span>
                     <span className="rounded-full border border-ink/15 px-2.5 py-0.5 text-[11px] font-medium text-ink/60 dark:border-cream/20 dark:text-cream/60">
-                      Principal
+                      {t.badgePrincipal}
                     </span>
                   </div>
                   <span aria-hidden="true" className="mt-4 mb-3 block h-[3px] w-10 rounded-full bg-brass/70 dark:bg-brass-dark/60" />
                   <span aria-hidden="true" className="block h-2 w-2 rotate-45 bg-brass/80 dark:bg-brass-dark/60" />
-                  <h3 className="font-display text-2xl font-medium dark:font-normal text-maroon group-hover:text-pine transition-colors motion-reduce:transition-none dark:text-clay dark:group-hover:text-mint">
+                  <h3 className={`font-display text-2xl font-medium dark:font-normal text-maroon ${lang === "en" ? "" : "leading-[1.35]"} group-hover:text-pine transition-colors motion-reduce:transition-none dark:text-clay dark:group-hover:text-mint`}>
                     {t.navAbout}
                   </h3>
-                  <p className="mt-2.5 text-sm leading-relaxed text-ink/70 dark:text-cream/70">
+                  <p className={`mt-2.5 text-sm ${lang === "en" ? "leading-relaxed" : "leading-loose"} text-ink/70 dark:text-cream/70`}>
                     {t.aboutPara2}
                   </p>
                 </div>
@@ -413,17 +413,17 @@ export default async function Home() {
             {/* Document preview rows with shadow, hover pickup, and outlined tag pills */}
             <div className="space-y-3">
               {[
-                { title: t.catTextbooks, desc: "Class 10 Social Studies Textbook", tag: "Textbook" },
-                { title: t.catSyllabus, desc: "Secondary Level Social Studies Syllabus", tag: "Curriculum" },
-                { title: t.catGuides, desc: "Teacher's Instructional Manual & Guide", tag: "Instructional" },
-                { title: t.catGrid, desc: "Specification Blueprint & Question Grid", tag: "Assessment" },
+                { title: t.catTextbooks, desc: t.libDescTextbooks, tag: t.libTagTextbook },
+                { title: t.catSyllabus, desc: t.libDescSyllabus, tag: t.libTagSyllabus },
+                { title: t.catGuides, desc: t.libDescGuides, tag: t.libTagGuides },
+                { title: t.catGrid, desc: t.libDescGrid, tag: t.libTagGrid },
               ].map((item, idx) => (
                 <div
                   key={idx}
                   className="flex flex-col gap-3 rounded-2xl border border-brass/25 bg-paper p-5 shadow-[0_1px_2px_rgba(47,42,37,0.05)] sm:flex-row sm:items-center sm:justify-between dark:border-cream/10 dark:bg-choc dark:shadow-none"
                 >
                   <div className="flex min-w-0 flex-1 items-center gap-3.5">
-                    <span className="flex h-11 w-11 items-center justify-center rounded-lg border border-brass/40 bg-brass/20 font-display text-[13px] font-semibold tabular-nums text-ink shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] dark:bg-brass/20 dark:text-cream dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
+                    <span lang="en" className="flex h-11 w-11 items-center justify-center rounded-lg border border-brass/40 bg-brass/20 font-display text-[13px] font-semibold tabular-nums text-ink shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] dark:bg-brass/20 dark:text-cream dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
                       PDF
                     </span>
                     <div>

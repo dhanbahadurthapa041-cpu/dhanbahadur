@@ -22,7 +22,7 @@ export default function Header() {
   }, []);
 
   const link =
-    "transition-colors motion-reduce:transition-none text-ink/80 hover:text-pine aria-[current=page]:font-semibold aria-[current=page]:text-pine aria-[current=page]:underline aria-[current=page]:decoration-brass aria-[current=page]:decoration-2 aria-[current=page]:underline-offset-4 dark:text-cream/80 dark:hover:text-mint dark:aria-[current=page]:text-mint dark:aria-[current=page]:decoration-brass-dark";
+    "inline-flex min-h-[44px] items-center md:min-h-0 transition-colors motion-reduce:transition-none text-ink/80 hover:text-pine aria-[current=page]:font-semibold aria-[current=page]:text-pine aria-[current=page]:underline aria-[current=page]:decoration-brass aria-[current=page]:decoration-2 aria-[current=page]:underline-offset-4 dark:text-cream/80 dark:hover:text-mint dark:aria-[current=page]:text-mint dark:aria-[current=page]:decoration-brass-dark";
   const showFacebook = FACEBOOK_URL.startsWith("http");
   const current = (href: string) =>
     pathname === href ? ({ "aria-current": "page" } as const) : {};

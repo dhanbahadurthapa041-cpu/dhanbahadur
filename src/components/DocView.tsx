@@ -69,7 +69,7 @@ export default function DocView({
         >
           {doc.title}
         </h1>
-        {doc.date && <p className="mt-1 text-[13px] leading-[1.45] text-ink/70 tabular-nums dark:text-cream/70">{localDigits(doc.date, lang)}</p>}
+        {doc.date && <p className={`mt-1 text-[13px] tabular-nums dark:text-cream/70 ${lang === "en" ? "leading-[1.45] text-ink/70" : "leading-[1.6] text-ink/70"}`}>{localDigits(doc.date, lang)}</p>}
         {/* Every slug has an English file, so a language mismatch always means
             English fallback — one shared "English only" badge covers it. */}
         {doc.lang !== lang && (
@@ -82,7 +82,7 @@ export default function DocView({
       </div>
       {showToc && <ReadingProgress targetId={ARTICLE_ID} />}
       {showToc && <TocDrawer toc={doc.toc} />}
-      <div className={showToc ? "mt-8 lg:grid lg:grid-cols-[minmax(0,1fr)_13rem] lg:items-start lg:gap-8" : undefined}>
+      <div className={showToc ? "mt-8 lg:grid lg:grid-cols-[minmax(0,1fr)_13rem] lg:items-start lg:gap-8 [&>*]:min-w-0" : undefined}>
         <article
           lang={doc.lang}
           id={showToc ? ARTICLE_ID : undefined}

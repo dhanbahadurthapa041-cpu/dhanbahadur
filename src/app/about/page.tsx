@@ -77,7 +77,7 @@ export default async function About() {
         <Divider variant="vignette" />
 
         <div className="grid gap-6 sm:grid-cols-2">
-          <div className="rounded-2xl border border-brass/25 bg-surface-subtle p-6 dark:border-cream/15 dark:bg-choc-elevated">
+          <div className="rounded-2xl border border-brass/25 bg-surface-subtle p-6 dark:border-cream/15 dark:bg-choc-elevated dark:ring-1 dark:ring-white/10">
             <h2 className="font-display text-lg font-semibold text-maroon dark:text-clay">
               {t.schoolLeadershipTitle}
             </h2>
@@ -86,7 +86,7 @@ export default async function About() {
             </p>
           </div>
 
-          <div className="rounded-2xl border border-brass/25 bg-surface-subtle p-6 dark:border-cream/15 dark:bg-choc-elevated">
+          <div className="rounded-2xl border border-brass/25 bg-surface-subtle p-6 dark:border-cream/15 dark:bg-choc-elevated dark:ring-1 dark:ring-white/10">
             <h2 className="font-display text-lg font-semibold text-maroon dark:text-clay">
               {t.featuredPubsEyebrow}
             </h2>

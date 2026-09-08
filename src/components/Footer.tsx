@@ -113,15 +113,12 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 4: Contact & Office */}
-          <div>
+          {/* Column 4: Contact & Office (full row at sm: no orphan column) */}
+          <div className="sm:col-span-2 lg:col-span-1">
             <h3 className="font-display text-sm font-semibold uppercase tracking-[0.15em] text-brass">
               {t.contactTitle}
             </h3>
             <div className="mt-4 space-y-3 text-sm text-cream/80">
-              <p className="leading-snug text-cream/70">
-                {t.tagline}
-              </p>
               <div>
                 <a
                   href={OFFICE_PHONE_HREF}
@@ -149,9 +146,9 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-cream/10 pt-6 flex flex-col gap-3 text-xs text-cream/60 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 border-t border-cream/10 pt-6 flex flex-col gap-3 text-xs text-cream/70 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap items-center gap-4">
-            <p>© {new Date().getFullYear()} {t.siteOwner}. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} {t.siteOwner}. {t.rightsReserved}</p>
             <span aria-hidden="true" className="text-cream/30">•</span>
             <Link
               href="/sitemap.xml"

@@ -124,7 +124,7 @@ export default function StatsRow() {
                   )}
                 </div>
               )}
-              <p className="mt-1.5 text-xs text-ink/70 dark:text-cream/75 print:text-gray-600">
+              <p className={`mt-1.5 text-xs dark:text-cream/75 print:text-gray-600 ${isNe ? "leading-relaxed text-ink/70" : "leading-4 text-ink/70"}`}>
                 {stat.pending
                   ? isNe
                     ? "अङ्क पुष्टि हुन बाँकी — अस्थायी, प्रकाशित होइन।"

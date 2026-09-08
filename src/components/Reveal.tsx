@@ -13,29 +13,33 @@ import {
 // never flash hidden); plain effect on the server to avoid the SSR warning.
 const useIsoLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
-// Single shared IntersectionObserver for every Reveal on the page. Each
-// target is unobserved the first time it intersects (fire-once entrance).
-let sharedObserver: IntersectionObserver | null = null;
+// Shared IntersectionObservers keyed by rootMargin (desktop geometry + one
+// small-screen pre-arm variant). Each target is unobserved the first time it
+// intersects (fire-once entrance).
+const sharedObservers = new Map<string, IntersectionObserver>();
 const pending = new Map<Element, () => void>();
 
-function getSharedObserver(): IntersectionObserver | null {
+function getSharedObserver(rootMargin: string): IntersectionObserver | null {
   if (typeof window === "undefined" || !("IntersectionObserver" in window)) return null;
-  if (!sharedObserver) {
-    sharedObserver = new IntersectionObserver(
+  let obs = sharedObservers.get(rootMargin);
+  if (!obs) {
+    const created = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (!entry.isIntersecting) continue;
           const fire = pending.get(entry.target);
           if (!fire) continue;
           pending.delete(entry.target);
-          sharedObserver?.unobserve(entry.target);
+          created.unobserve(entry.target);
           fire();
         }
       },
-      { rootMargin: "0px 0px -8% 0px", threshold: 0.1 },
+      { rootMargin, threshold: 0.1 },
     );
+    sharedObservers.set(rootMargin, created);
+    obs = created;
   }
-  return sharedObserver;
+  return obs;
 }
 
 function useRevealState() {
@@ -61,7 +65,10 @@ function useRevealState() {
       setVisible(true);
       return;
     }
-    const io = getSharedObserver();
+    // Small screens pre-arm the entrance timer so the settled 600ms delay
+    // + 550ms choreography lands while the card is still entering.
+    const smallScreen = window.innerWidth < 640;
+    const io = getSharedObserver(smallScreen ? "64px 0px 0px 0px" : "0px 0px -8% 0px");
     if (!io) {
       setVisible(true);
       return;
