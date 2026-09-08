@@ -138,7 +138,7 @@ export default async function Home() {
       {/* ===================================================================
           BAND 3: Chapter-Break Pull Quote (Full-Bleed Deep Pine)
           =================================================================== */}
-      <section className="full-bleed bg-pine on-pine py-24 sm:py-32 lg:py-40 text-cream dark:bg-pine-dark">
+      <section className="band-wipe-s2 full-bleed bg-pine on-pine py-24 sm:py-32 lg:py-40 text-cream dark:bg-pine-dark">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
           <FolioMarker label={t.folioQuote} className="justify-center mb-6 text-brass-dark" />
           {/* Unique epigraphs, not verbatim body repeats → isDuplicate false (exposed to AT) */}
@@ -432,7 +432,7 @@ export default async function Home() {
       {/* ===================================================================
           BAND 6: School Leadership & Digital Learning CTA (Dark Chocolate)
           =================================================================== */}
-      <section className="full-bleed bg-choc py-24 sm:py-32 lg:py-40 text-cream border-t border-brass/20" data-band="choc">
+      <section className="band-wipe-s5 full-bleed bg-choc py-24 sm:py-32 lg:py-40 text-cream border-t border-brass/20" data-band="choc">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
             <div>

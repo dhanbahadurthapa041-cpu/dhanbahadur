@@ -983,6 +983,92 @@ body {
   }
 }
 
+/* ---- Phase B7: band handoff wipes (S2 linen→pine, S5 linen→choc only)
+   Fallback-first: resting straight edges are the designed state. Wipes live
+   ONLY inside (min-width:1024px) + (hover:hover) + no-preference + @supports —
+   everywhere else renders today's straight cuts. Direct clip-path keyframes
+   (no @property: single-edge case, var indirection would cost main-thread
+   paint for no gain). Anonymous view() timelines: zero new names, no collision
+   with B6 --intro. Wipe nodes are the band <section>s themselves — disjoint
+   from .parallax-*, .intro-beat-*, .reveal nodes (one animation owner/node).
+   Recorded deviations from the briefs: ranges cover 0→8% (not 18%/15%) so the
+   wipe completes BEFORE B6 H2 (~13%) / B3 quote (~19%) enters — the briefs'
+   own text-never-clipped rule forces this; no paper-layer echo pseudos and no
+   separate thread element (resting pixel-identical; B6 border-t rides the
+   slant during motion); tablet static instead of halved (paint budget, same
+   gate as the B6 pin). S1/S3/S4/S6 stay straight per restraint list. */
+.band-wipe-s2,
+.band-wipe-s5 {
+  clip-path: none;
+}
+
+@media (min-width: 1024px) and (hover: hover) {
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      .band-wipe-s2 {
+        will-change: clip-path;
+        animation: wipe-s2 linear both;
+        animation-duration: 1ms; /* Firefox requires a non-zero duration */
+        animation-timeline: view(block);
+        animation-range: cover 0% cover 8%;
+        view-timeline-inset: 84px 0;
+      }
+      @keyframes wipe-s2 {
+        from {
+          clip-path: inset(48px 0 0 0);
+        }
+        to {
+          clip-path: inset(0 0 0 0);
+        }
+      }
+
+      /* S5: the only angled edge on the page (≤4% slope ≈ 2°). Same shape
+         function + same point count at both endpoints (interpolation rule). */
+      .band-wipe-s5 {
+        will-change: clip-path;
+        animation: wipe-s5 linear both;
+        animation-duration: 1ms;
+        animation-timeline: view(block);
+        animation-range: cover 0% cover 8%;
+        view-timeline-inset: 84px 0;
+      }
+      @keyframes wipe-s5 {
+        from {
+          clip-path: polygon(0 4%, 100% 0, 100% 100%, 0 100%);
+        }
+        to {
+          clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        }
+      }
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .band-wipe-s2,
+  .band-wipe-s5 {
+    animation: none !important;
+    animation-timeline: auto !important;
+    clip-path: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    will-change: auto !important;
+  }
+}
+
+@media print {
+  .band-wipe-s2,
+  .band-wipe-s5 {
+    animation: none !important;
+    animation-timeline: auto !important;
+    clip-path: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    break-inside: avoid;
+  }
+}
+
 /* ---- Round 3: reading structure (TOC + progress + heading anchors) ---- */
 
 /* Anchor jumps glide only when motion is allowed; reduced-motion readers
