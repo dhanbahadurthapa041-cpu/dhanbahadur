@@ -158,7 +158,7 @@ export function TocRail({ toc }: { toc: TocEntry[] }) {
 
 /** Collapsible "On this page" drawer for mobile. Rendered only with 3+ headings. */
 export function TocDrawer({ toc }: { toc: TocEntry[] }) {
-  const { t, lang } = useLang();
+  const { t } = useLang();
   const [open, setOpen] = useState(false);
   const active = useScrollSpy(toc.map((e) => e.id).join("\n"));
   return (

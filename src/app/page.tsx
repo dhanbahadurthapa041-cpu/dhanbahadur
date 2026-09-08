@@ -106,7 +106,7 @@ export default async function Home() {
                   height={650}
                   sizes="(min-width:1024px) 320px, (min-width:640px) 280px, 200px"
                   className="parallax-photo aspect-[4/5] w-full object-cover sepia-[0.28] contrast-[1.04] brightness-[1.01]"
-                  priority
+                  fetchPriority="high"
                 />
                 <div
                   aria-hidden="true"

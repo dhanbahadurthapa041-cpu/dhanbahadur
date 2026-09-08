@@ -11,6 +11,7 @@ export default function Header() {
   const { theme, toggleTheme } = useTheme();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [themeTipHidden, setThemeTipHidden] = useState(false);
   const menuBtnRef = useRef<HTMLButtonElement>(null);
   const closeMenu = () => {
     setOpen(false);
@@ -54,10 +55,11 @@ export default function Header() {
               aria-label={t.toggleTheme}
               aria-pressed={theme === "dark"}
               aria-describedby="tip-theme"
-              title={t.toggleTheme}
+              onKeyDown={(e) => { if (e.key === "Escape") setThemeTipHidden(true); }}
+              onBlur={() => setThemeTipHidden(false)}
               suppressHydrationWarning
             >
-              <span className="icon-tip" role="tooltip" id="tip-theme">
+              <span className={`icon-tip${themeTipHidden ? " hidden" : ""}`} role="tooltip" id="tip-theme">
                 {t.toggleTheme}
               </span>
               {theme === "dark" ? (
@@ -105,7 +107,6 @@ export default function Header() {
               onClick={() => setLang(lang === "ne" ? "en" : "ne")}
               className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-brass/40 bg-surface-subtle px-3.5 py-1 text-xs font-semibold tracking-wide transition motion-reduce:transition-none hover:border-pine hover:text-pine focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine dark:border-cream/20 dark:bg-choc-elevated dark:hover:border-mint dark:hover:text-mint dark:focus-visible:outline-mint"
               aria-label={t.switchLang}
-              title={t.switchLang}
             >
               <span lang={lang === "ne" ? "en" : "ne"}>{lang === "ne" ? "EN" : "नेपाली"}</span>
             </button>

@@ -113,7 +113,7 @@ function PubLibraryInner() {
                   : "border-ink/20 bg-surface-subtle shadow-[0_1px_2px_rgba(47,42,37,0.06)] hover:border-pine dark:border-cream/20 dark:bg-choc-elevated dark:ring-1 dark:ring-white/10 dark:shadow-none dark:hover:border-mint"
               }`}
             >
-              {chip.label} <span className="opacity-70">({chip.count})</span>
+              {chip.label} <span className="opacity-90">({chip.count})</span>
             </button>
           );
         })}

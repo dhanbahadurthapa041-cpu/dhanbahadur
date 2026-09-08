@@ -12,7 +12,7 @@ export default function Error({
   const { t, lang } = useLang();
   return (
     <div className="mx-auto max-w-4xl px-4 py-16 text-center sm:py-24">
-      <h1 className={`font-display text-3xl font-semibold ${lang === "en" ? "tracking-tight" : "tracking-normal"}`}>{t.errorTitle}</h1>
+      <h1 className={`font-display text-3xl font-semibold text-maroon dark:text-clay ${lang === "en" ? "tracking-tight" : "tracking-normal"}`}>{t.errorTitle}</h1>
       <p className="mt-2 text-ink/70 dark:text-cream/70">{t.errorBody}</p>
       <div className="mt-6 flex justify-center gap-3">
         <button

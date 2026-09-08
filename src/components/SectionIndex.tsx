@@ -104,7 +104,7 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                       {t.englishOnly}
                     </span>
                   )}
-                  {<p className={`mt-1 text-[13px] tabular-nums dark:text-cream/70 ${lang === "en" ? "leading-[1.45] text-ink/70" : "leading-[1.6] text-ink/70"}`}>{[localDigits(d.date, lang), minReadLabel(d.readingMinutes, lang)].filter(Boolean).join(" · ")}</p>}
+                  <p className={`mt-1 text-[13px] tabular-nums dark:text-cream/70 ${lang === "en" ? "leading-[1.45] text-ink/70" : "leading-[1.6] text-ink/70"}`}>{[localDigits(d.date, lang), minReadLabel(d.readingMinutes, lang)].filter(Boolean).join(" · ")}</p>
                   </div>
                 </Reveal>
               ))}
@@ -144,7 +144,7 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                             {t.englishOnly}
                           </span>
                         )}
-                        {<p className={`mt-1 text-[13px] tabular-nums dark:text-cream/70 ${lang === "en" ? "leading-[1.45] text-ink/70" : "leading-[1.6] text-ink/70"}`}>{[localDigits(d.date, lang), minReadLabel(d.readingMinutes, lang)].filter(Boolean).join(" · ")}</p>}
+                        <p className={`mt-1 text-[13px] tabular-nums dark:text-cream/70 ${lang === "en" ? "leading-[1.45] text-ink/70" : "leading-[1.6] text-ink/70"}`}>{[localDigits(d.date, lang), minReadLabel(d.readingMinutes, lang)].filter(Boolean).join(" · ")}</p>
                         </div>
                       </Reveal>
                     ))}
@@ -190,7 +190,7 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                         {t.englishOnly}
                       </span>
                     )}
-                    {<p className={`mt-1 text-[13px] tabular-nums dark:text-cream/70 ${lang === "en" ? "leading-[1.45] text-ink/70" : "leading-[1.6] text-ink/70"}`}>{[localDigits(d.date, lang), minReadLabel(d.readingMinutes, lang)].filter(Boolean).join(" · ")}</p>}
+                    <p className={`mt-1 text-[13px] tabular-nums dark:text-cream/70 ${lang === "en" ? "leading-[1.45] text-ink/70" : "leading-[1.6] text-ink/70"}`}>{[localDigits(d.date, lang), minReadLabel(d.readingMinutes, lang)].filter(Boolean).join(" · ")}</p>
                   </div>
                 ))}
             </div>
@@ -216,7 +216,7 @@ export default function SectionIndex({ section, lang }: { section: Section; lang
                       >
                         {d.title}
                       </Link>
-                      {<p className={`mt-1 text-[13px] tabular-nums dark:text-cream/70 ${lang === "en" ? "leading-[1.45] text-ink/70" : "leading-[1.6] text-ink/70"}`}>{[localDigits(d.date, lang), minReadLabel(d.readingMinutes, lang)].filter(Boolean).join(" · ")}</p>}
+                      <p className={`mt-1 text-[13px] tabular-nums dark:text-cream/70 ${lang === "en" ? "leading-[1.45] text-ink/70" : "leading-[1.6] text-ink/70"}`}>{[localDigits(d.date, lang), minReadLabel(d.readingMinutes, lang)].filter(Boolean).join(" · ")}</p>
                       </div>
                     </Reveal>
                   ))}

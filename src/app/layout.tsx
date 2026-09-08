@@ -3,6 +3,7 @@ import { Fraunces, Noto_Sans_Devanagari } from "next/font/google";
 import "./globals.css";
 import { LangProvider, ThemeProvider } from "@/lib/lang";
 import { getServerLang } from "@/lib/lang-server";
+import { STRINGS } from "@/lib/i18n";
 import { SITE_URL } from "@/lib/seo";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -71,8 +72,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <GrainOverlay />
         <LangProvider initialLang={lang}>
           <ThemeProvider>
+            <a
+              href="#main-content"
+              className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:rounded-full focus:bg-pine focus:px-4 focus:py-2 focus:text-sm focus:text-white"
+            >
+              {STRINGS[lang].skipToMain}
+            </a>
             <Header />
-            <main className="w-full flex-1">{children}</main>
+            <main id="main-content" className="w-full flex-1">{children}</main>
             <Footer />
           </ThemeProvider>
         </LangProvider>
